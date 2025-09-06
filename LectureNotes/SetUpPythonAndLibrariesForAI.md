@@ -32,23 +32,121 @@ NumPy is a scientific computing library for efficient array processing, offering
 ### scikit-learn
 Scikit-learn is a library for traditional machine learning in Python, built on NumPy arrays. It offers a consistent interface to a wide range of models and tools, many beyond the scope of this course. As you deepen your understanding, the [official documentation](https://scikit-learn.org/stable/documentation.html) is an essential resource.
 
-### TensorFlow with Keras
+## TensorFlow with Keras
 TensorFlow is a widely adopted, open-source framework and toolkit developed by Google. It provides deep learning neural network functionality and includes Keras, a user-friendly Python API (programming interface). 
 
+- provides direct access to the GPU.
+
+### Pillow
+
+The Pillow library is an image-processing library
+
+### Matplotlib
+
+Matplotlib is for plotting.
 
 
-## Setup Instructions for Ubuntu Linux
+
+## Setup Instructions for Windows
+
+### Install Python and the Python Launcher
+
+#### Check for Python and the Python Launcher
+
+Open a Power Shell Terminal on your computer and check to see if Python is installed on your system using this command:
+
+```powershell
+python --version
+```
+
+If it is installed, the version number will be reported.
+
+Check to see if the Python launcher is installed:
+
+```powershell
+py --version
+```
+
+If it is installed, the version number will be reported.
+
+#### Install One or Both if Missing
+
+Download the latest Python installer and run it.
+
+- If Python isn't installed, then install it using the custom setup. Check the "Python Launcher" box in the "Optional Features" dialog.
+- If Python is installed, but not py, then choose the "Modify" option. In the "Optional Features" dialog, check the box for "Python Launcher".
+
+### Set Up a Virtual Environment
+
+**1. Use a TensorFlow Compatible Version of Python**
+
+TensorFlow currently (8/26/2025) works with python 3.9&mdash;3.12,  Check your Python version (if Python is installed)
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install python3-pip
-$ sudo apt-get install build-essential python3-dev
-$ pip3 install numpy
-$ pip3 install scipy
-$ pip3 install matplotlib
-$ pip3 install scikit-learn
-$ pip3 install tensorflow-cpu==2.10.0
-$ pip3 install pillow
+python --version
+```
+
+If it's older than 3.9 or newer than 3.12.x (where x is any number) then install 3.12 using WinGet.[^1].
+
+```powershell
+winget install --id Python.Python.3.12
+```
+
+**2. Create a Virtual Environment**
+
+Navigate to the folder you want to use for your project or create one. For example:
+
+```powershell
+cd C:\Users\YourUserName\Projects\
+```
+
+Then create the *virtual environment*[^2]. You can name the virtual environment anything you like, in this example it is "ml-venv":
+
+```bash
+py -3.12 -m venv ml-venv
+```
+
+This creates a folder named `ml-venv` containing the isolated Python environment.
+
+**2. Activate the Environment**
+
+```powershell
+.\ml-venv\Scripts\activate
+```
+
+Your terminal prompt will change to show you're inside the virtual environment. Change directories to the new folder:
+
+```powershell
+cd ml-venv
+```
+
+Now any `pip install` commands will apply only to this project.
+
+**4. Install Packages for the Project**
+
+Before installing packages it is a good idea to update pip. This will upgrade pip within your virtual environment:
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+Install the dependencies for this project:
+
+```powershell
+pip install numpy
+pip install scipy
+pip install matplotlib
+pip install scikit-learn
+pip install tensorflow
+pip install pillow
+```
+
+**5. Deactivate When Done**
+
+To exit the virtual environment:
+
+```bash
+deactivate
 ```
 
 
@@ -57,13 +155,13 @@ $ pip3 install pillow
 
 ### Install Python
 
-Tensorflow for MacOS currently (8/26/2025) requires python 3.9 or 3.10, it won't work with newer versions. Check your Python version (if it is installed)
+TensorFlow for MacOS currently (8/26/2025) requires python 3.9 or 3.10, it won't work with newer versions. Check your Python version (if it is installed)
 
 ```bash
 python --version
 ```
 
-If it's older than 3.9 or newer than 3.10.x (where x is any number) then install 3.10 using Homebrew, a MacOS package managaer[^1].
+If it's older than 3.9 or newer than 3.10.x (where x is any number) then install 3.10 using Homebrew, a MacOS package manager[^3].
 
 ```bash
 brew update
@@ -153,9 +251,10 @@ deactivate
 
 ---
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) AI Programming lecture notes by [Brian Bird](https://profbird.dev), written in <time>August 2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) AI Programming lecture notes by [Brian Bird](https://profbird.dev), written in <time>September 2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 MS Copilot GPT-4 was used to draft parts of these notes.
 
-[^1]: Another popular package manager for MacOS is [MacPorts](https://www.macports.org/). 
+[^1]: WinGet, the [Windows Package Manager](https://github.com/microsoft/winget-cli?tab=readme-ov-file),  is installed by default on Windows 11 and can be installed on Windows 10. 
 [^2]: A Python virtual environment is like a sandbox for your Python projects—it isolates dependencies so that each project can have its own specific versions of packages, without interfering with others or your system-wide Python setup. It creates a folder (venv) containing: a) A copy of the Python interpreter. b) A local pip installer. c) A clean site-packages directory for your project’s dependencies. When you activate it, your shell temporarily switches to using that isolated Python and pip. 
+[^3]: Homebrew is not installed by default on MacOS. See the [Homebrew website](https://brew.sh/) for installation instructions.  Another popular package manager for MacOS is [MacPorts](https://www.macports.org/).  ↩
