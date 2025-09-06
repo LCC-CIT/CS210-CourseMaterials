@@ -1,0 +1,95 @@
+---
+title: Math Concepts for AI
+description: Basic algebra concepts needed for this course
+keywords: 
+generator: Typora
+author: Brian Bird
+---
+
+<h1>Iris Dataset Experiements</h1>
+
+**CS 210, Intro to AI Programming**
+
+
+
+<h2>Contents</h2>
+
+[TOC]
+
+Notes on running Python programs in VS Code:
+
+- When running in a venv, you need to select the Python interpreter by pressing `Ctrl+Shift+P` (to open the command pallet) and typing "Python: Select Interpreter". Restart VS Code.
+- The venv had to be activated in the VS Code terminal even if it was activated in another terminal.
+  `..\Scripts\Activate`
+
+Code from the book for the initial tests:
+
+```python
+ import numpy as np
+   from sklearn.neighbors import NearestCentroid, KNeighborsClassifier
+   from sklearn.naive_bayes import GaussianNB, MultinomialNB
+   from sklearn.tree import DecisionTreeClassifier
+   from sklearn.ensemble import RandomForestClassifier
+   from sklearn.svm import SVC 
+   
+def run(x_train, y_train, x_test, y_test, clf):
+       clf.fit(x_train, y_train)
+       print("    predictions  :", clf.predict(x_test))
+       print("    actual labels:", y_test)
+       print("    score = %0.4f" % clf.score(x_test, y_test))
+       print()
+   
+   def main():
+    x = np.load("../data/iris/iris_features.npy")
+       y = np.load("../data/iris/iris_labels.npy")
+       N = 120 
+       x_train = x[:N]; x_test = x[N:]
+       y_train = y[:N]; y_test = y[N:]
+xa_train=np.load("../data/iris/iris_train_features_augmented.npy")
+       ya_train=np.load("../data/iris/iris_train_labels_augmented.npy")
+       xa_test =np.load("../data/iris/iris_test_features_augmented.npy")
+       ya_test =np.load("../data/iris/iris_test_labels_augmented.npy")
+   
+       print("Nearest centroid:")
+    run(x_train, y_train, x_test, y_test, NearestCentroid())
+       print("k-NN classifier (k=3):")
+       run(x_train, y_train, x_test, y_test, 
+           KNeighborsClassifier(n_neighbors=3))
+       print("Naive Bayes classifier (Gaussian):")
+    run(x_train, y_train, x_test, y_test, GaussianNB())
+       print("Naive Bayes classifier (Multinomial):")
+       run(x_train, y_train, x_test, y_test, MultinomialNB())
+    print("Decision tree classifier:")
+       run(x_train, y_train, x_test, y_test, DecisionTreeClassifier())
+   
+       print("Random forest classifier (estimators=5):")
+       run(xa_train, ya_train, xa_test, ya_test, 
+           RandomForestClassifier(n_estimators=5))
+   
+    print("SVM (linear, C=1.0):")
+       run(xa_train, ya_train, xa_test, ya_test, SVC(kernel="linear", C=1.0))
+       print("SVM (RBF, C=1.0, gamma=0.25):")
+       run(xa_train, ya_train, xa_test, ya_test, 
+           SVC(kernel="rbf", C=1.0, gamma=0.25))
+       print("SVM (RBF, C=1.0, gamma=0.001, augmented)")
+       run(xa_train, ya_train, xa_test, ya_test, 
+           SVC(kernel="rbf", C=1.0, gamma=0.001))
+    print("SVM (RBF, C=1.0, gamma=0.001, original)")
+       run(x_train, y_train, x_test, y_test, 
+           SVC(kernel="rbf", C=1.0, gamma=0.001))
+```
+
+
+
+## References
+
+- *Practical Deep Learning: A Python-Based Introduction*, 2nd Edition, Ronald T. Kneusel, 2025, No Starch Press. 
+  Chapter 4: Experiments with Classical Models
+
+
+
+---
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) AI Programming lecture notes by [Brian Bird](https://profbird.dev), written in <time>September 2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+
+MS Copilot with GPT-5 was used to draft parts of these notes.
