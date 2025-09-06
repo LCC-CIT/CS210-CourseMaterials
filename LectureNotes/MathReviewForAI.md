@@ -24,15 +24,28 @@ author: Brian Bird
 
 [TOC]
 
-## Statistics and Probability
+## Math to Review
+
+### Equation of the Line
+
+y = mx + b
+
+- Be able to calculate a line based on two points. 
+- For a given line and x value, find the y value.
+
+
+
+## Math You Might Not Know
+
+### Statistics and Probability
 
 Statistics and probability are vast fields, but in this course we will only focus on a few essential concepts relevant to the machine learning topics we are covering. We'll assume that at this point you're familiar with nothing more than basic ideas like coin flips and dice rolls.
 
-### Descriptive Statistics
+#### Descriptive Statistics
 
 Descriptive statistics are summary values we calculate from data to help us understand patterns, variation, and central tendencies. The most common ones are the **mean**, **median**, and **standard deviation**.
 
-#### Mean and Standard Error
+##### Mean and Standard Error
 
 The **mean** (or average) is calculated by adding all measurements and dividing by the number of values. For example, if you're measuring flower lengths, the mean gives you the typical length.
 
