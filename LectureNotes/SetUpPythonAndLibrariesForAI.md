@@ -253,7 +253,7 @@ deactivate
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) AI Programming lecture notes by [Brian Bird](https://profbird.dev), written in <time>September 2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
-MS Copilot GPT-4 was used to draft parts of these notes.
+MS Copilot with GPT-5 was used to draft parts of these notes.
 
 [^1]: WinGet, the [Windows Package Manager](https://github.com/microsoft/winget-cli?tab=readme-ov-file),  is installed by default on Windows 11 and can be installed on Windows 10. 
 [^2]: A Python virtual environment is like a sandbox for your Python projects—it isolates dependencies so that each project can have its own specific versions of packages, without interfering with others or your system-wide Python setup. It creates a folder (venv) containing: a) A copy of the Python interpreter. b) A local pip installer. c) A clean site-packages directory for your project’s dependencies. When you activate it, your shell temporarily switches to using that isolated Python and pip. 
