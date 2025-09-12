@@ -9,25 +9,24 @@ author: Brian Bird
 
 **CS 210, Introduction to Artificial Intelligence Programming**
 
-Overview, History of AI
-- What is AI?
-  - Definitions
-  - Uses&mdash;examples like self-driving cars, translation
+1. Overview
 
-- History of AI
-  
-- Different Types of AI
-  - 
+   - What is AI?
 
-- Machine Learning: Symbolic
-  Machine Learning: Statistical
-  Neural networks
-  Image recognition
-  Generative AI
-  Using LLMs in custom applications
-  Custom chatbot creation
-  LLM fine-tuning
-  Social and ethical issues of AI
+   - Definitions
+
+   - Uses&mdash;examples like self-driving cars, translation
+
+2. History of AI
+   - Different Types of AI
+3. Machine Learning
+4. Neural networks
+5. Deep Learning and Image recognition
+6. Generative AI
+7. Using LLMs in custom applications
+8. Custom chatbot creation
+9. LLM fine-tuning
+10. Social and ethical issues of AI
 
 ---
 
