@@ -52,7 +52,7 @@ Come see me during office hours&mdash;Drop in! No appointment needed. Come get h
 
 ## Basic Technology and Computer Skills
 
-## Software You Will Need
+### Software You Will Need
 
 - A web browser.
 - [Adobe Reader](http://get.adobe.com/reader/) for reading PDF files.
@@ -67,6 +67,7 @@ Come see me during office hours&mdash;Drop in! No appointment needed. Come get h
 - [Python](https://www.python.org/) will be the programming language used for this class. There will be a quick intro to Python in the first week for those of you who don't know Python yet.
 - [Jupyter Notebooks](https://jupyter.org/) will be used for some of the programming examples and lab assignments.
 - [Google Colab](https://colab.research.google.com/) will be used for running and sharing Jupyter Notebooks online.
+- [Google Gemini](https://gemini.google/students/): Google offers students a free pro subscriptiion to their Gemini AI platform. We will use this in class when we incorporate calls to an LLM API in the apps we write.
 
 
 ### Skills You Will Need
