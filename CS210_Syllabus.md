@@ -2,15 +2,11 @@
 
 <h2>CS 210 Syllabus for Fall 2025</h2>
 
-
-
-**CS 210 Syllabus**
-
 | <u>Class</u>      |                                                              |      | <u>Instructor</u> |                                                              |
 | ----------------- | ------------------------------------------------------------ | ---- | ----------------- | ------------------------------------------------------------ |
 | **Course Number** | CS 210                                                       |      | **Name**          | Brian Bird                                                   |
 | **CRN**           | Hybrid (on campus) 21240<br />Online 21239                   |      | **E-mail**        | [birdb@lanecc.edu](mailto:birdb@lanecc.edu)                  |
-| **Day & Time**    | M, W 12:00&ndash;1:50                                        |      | **Office Hours**  | M and W 2:00&ndash;2:50<br />Tu and Th 4:00&ndash;4:50       |
+| **Day & Time**    | Tu, Th 12:00&ndash;1:50                                      |      | **Office Hours**  | M and W 2:00&ndash;2:50<br />Tu and Th 4:00&ndash;4:50       |
 | **Room**          | Building 19, Room 128<br />[Zoom meeting](https://lanecc.zoom.us/j/96913931254) |      | **Room**          | Building 19, Room 152<br />[Zoom meeting](https://lanecc.zoom.us/j/8982554800) |
 
 <h2>Table of Contents</h2>
@@ -19,7 +15,7 @@
 
 ## Course Description
 
-This course provides ап overview of the field of Artificial lntelligence (AI) and how to write computer programs that use AI. Students will learn what AI is, how machine learning works and how to write programs using AI libraries, models and techniques. There will Ье а focus оп generative AI and LLMs (Large Language Models) and how to write programs that use LLMs. The risks and dangers and ethical issues related to AI will Ье explored along with its potential benefits.
+This course provides ап overview of the field of Artificial lntelligence (AI) and how to write computer programs that use AI. Students will learn what AI is, how machine learning works and how to write programs using AI libraries, models and techniques. There will bе а focus оп generative AI and LLMs (Large Language Models) and how to write programs that use LLMs. The risks and dangers and ethical issues related to AI will bе explored along with its potential benefits.
 
 ## Learning Outcomes
 
@@ -212,13 +208,13 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 | **2**<br />10/7  | AI Problem Solving                      | Essentials of AI Ch. 2 exercises<br />Project: Applications of AI<br />Quiz |
 | **3**<br />10/14 | Real-World AI                           | Essentials of AI Ch. 3 exercises<br />Quiz                   |
 | **4**<br />10/21 | Machine Learning                        | Elements of AI Ch. 4 exercises<br />Quiz                     |
-| **5**<br />10/28 | History of AI and Midterm               | TBD<br />Midterm quiz:<br />- In the classroom on 10/30<br />- In the testing center 10/30&ndash;11/1 |
+| **5**<br />10/28 | History of AI and Midterm               | TBD<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
 | **6**<br />11/4  | Neural Netowrks and Deep Learning       | Elements of AI Ch. 5 exercises<br />Quiz                     |
 | **7**<br />11/11 | Generative AI                           | TBD<br />Quiz                                                |
 | **8**<br />11/18 | Prompt engineering                      | TBD<br />Project: prompt engineering<br />Quiz               |
 | **9**<br />11/25 | Custom GPT chatbots                     | TBD<br />Project: Custom chat-bot<br />Quiz                  |
 | **10**<br />12/2 | Social and ethical issues of AI         | Elements of AI Ch. 6 exercises<br />Quiz                     |
-| **11**<br />12/9 | Final                                   | Final quiz:<br />- In the classroom on 12/9<br />- In the testing center 12/9&ndash;12/11 |
+| **11**<br />12/9 | Final                                   | Final quiz:<br />- In the classroom on Tues. 12/9<br />- In the testing center Sat. 12/6, Mon. 12/8 or Tues. 12/9 |
 
 <a href="#top">Go back to the top</a>
 
