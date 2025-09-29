@@ -89,14 +89,16 @@ See the [LCC Tutoring Services](https://www.lanecc.edu/tutor) web page for infor
 
 The table below summarizes the possible points for each assessment task as well as the course as a whole:
 
-| **Assessment Tasks**      | Number | **Each**                 | **Total** |
-| ------------------------- | ------ | ------------------------ | --------- |
-| Exercises                 | 6      | 30                       | 180       |
-| Quizzes                   | 9      | 20                       | 180       |
-| Participation             | 10     | 10                       | 100       |
-| Projects                  | 6      | Variable                 | 240       |
-| Midterm and Final Quizzes | 2      | Midterm: 100, Final: 200 | 300       |
-| **Course Total**          |        |                          | **1000**  |
+| **Assessment Tasks**               | **Points Each**          | **Total Points** | Percentage |
+| ---------------------------------- | ------------------------ | ---------------- | ---------- |
+| Labs  1 - 8                        | 40                       | 320              | 32%        |
+| Code  Reviews<sup>*</sup> 1 - 8    | 8                        | 64               | 6.5%       |
+| Reading  Quizzes<sup>*</sup> 1 - 8 | 8                        | 64               | 6.5%       |
+| Term Project                       | 252                      | 252              | 25%        |
+| Midterm and Final Quizzes          | Midterm: 100, Final: 200 | 300              | 30%        |
+| **Course Total**                   |                          | **1000**         |            |
+
+<sup>*</sup> The code review and reading quiz with the lowest grade will be dropped from the grade calculation.
 
 ### Grade Scale
 
@@ -114,16 +116,13 @@ Letter grades for the course will be determined by the following percentages:
 
 Weekly (except midterm an final quiz weeks) quizzes are given that cover learning material for that week. These quizzes are "open book".
 
-### Participation
+### Participation and Attendance
 
-Participation is assessed differently depending on whether you are taking the class online, on Zoom or in person.
+While participation and attendance are essential to succeed in this class, they will not be graded.
 
-- In person and on Zoom (synchronous): Your grade is based on class attendance and participation in class discussions.
-- Online (asynchronous): You grade is based on participation in the Moodle forums and on Discord.
+#### No Show Drop
 
-### Team Projects
-
-You will work together with your team to either make a presentation or create an AI solution. Each team member will have a specific part to contribute and will be individually graded.
+The college’s “no show, drop” policy requires that: during the first week students must complete at least one activity (a quiz or assignment) otherwise the student will be dropped from the class.
 
 ### Midterm and Final Quizzes
 
@@ -141,14 +140,6 @@ While students are encouraged to discuss assignments and to use each other as re
 ### Use of AI
 
 Generative AI tools such as GitHub Copilot or ChatGPT are useful resources and you are encouraged to use them, but don't use them to give you quiz answers or do your assignments for you. Use them to help you learn, to come up with ideas, or for drafts of text you write.
-
-## Attendance
-
-See the participation and attendance section under [Assessment and Grading](#Assessment and Grading) for grading criteria.
-
-### No Show Drop
-
-The college’s “no show, drop” policy requires that: during the first week students must complete at least one activity (a quiz or assignment) otherwise the student will be dropped from the class.
 
 ### Late Work
 
@@ -204,16 +195,16 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 
 | Week             | Topics                                  | Activities                                                   |
 | ---------------- | --------------------------------------- | ------------------------------------------------------------ |
-| **1**<br />9/30  | Intro to the course<br />Overview of AI | Introduce Yourself Survey<br /><br />Join a Team<br />Essentials of AI Ch. 1 exercises<br />Quiz |
-| **2**<br />10/7  | AI Problem Solving                      | Essentials of AI Ch. 2 exercises<br />Project: Applications of AI<br />Quiz |
-| **3**<br />10/14 | Real-World AI                           | Essentials of AI Ch. 3 exercises<br />Quiz                   |
-| **4**<br />10/21 | Machine Learning                        | Elements of AI Ch. 4 exercises<br />Quiz                     |
-| **5**<br />10/28 | History of AI and Midterm               | TBD<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
-| **6**<br />11/4  | Neural Netowrks and Deep Learning       | Elements of AI Ch. 5 exercises<br />Quiz                     |
-| **7**<br />11/11 | Generative AI                           | TBD<br />Quiz                                                |
-| **8**<br />11/18 | Prompt engineering                      | TBD<br />Project: prompt engineering<br />Quiz               |
-| **9**<br />11/25 | Custom GPT chatbots                     | TBD<br />Project: Custom chat-bot<br />Quiz                  |
-| **10**<br />12/2 | Social and ethical issues of AI         | Elements of AI Ch. 6 exercises<br />Quiz                     |
+| **1**<br />9/30  | Intro to the course<br />Overview of AI | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
+| **2**<br />10/7  | AI Problem Solving                      | Lab 2<br />Quiz 2<br />Code review 1                         |
+| **3**<br />10/14 | Real-World AI                           | Lab 3<br />Quiz 3<br />Code review 2                         |
+| **4**<br />10/21 | Machine Learning                        | Lab 4<br />Quiz 4<br />Code review 3                         |
+| **5**<br />10/28 | History of AI and Midterm               | Code review 4<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
+| **6**<br />11/4  | Neural Netowrks and Deep Learning       | Lab 5<br />Quiz 5                                            |
+| **7**<br />11/11 | Generative AI                           | Lab 6<br />Quiz 6<br />Code review 5                         |
+| **8**<br />11/18 | Prompt engineering                      | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
+| **9**<br />11/25 | Custom GPT chatbots                     | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
+| **10**<br />12/2 | Social and ethical issues of AI         | Term Project<br /><br />Code review 8                        |
 | **11**<br />12/9 | Final                                   | Final quiz:<br />- In the classroom on Tues. 12/9<br />- In the testing center Sat. 12/6, Mon. 12/8 or Tues. 12/9 |
 
 <a href="#top">Go back to the top</a>
