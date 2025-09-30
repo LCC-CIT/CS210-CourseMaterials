@@ -14,12 +14,14 @@ author: Brian Bird
 
 
 
-| Topics                                           |                                              |
-| ------------------------------------------------ | -------------------------------------------- |
-| <mark>1. Overview of AI</mark>                   | Neural networks and deep learning            |
-| 2. History of GOFAI<br />     AI Problem Solving | Generative AI + Prompt engineering           |
-| 3. Machine Learning                              | Custom chatbot creation                      |
-| 4. Midterm                                       | Social and ethical issues of AI  <br />Final |
+| Topics                                   |                           |
+| ---------------------------------------- | ------------------------- |
+| <mark>1. What is AI</mark>, Python       | 6. ANN: Image recognition |
+| 2.  Symbolic AI                          | 7. Generative AI          |
+| 3. Classical Machine Learning: Training  | 8. Custom chatbot         |
+| 3. Classical Machine Learning: Inference | 9. LLM fine-tuning        |
+| 5. Midterm                               | 10. Ethics                |
+|                                          | 11. Final                 |
 
 
 
