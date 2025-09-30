@@ -199,7 +199,7 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 | **2**<br />10/7  | AI Problem Solving                      | Lab 2<br />Quiz 2<br />Code review 1                         |
 | **3**<br />10/14 | Real-World AI                           | Lab 3<br />Quiz 3<br />Code review 2                         |
 | **4**<br />10/21 | Machine Learning                        | Lab 4<br />Quiz 4<br />Code review 3                         |
-| **5**<br />10/28 | History of AI and Midterm               | Code review 4<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
+| **5**<br />10/28 | History of AI and Midterm               | Code review 4<br />Term project proposal<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
 | **6**<br />11/4  | Neural Netowrks and Deep Learning       | Lab 5<br />Quiz 5                                            |
 | **7**<br />11/11 | Generative AI                           | Lab 6<br />Quiz 6<br />Code review 5                         |
 | **8**<br />11/18 | Prompt engineering                      | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
