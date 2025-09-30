@@ -16,7 +16,7 @@ author: Brian Bird
 
 | Topics                                   |                           |
 | ---------------------------------------- | ------------------------- |
-| <mark>1. What is AI</mark>, Python       | 6. ANN: Image recognition |
+| <mark>1. What is AI, Python</mark>       | 6. ANN: Image recognition |
 | 2.  Symbolic AI                          | 7. Generative AI          |
 | 3. Classical Machine Learning: Training  | 8. Custom chatbot         |
 | 3. Classical Machine Learning: Inference | 9. LLM fine-tuning        |
@@ -45,11 +45,9 @@ author: Brian Bird
 ## Things to Do This Week
 
 - Join the Discord server so you can communicate with your team.
-- Introduce yourself survey&mdash;complete it by Friday. 
-- We'll choose teams next Monday.
-- Answer "Your turn" questions in the forum by Sunday  
-  This is mainly for online students or anyone who wasn't able to participate in the live classroom discussion.
-- Take the quiz over the lectures by Sunday
+- Introduce yourself on Discord. 
+- We'll choose teams on Thursday.
+- Take the quiz over the reading by Sunday.
 
 ## Reminders
 
