@@ -18,8 +18,8 @@ author: Brian Bird
 | ---------------------------------------- | ----------------------------- |
 | <mark>1. What is AI, Python</mark>       | 6. ANN: Image recognition     |
 | 2.  Symbolic AI                          | 7. Generative AI              |
-| 3. Classical machine learning: Training  | 8. Custom chatbot             |
-| 4. Classical machine learning: Inference | 9. LLM fine-tuning            |
+| 3. Classical machine learning: training  | 8. Custom chatbot             |
+| 4. Classical machine learning: inference | 9. LLM fine-tuning            |
 | 5. Midterm                               | 10. Social and ethical issues |
 |                                          | 11. Final                     |
 
@@ -31,9 +31,14 @@ author: Brian Bird
 
 ## This Week's Learning Objectives
 
-- TBD
+This week you will review or get introduced to Python and learn about GOFAI (Good Old Fashioned AI) aka "classical" AI. 
 
+The goals for this week are to:
 
+- Install Python.
+- Adapt what you already know about programming to Python.
+- Understand what "classical AI" is.
+- Write a simple Python program that uses an AI algorithm.
 
 ## Announcements
 
