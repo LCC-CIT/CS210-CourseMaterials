@@ -40,13 +40,13 @@ Upon successful completion of this course, students will be able to:
 
 #### Course Materials
 
-There is no textbook for this class. In place of a textbook you will read online tutorials and chapters in the free online course, [Elements of AI](https://www.elementsofai.com), a high-quality course provided by the The University of Helsinki.
+There is no textbook for this class. In place of a textbook you will read online tutorials and other free online resources.
+
+ [Elements of AI](https://www.elementsofai.com), is a free high-quality course that I reccomend, although it won't be directly used in this course. The course is mainly for non-programmers, but does a good job of covering many concepts relevant to this course.
 
 #### Learning Management System
 
 Moodle is the Learning Management System (LMS) used for this course; LCC’s Moodle site is at: [classes.lanecc.edu](https://classes.lanecc.edu). 
-
-
 
 ### Software
 
@@ -54,7 +54,7 @@ All of the software required for this class is free.  You can use any operating 
 
 #### Software Required for Course Work
 
-See the [Getting Started Guide](https://lcc-cit.github.io/CS123-CourseMaterials/CS123_GettingStartedGuide_8wk.html) for a list of the software needed for this class.
+See the [Getting Started Guide](https://lcc-cit.github.io/CS210-CourseMaterials/CS210_GettingStartedGuide.html) for a list of the software needed for this class.
 
 You will need to download and install any software you don't already have on your computer. The software has
 
@@ -193,19 +193,19 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 
 (Tentative, may be subject to change)
 
-| Week             | Topics                                  | Activities                                                   |
-| ---------------- | --------------------------------------- | ------------------------------------------------------------ |
-| **1**<br />9/30  | Intro to the course<br />Overview of AI | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
-| **2**<br />10/7  | AI Problem Solving                      | Lab 2<br />Quiz 2<br />Code review 1                         |
-| **3**<br />10/14 | Real-World AI                           | Lab 3<br />Quiz 3<br />Code review 2                         |
-| **4**<br />10/21 | Machine Learning                        | Lab 4<br />Quiz 4<br />Code review 3                         |
-| **5**<br />10/28 | History of AI and Midterm               | Code review 4<br />Term project proposal<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
-| **6**<br />11/4  | Neural Netowrks and Deep Learning       | Lab 5<br />Quiz 5                                            |
-| **7**<br />11/11 | Generative AI                           | Lab 6<br />Quiz 6<br />Code review 5                         |
-| **8**<br />11/18 | Prompt engineering                      | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
-| **9**<br />11/25 | Custom GPT chatbots                     | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
-| **10**<br />12/2 | Social and ethical issues of AI         | Term Project<br /><br />Code review 8                        |
-| **11**<br />12/9 | Final                                   | Final quiz:<br />- In the classroom on Tues. 12/9<br />- In the testing center Sat. 12/6, Mon. 12/8 or Tues. 12/9 |
+| Week             | Topics                                | Activities                                                   |
+| ---------------- | ------------------------------------- | ------------------------------------------------------------ |
+| **1**<br />9/30  | Intro to AI<br />Python               | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
+| **2**<br />10/7  | Symbolic AI                           | Lab 2<br />Quiz 2<br />Code review 1                         |
+| **3**<br />10/14 | Classical Machine Learning: Training  | Lab 3<br />Quiz 3<br />Code review 2                         |
+| **4**<br />10/21 | Classical Machine Learning: Inference | Lab 4<br />Quiz 4<br />Code review 3                         |
+| **5**<br />10/28 | History of AI and Midterm             | Code review 4<br />Term project proposal<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
+| **6**<br />11/4  | ANN: Image recognition                | Lab 5<br />Quiz 5                                            |
+| **7**<br />11/11 | Generative AI                         | Lab 6<br />Quiz 6<br />Code review 5                         |
+| **8**<br />11/18 | Custom chatbot                        | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
+| **9**<br />11/25 | LLM fine-tuning                       | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
+| **10**<br />12/2 | Social and ethical issues of AI       | Term Project<br /><br />Code review 8                        |
+| **11**<br />12/9 | Final                                 | Final quiz:<br />- In the classroom on Tues. 12/9<br />- In the testing center Sat. 12/6, Mon. 12/8 or Tues. 12/9 |
 
 <a href="#top">Go back to the top</a>
 
