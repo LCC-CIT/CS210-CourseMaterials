@@ -17,18 +17,19 @@ author: Brian Bird
 
 ### 1. Translate a Program into Python
 
-#### Simple Medical Diagnostic System
+#### Meeting Room Reservation System
 
-Design a simplified diagnostic system for a fictional clinic. The system should take two binary inputs (`True`/`False`): whether the patient has a *Fever* and whether the patient has a *Persistent Cough*. Based on the combination of these symptoms, the system provides a preliminary diagnosis.
+Build a reservation system that recommends a meeting room based on the number of *Attendees* and whether a *Projector is Needed* (True/False).
 
-| Fever | Persistent Cough | Diagnosis                                                    |
-| ----- | ---------------- | ------------------------------------------------------------ |
-| True  | True             | Flu - Recommend rest and hydration.                          |
-| True  | False            | Possible Infection - Recommend primary care physician visit. |
-| False | True             | Cold/Allergies - Recommend over-the-counter medication.      |
-| False | False            | General Check-up - Patient appears healthy.                  |
+| Attendees         | Projector Needed | Recommended Room                    |
+| ----------------- | ---------------- | ----------------------------------- |
+| **1−5 (Small)**   | Any              | Room Alpha (No Projector)           |
+| **6−15 (Medium)** | True             | Room Beta (Has Projector)           |
+| **6−15 (Medium)** | False            | Room Gamma (No Projector)           |
+| **16+ (Large)**   | Any              | Reservation Denied (No large rooms) |
 
-Translate the program from either [JavaScript](medicalDiagnosis.js) or [C#](medicalDiagnosis.cs) into Python
+
+Translate the program from either [JavaScript](roomReservations.js) or [C#](roomReservations.cs) into Python
 
 
 
