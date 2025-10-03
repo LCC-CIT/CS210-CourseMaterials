@@ -263,10 +263,15 @@ The game is "die battle": two players each roll a single six-sided die, and the 
 ## Reference
 
 - [Python Tutorial](https://docs.python.org/3/tutorial/)&mdash;Official Python Web Site
+- [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)&mdash;Official Python Web Site
+  - [Summary of the Style Guide]()&mdash;Google Gemini and Brian Bird
 
 
+- P[ython: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)&mdash;CultRepo Video
 
-Note: Parts of this document were drafted with assistance from Gemini 2.5 Flash
+  
+
+Note: Parts of this document were drafted with assistance from Gemini 2.5 Flash 9/30/25
 
 
 ---
