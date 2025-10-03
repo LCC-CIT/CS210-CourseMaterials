@@ -1,4 +1,4 @@
-// Problem 1 Solution (JavaScript): Shipping Cost Calculator
+// Group A, Problem 1 Solution (JavaScript): Shipping Cost Calculator
 // This system uses nested if-else if statements to determine cost based on Zone and Weight tiers.
 
 function calculateShippingCost(weightKg, zone) {

@@ -1,4 +1,4 @@
-// Problem 1 Solution (C#): Shipping Cost Calculator - Procedural Version
+// Group A, Problem 1 Solution (C#): Shipping Cost Calculator - Procedural Version
 // This solution places all calculation logic directly within the Main method.
 
 using System;

@@ -31,7 +31,7 @@ Translate the program from either [JavaScript](shippingCalculator.js) or [C#](sh
 
 ### 2. Write a Python Program
 
-**Financial Product Recommendation System**
+#### Financial Product Recommendation System
 
 Create a simplified expert system that recommends a suitable investment product based on two factors provided by the user: *Investment Horizon* (Short-Term: <5 years, or Long-Term: ≥5 years) and *Risk Tolerance* (Low or High).
 
@@ -65,5 +65,4 @@ This will be a total of 3 files.
 ### Grading Criteria
 
 The main focus of grading will be on correct coding and problem solving skills.
-
 
