@@ -1,0 +1,7 @@
+fever,cough,suspect_flu,
+headache,nausea,suspect_migraine,
+suspect_flu,body_aches,diagnosis_influenza,
+suspect_flu,sore_throat,diagnosis_common_cold,
+diagnosis_influenza,,recommend_rest,GOAL
+diagnosis_migraine,,recommend_dark_room,GOAL
+no_appetite,stomach_pain,diagnosis_food_poisoning,GOAL

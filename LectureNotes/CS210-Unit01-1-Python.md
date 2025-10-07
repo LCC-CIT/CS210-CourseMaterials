@@ -207,6 +207,8 @@ You should see output confirming the version you just installed (e.g., `Python 3
 - No `;` to terminate lines. The end of the line is the end of the line.
 - Python has a distinctive *pythonic* style which is described in the [PEP-8 style guide](https://peps.python.org/pep-0008/).
 
+#### FizzBuzz Example Program
+
 Here is an implementation of the classic "FizzBuzz" program[^1] in Python:
 
 ```python
@@ -246,7 +248,7 @@ Here is an [example of Object Oriented Programming in Python](Unit01-Files/oopCa
 
 
 
-### Exercise
+### Exercise: Translate a Dice Game into Python
 
 Translate a simple game from either [JavaScript](Unit01-Files/dieBattle.js) or [C#](Unit01-Files/dieBattle.cs) into Python. 
 

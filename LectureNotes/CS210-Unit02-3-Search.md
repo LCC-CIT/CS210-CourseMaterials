@@ -10,8 +10,6 @@ author: Brian Bird
 
 <h1>Symbolic AI: Search-Based Techniques</h1>
 
-
-
 | Topics                                   |                           |
 | ---------------------------------------- | ------------------------- |
 | 1. What is AI, Python                    | 6. ANN: Image recognition |
@@ -21,11 +19,11 @@ author: Brian Bird
 | 5. Midterm                               | 10. Ethics                |
 |                                          | 11. Final                 |
 
-
-
 <h2>Contents</h2>
 
-[TOC]
+[toc]
+
+
 
 ## Review
 
@@ -77,11 +75,7 @@ Search for an optimal set of steps to reach a particular configuration given a s
 
   
 
-- **Breadth-First Search (BFS)**: This algorithm is one way of solving this problem without trying all the combinations of legal transitions. It explores all possible states level by level. It starts from the initial state and explores all possible moves, then moves to the next level of states. BFS guarantees finding the shortest path (minimum number of river crossings) to the goal state because it explores all nodes at the present depth level before moving on to nodes at the next depth level.
-
-### Search for an Optimal Route
-
-
+## Search for an Optimal Route
 
 
 
@@ -95,4 +89,3 @@ Note: Parts of this document were initially drafted with assistance from Gemini 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 [^1]: [Dartmouth workshop](https://en.wikipedia.org/wiki/Dartmouth_workshop)&mdash;Wikipedia
-[^2]: 

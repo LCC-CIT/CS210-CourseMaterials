@@ -28,7 +28,9 @@ The algorithm begins at the **initial state** and searches the state space graph
 4. **Tracking:** If a state isn't the goal, it is added to the frontier to be explored later. The algorithm also keeps track of the **path** taken to reach each state to eventually reconstruct the solution.
 5. **Termination:** The search continues until the goal state is found (the solution is the path from the initial state to the goal state), or until the frontier is empty (meaning no solution exists).
 
+This is a specialized application of the Breadth-First search:
 
+**Breadth-First Search (BFS)**: This algorithm is one way of solving this problem without trying all the combinations of legal transitions. It explores all possible states level by level. It starts from the initial state and explores all possible moves, then moves to the next level of states. BFS guarantees finding the shortest path (minimum number of river crossings) to the goal state because it explores all nodes at the present depth level before moving on to nodes at the next depth level.
 
 ## Generalization and Efficiency
 
