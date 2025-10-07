@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- The first draft of this web page was created by GitHub Copilot, 6/26/24 
-    Major revisions and additions made by Brian Bird 6/28/24 
-    SEO enhancements, added content and asthetic changes, B. Bird 8/7/24 -->
+<!-- The first draft of this web page was created by Brian Bird using GitHub Copilot based on the home page for CS 123, 10/4/25 
+-->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv='content-language' content='en-gb'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Brian Bird">
-    <meta name="description" content="Home page for CS 123, Introduction to Artificial Intelligence">
-    <meta name="keywords" content="AI, LCC, Lane Community College, CIT, Computer Information Technology">
-    <title>Intro to AI Course</title>
+    <meta name="description" content="Home page for CS 210, Introduction to Artificial Intelligence Programming">
+    <meta name="keywords" content="AI, LCC, Lane Community College, CIT, Computer Information Technology, CS210, Artificial Intelligence, Programming">
+    <title>CS210: Intro to AI Programming</title>
     <!-- Faviocon -->
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
@@ -20,152 +19,79 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- OpenGraph Metadata -->
-    <meta property="og:title" content="Intro to AI" />
+    <meta property="og:title" content="Intro to AI Programming" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lcc-cit.github.io/CS123-CourseMaterials/" />
-    <meta property="og:image" content="https://lcc-cit.github.io/CS123-CourseMaterials/Images/AI_Initials2.webp" />
+    <meta property="og:url" content="https://lcc-cit.github.io/CS210-CourseMaterials/" />
+    <meta property="og:image" content="https://lcc-cit.github.io/CS210-CourseMaterials/Images/AdobeStock_AI_Icon.jpeg" />
     <meta property="og:description"
-        content="Course materials for the Intro to AI course at Lane Community College, an introduction to Artificial Intelligence for non-programmers" />
-    <meta property="og:site_name" content="CS 123 Course Materials Repository" />
+        content="Course materials for the Intro to AI Programming course at Lane Community College, an introduction to writing software applicaitons that incorporate AI" />
+    <meta property="og:site_name" content="CS 210 Course Materials Repository" />
     <meta property="og:locale" content="en_US" />
 </head>
 
 <body>
-    <!-- Fork me on GitHub banner -->
-    <div style="float:right;">
+    <!-- Header and GitHub banner in flexbox for consistent layout, preserving header margin -->
+                    <aside style="position:absolute; top:0; right:0; margin:0; padding:0; z-index:10; line-height:0;">
         <a href="https://github.com/LCC-CIT/CS123-CourseMaterials" target="_blank"><img decoding="async" width="149"
                 height="149"
                 src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149"
                 class="attachment-full size-full" alt="Fork me on GitHub" loading="lazy" data-recalc-dims="1"></a>
-    </div>
-
-    <!-- Welcome Section -->
-    <div class="container">
-        <div class="row d-flex align-items-stretch">
-            <h1 class="section-heading">CS 123 Course Materials</h1>
-            <div class="col-12 col-lg-3">
-                <figure>
-                    <img src="Images/AI_Initials2_200x177.webp" alt="AI Course Image" class="img-fluid">
-                    <figcaption style="font-size: 10pt;">Image by B. Bird using Dall-E 3</figcaption>
-                </figure>
-            </div>
-            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center">
-                <p>Welcome to the course materials repository for the CS 123, Intro to AI.
-                    View the <a href="https://github.com/LCC-CIT/CS133JS-CourseMaterials">GitHub repository</a> to see
-                    all the course materials: lecture notes, exercises and projects.
-                    This page has links to the lecture notes as well as external resources related to this course..</p>
-                <div class="d-flex flex-row align-items-center">
-                    <a href="CS123_Syllabus_8wk.html" target="_blank" class="btn btn-primary me-2"><i
-                            class="fas fa-file-alt"></i> Syllabus</a>
-                    <a href="CS123_GettingStartedGuide_8wk.html" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i> Getting Started Guide</a>
+                        </a>
+                    </aside>
+                <div class="container">
+                    <div class="d-flex align-items-start mt-4" style="gap: 1rem;">
+                        <div class="flex-grow-1">
+                            <div class="row d-flex align-items-stretch">
+                                <h1 class="section-heading">CS 210: Introduction to Artificial Intelligence Programming</h1>
+                                <div class="col-12 col-lg-3">
+                                    <figure>
+                                        <img src="Images/AdobeStock_AI_Icon.jpeg" alt="AI Course Image" class="img-fluid">
+                                        <figcaption style="font-size: 10pt;">Image by Adobe Stock, used for educational purposes</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-lg-8 d-flex flex-column justify-content-center">
+                                    <p>Welcome to the course materials repository for <strong>CS 210, Introduction to Artificial Intelligence Programming</strong> at Lane Community College.<br>
+                                        Here you'll find lecture notes, labs, Jupyter notebooks, and resources for learning about AI, machine learning, neural networks, generative AI, and more.<br>
+                                        <a href="https://github.com/LCC-CIT/CS210-CourseMaterials">View the GitHub repository</a> for all course materials.</p>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <a href="CS210_Syllabus.html" target="_blank" class="btn btn-primary me-2"><i
+                                                class="fas fa-file-alt"></i> Syllabus</a>
+                                        <a href="CS210_GettingStartedGuide.html" target="_blank" class="btn btn-secondary">
+                                            <i class="fas fa-play-circle"></i> Getting Started Guide</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <style>
+                    html, body { position: relative; margin: 0; padding: 0; }
+                </style>
 
     <!-- Lecture Notes Section -->
-    <div class="container">
+    <section class="container">
         <div class="row mt-5 mb-3">
-            <h3>Introduction to Artificial Intelligence</h3>
+            <h3>About CS210: Introduction to Artificial Intelligence Programming</h3>
+            <p>This course provides an overview of the field of Artificial Intelligence (AI) and how to write computer programs that use AI. Topics include symbolic AI, machine learning, neural networks, generative AI, LLMs, and ethical issues. See the syllabus for details.</p>
         </div>
         <div class="row">
             <div class="col-12">
-                <h4 class="section-heading">Lecture Notes</h4>
+                <h4 class="section-heading">Lecture Notes & Topics</h4>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <h5>1: Overview of AI</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic01-2-AiOverview.html"
-                                    target="_blank"><i class="fas fa-link"></i> Overview of AI, Part 1</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic01-3-OverviewPart2.html"
-                                    target="_blank"><i class="fas fa-link"></i> Overview of AI, Part 2</a></li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>2: Problem Solving with Symbolic AI</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic02-1-HistoryGOFAI.html"
-                                    target="_blank"><i class="fas fa-link"></i> History of AI Part 1</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic02-1-ProblemSolving2.html"
-                                    target="_blank"><i class="fas fa-link"></i> Symbolic AI Problem Solving</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/Topic-01-4-ZombieCrossingSolution.html"
-                                    target="_blank"><i class="fas fa-link"></i> Zombie River Crossing Solution</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>3: Machine Learning Part 1</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic02-1-ProblemSolving2.html"
-                                    target="_blank"><i class="fas fa-link"></i> AI Problem Solving Revisited</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic02-2-Bayes.html"
-                                    target="_blank"><i class="fas fa-link"></i> Machine Learning: Bayes' Rule</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>4: Machine Learning Part 2</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic03-1-MachineLearning.html"
-                                    target="_blank"><i class="fas fa-link"></i> More Machine Learning.</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>5: History of AI</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic04-1-History.html"
-                                    target="_blank"><i class="fas fa-link"></i> Hisotry of AI</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>6: Neural Networks and Deep Learning</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic05-1-NueralNets.html"
-                                    target="_blank"><i class="fas fa-link"></i> Artificial Neural Networks</a></li>
-                            <!-- Add lecture notes here -->
-
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>7: Generative AI and Prompt Engineering</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic06-1-GenerativeAI.html"
-                                    target="_blank"><i class="fas fa-link"></i> Generative AI</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic06-2-PromptEngineering.html"
-                                    target="_blank"><i class="fas fa-link"></i> Prompt Engineering</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>8: Retrieval-Augmented Generation and Custom Chatbots</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic07-1-RAG.html"
-                                    target="_blank"><i class="fas fa-link"></i> Retrieval-Augmented Generation</a></li>
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic07-2-CustomChatbot.html"
-                                    target="_blank"><i class="fas fa-link"></i> Custom Chatbots with Copilot Studio</a>
-                            </li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h5>9: Social and Ethical Issues of AI</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="LectureNotes/CS123-Topic08-1-AiIssues.html"
-                                    target="_blank"><i class="fas fa-link"></i> Benefits and Dangers of AI</a></li>
-                            <!-- Add lecture notes here -->
-                        </ul>
-                    </li>
-                    <!-- Add more lecture topics here -->
+                    <li class="list-group-item"><a href="LectureNotes/CS210-Unit01-0-Overview.html" target="_blank"><i class="fas fa-link"></i> Unit 1 Overview</a></li>
+                    <li class="list-group-item"><a href="LectureNotes/CS210-Unit01-1-IntroToAI.html" target="_blank"><i class="fas fa-link"></i> Introduction to AI</a></li>
+                    <li class="list-group-item"><a href="LectureNotes/CS210-Unit01-1-Python.html" target="_blank"><i class="fas fa-link"></i> Python for AI Programming</a></li>
+                    <li class="list-group-item"><a href="LectureNotes/MathReviewForAI.md" target="_blank"><i class="fas fa-link"></i> Math Review for AI</a></li>
+                    <li class="list-group-item"><a href="LectureNotes/SetUpPythonAndLibrariesForAI.html" target="_blank"><i class="fas fa-link"></i> Setting Up Python & Libraries</a></li>
+                    <li class="list-group-item"><a href="LectureNotes/ComputerForAI.md" target="_blank"><i class="fas fa-link"></i> Computer Requirements for AI</a></li>
+                    <!-- Add more lecture notes as they are created -->
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Resources Section -->
-    <div class="container">
+    <section class="container">
         <div class="row mt-3">
             <div class="col-12">
                 <h4 class="section-heading">Links to Useful Resources</h4>
@@ -174,7 +100,7 @@
 
         <div class="row mt-1">
             <!-- General Resources Column -->
-            <div class="col-12 col-lg-6">
+            <section class="col-12 col-lg-6">
                 <h5 class="section-heading">General Resources</h5>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="https://zoom.us/" target="_blank"><i class="fas fa-globe"></i>
@@ -190,9 +116,9 @@
                                 class="fas fa-globe"></i> Microsoft Copilot Studio</a>&mdash;Create custom chatbots</li>
                     <!-- Add more resources as needed -->
                 </ul>
-            </div>
+            </section>
             <!-- LCC Resources Column -->
-            <div class="col-12 col-lg-6">
+            <section class="col-12 col-lg-6">
                 <h5>LCC Resources</h5>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="https://sites.google.com/lanecc.edu/aitaskforce/"
@@ -203,11 +129,11 @@
                             href="https://www.lanecc.edu/programs-academics/academic-departments/business-technology-and-trades/computer-information-technology/cit-computer-lab"
                             target="_blank">CIT Computer Lab <i class="fas fa-external-link-alt"></i></a></li>
                 </ul>
-            </div>
+            </section>
         </div>
         <div class="row mt-3">
             <!-- Tutorials and books Column -->
-            <div class="col-12 col-lg-6">
+            <section class="col-12 col-lg-6">
                 <h5>Online Books and Tutorials</h5>
                 <ul class="list-group">
                     <!-- Add online books and tutorials here -->
@@ -221,7 +147,7 @@
             </div>
 
             <!-- Online AI Tools Column -->
-            <div class="col-12 col-lg-6">
+            <section class="col-12 col-lg-6">
                 <h5>Generative AI Tools</h5>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="https://www.openai.com/chatgpt/" target="_blank"><i
@@ -246,22 +172,19 @@
                     <li class="list-group-item"><a href="https://www.runwayml.com/" target="_blank"><i
                                 class="fas fa-video"></i> Text to Video</a>&mdash;Runway</li>
                 </ul>
-            </div>
+            </section>
         </div>
-    </div>
+    </section>
 
-    <!-- Chatbot Section -->
-    <div class="container">
+    <!-- Chatbot Section (optional, update link if needed) -->
+    <section class="container">
         <div class="row mt-3">
             <div class="col-12 col-lg-6 border">
                 <h4 class="section-heading">Course Chatbot</h4>
-                <iframe
-                    src="https://copilotstudio.microsoft.com/environments/Default-0a58e5b1-5396-43b3-997b-ac5ec174c64c/bots/cr4a6_cs123Assistant/webchat?__version__=2"
-                    frameborder="0" style="width: 100%; height: 400px;">
-                </iframe>
+                Coming later in fall term 2025.
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="container d-flex align-items-center mt-5 mb-3">
@@ -270,12 +193,10 @@
         </a>
         <div class="ms-2">
             <div>
-                Intro to AI course materials by<a href='https://profbird.dev' target="_blank"> Brian
-                    Bird</a>, written in <time>2024</time>,
+                CS210 Intro to AI Programming course materials by <a href='https://profbird.dev' target="_blank">Brian Bird</a>, written in 2025.
             </div>
             <div>
-                are licensed under a <a href='http://creativecommons.org/licenses/by-sa/4.0/' target="_blank">Creative
-                    Commons Attribution-ShareAlike 4.0 International License</a>
+                Licensed under a <a href='http://creativecommons.org/licenses/by-sa/4.0/' target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>
             </div>
         </div>
     </footer>
