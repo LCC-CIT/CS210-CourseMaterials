@@ -8,7 +8,7 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Overview of AI</h1>
+<h1>Symbolic AI: Search-Based Techniques</h1>
 
 
 
@@ -48,13 +48,44 @@ author: Brian Bird
 - Last time, we briefly discussed expert systems as an example of rule-based systems. You wrote a "toy" version of an expert system.
 - This time we will explore search-based systems and you will write a problem solving "AI" system using this approach.
 
-### Search
+## Search
 
 Many problems can be thought of as search problems. We normally think of searching as a way to solve problems like finding a web site, finding a book in a library, or finding a product in an online store. But search can also be used to find the shortest route on a road map or the best sequence of moves to win a game.
 
+Search techniques are now usually considered simply part of Computer Science rather than AI, but "back in the day", they were considered AI and are still a useful way to solve a problem. There are three broad categories of search algorithms we will look at:
+
+### State-space search
+
+Search for an optimal set of steps to reach a particular configuration given a set of constraints.
+
+- **Airline example**: an airline needs to find the optimal assignment of flights for its fleet of aircraft. This process involves:
+
+  - Planning all flight legs and ensuring they have adequate turnaround time at airports.  
+
+  - Assigning a specific type of plane to a sequence of flights that starts and ends at a maintenance base.  
+
+  The entire operation is governed by constraints, including federal aviation regulations on pilot duty hours, mandatory maintenance schedules, airport noise curfews, and crew schedules. The ultimate goal is to to minimize the time aircraft are sitting idle on the ground and maximize profit. 
+
+- **Zombie and human river crossing puzzle**: Three humans and three zombies are on one side of a river. They all need to get to the other side. There is one rowboat.
+
+  - The boat can only carry two of them for each crossing.
+  - At least one of them has to be in the boat to row it.
+  - Only the boat can be used to cross the river (no wading or swimming).
+  - If the zombies on either side of the river outnumber the humans, they will kill them.
+
+  Here is a solution to the [Zombies and humans river crossing problem](https://lcc-cit.github.io/CS123-CourseMaterials/LectureNotes/Topic-01-4-ZombieCrossingSolution.html) with a description of the state-space and the steps to get from the initial state-space configuration to the state-space configuration that is the goal.
+
+  
+
 - **Breadth-First Search (BFS)**: This algorithm is one way of solving this problem without trying all the combinations of legal transitions. It explores all possible states level by level. It starts from the initial state and explores all possible moves, then moves to the next level of states. BFS guarantees finding the shortest path (minimum number of river crossings) to the goal state because it explores all nodes at the present depth level before moving on to nodes at the next depth level.
 
-Note: Parts of this document were drafted with assistance from Gemini 2.5 Flash
+### Search for an Optimal Route
+
+
+
+
+
+Note: Parts of this document were initially drafted with assistance from Gemini 2.5 Flash
 
 
 ---
