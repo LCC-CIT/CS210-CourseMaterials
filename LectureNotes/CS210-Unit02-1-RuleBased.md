@@ -14,7 +14,7 @@ author: Brian Bird
 | Topics                                           |                           |
 | ------------------------------------------------ | ------------------------- |
 | 1. What is AI, Python                            | 6. ANN: Image recognition |
-| 2. Symbolic AI:  <mark>rule-based</mark>, search | 7. Generative AI          |
+| 2. Symbolic AI:  <mark>rule-based systems</mark> | 7. Generative AI          |
 | 3. Classical Machine Learning: Training          | 8. Custom chatbot         |
 | 3. Classical Machine Learning: Inference         | 9. LLM fine-tuning        |
 | 5. Midterm                                       | 10. Ethics                |
