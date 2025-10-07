@@ -67,7 +67,7 @@ This definition raises the bar by implying that *machine learning* an essential 
 It describes things that AI systems do:
 
 - Predict
-- Reccomend
+- Recommend
 - Decide
 
 It describes the way AI systems do it:
