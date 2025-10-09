@@ -262,18 +262,29 @@ The game is "die battle": two players each roll a single six-sided die, and the 
 
 
 
-## Reference
+## More Resources
+
+### More Lecture Notes on Python
+
+- [Python Collections Data Types](CS210-Unit02-3-PythonCollectionTypes.html)&mdash;Brian Bird and Google Gemini
+- [Python Loops](CS210-Unit02-4-PythonLoops.html)&mdash;Brian Bird and Google Gemini
+
+### Online Tutorials
 
 - [Python Tutorial](https://docs.python.org/3/tutorial/)&mdash;Official Python Web Site
+- [Python Tutorial](https://www.w3schools.com/python/)&mdash;W3Schools
+- [The Python Handbook](https://www.freecodecamp.org/news/the-python-handbook/)&mdash;Falvio Copes, FreeCodeCamp
 - [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)&mdash;Official Python Web Site
-  - [Summary of the Style Guide]()&mdash;Google Gemini and Brian Bird
+  - [Summary of the Style Guide]()&mdash;Brian Bird and Google Gemini
+
+### Online Videos
 
 
-- P[ython: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)&mdash;CultRepo Video
+- [Python: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)[&mdash;CultRepo Video](https://bsky.app/profile/cultrepo.bsky.social)
 
   
 
-Note: Parts of this document were drafted with assistance from Gemini 2.5 Flash 9/30/25
+Note: Some parts of this document were initially drafted with assistance from Gemini 2.5 Flash 9/30/25
 
 
 ---

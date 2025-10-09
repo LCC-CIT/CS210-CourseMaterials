@@ -8,63 +8,34 @@ def load_rules(csv_content: str) -> List[Dict[str, Any]]:
     Each rule is parsed into a dictionary with 'if' (set of conditions) and 'then' (new fact).
     """
     rules = []
-    # Try to parse as CSV with headers first (IF, AND, THEN, GOAL).
-    content = csv_content.strip()
-    reader = csv.DictReader(StringIO(content))
+    content = csv_content.strip()                  # Remove leading/trailing whitespace
+    reader = csv.DictReader(StringIO(content))     # Read each row as a dictionary
 
-    fieldnames = reader.fieldnames or []
-    normalized_fieldnames = [fn.strip().upper() for fn in fieldnames]
+    # Assume there is not a header row, parse positional columns (IF, AND, THEN, [GOAL])
+    csv_reader = csv.reader(StringIO(content))
+    for row in csv_reader:
+        # Skip empty rows
+        if not row or all(not cell.strip() for cell in row):
+            continue
 
-    if 'IF' in normalized_fieldnames:
-        # The file has headers; use DictReader rows directly
-        for row in reader:
-            # Skip empty/malformed rows
-            if not row or not row.get('IF'):
-                continue
+        # Map positional columns
+        if_val = row[0].strip() if len(row) > 0 else ''
+        and_val = row[1].strip() if len(row) > 1 else ''
+        then_val = row[2].strip() if len(row) > 2 else ''
+        goal_val = row[3].strip() if len(row) > 3 else ''
 
-            # Collect conditions from the IF and optional AND columns (trim whitespace)
-            if_val = row.get('IF', '').strip()
-            and_val = row.get('AND', '')
-            and_val = and_val.strip() if and_val is not None else ''
-            then_val = row.get('THEN', '').strip()
-            goal_val = row.get('GOAL', '')
+        if not if_val:
+            continue
 
-            conditions = {if_val}
-            if and_val:
-                conditions.add(and_val)
+        conditions = {if_val}
+        if and_val:
+            conditions.add(and_val)
 
-            rules.append({
-                "if": conditions,
-                "then": then_val,
-                # The GOAL column helps identify terminal diagnosis or recommendations
-                "is_goal": bool(str(goal_val).strip())
-            })
-    else:
-        # No header present: parse positional columns (IF, AND, THEN, [GOAL])
-        csv_reader = csv.reader(StringIO(content))
-        for row in csv_reader:
-            # Skip empty rows
-            if not row or all(not cell.strip() for cell in row):
-                continue
-
-            # Map positional columns
-            if_val = row[0].strip() if len(row) > 0 else ''
-            and_val = row[1].strip() if len(row) > 1 else ''
-            then_val = row[2].strip() if len(row) > 2 else ''
-            goal_val = row[3].strip() if len(row) > 3 else ''
-
-            if not if_val:
-                continue
-
-            conditions = {if_val}
-            if and_val:
-                conditions.add(and_val)
-
-            rules.append({
-                "if": conditions,
-                "then": then_val,
-                "is_goal": bool(goal_val)
-            })
+        rules.append({
+            "if": conditions,
+            "then": then_val,
+            "is_goal": bool(goal_val)
+        })
     return rules
 
 
@@ -74,7 +45,7 @@ def load_rules_from_file(file_path: str) -> List[Dict[str, Any]]:
     Supports both header and header-less CSV files.
     """
     with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+        content = f.read() # read the file into a string
     return load_rules(content)
 
 def forward_chaining_inference(rules: List[Dict[str, Any]], initial_facts: List[str], verbose: bool = False) -> Set[str]:
