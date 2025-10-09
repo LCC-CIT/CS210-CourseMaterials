@@ -1,32 +1,60 @@
-# Removed all complex type hinting (List[Dict[str, Any]])
-# This makes the function signatures much cleaner for new students.
 
 # 1. HARDCODED KNOWLEDGE BASE (Rules)
-# The rules are defined as a list of dictionaries.
+# The rules are defined as a list of dictionaries. 
+# The first dicitonary in each rule, with the key "if", has a set as it's value.
 # 'if': A set of facts (strings) required to trigger the rule.
 # 'then': The new fact (string) derived when the rule fires.
 # 'is_goal': True if this fact is a final diagnosis or recommendation.
+
 KNOWLEDGE_BASE = [
     # Rule 1: Suspect Flu
-    {"if": {"fever", "cough"}, "then": "suspect_flu", "is_goal": False},
+    {
+        "if": {"fever", "cough"}, 
+        "then": "suspect_flu", 
+        "is_goal": False
+    },
     
     # Rule 2: Suspect Migraine
-    {"if": {"headache", "nausea"}, "then": "suspect_migraine", "is_goal": False},
+    {
+        "if": {"headache", "nausea"}, 
+        "then": "suspect_migraine", 
+        "is_goal": False
+    },
     
     # Rule 3: Diagnosis Influenza (Chain 1 step: needs 'suspect_flu' derived from R1)
-    {"if": {"suspect_flu", "body_aches"}, "then": "diagnosis_influenza", "is_goal": False},
+    {
+        "if": {"suspect_flu", "body_aches"}, 
+        "then": "diagnosis_influenza", 
+        "is_goal": False
+    },
     
     # Rule 4: Diagnosis Common Cold (Chain 1 step)
-    {"if": {"suspect_flu", "sore_throat"}, "then": "diagnosis_common_cold", "is_goal": False},
+    {
+        "if": {"suspect_flu", "sore_throat"}, 
+        "then": "diagnosis_common_cold", 
+        "is_goal": False
+    },
     
     # Rule 5: Recommendation for Influenza (Chain 2 step: needs 'diagnosis_influenza' derived from R3)
-    {"if": {"diagnosis_influenza"}, "then": "recommend_rest", "is_goal": True},
+    {
+        "if": {"diagnosis_influenza"}, 
+        "then": "recommend_rest", 
+        "is_goal": True
+    },
     
     # Rule 6: Recommendation for Migraine (Final Diagnosis)
-    {"if": {"diagnosis_migraine"}, "then": "recommend_dark_room", "is_goal": True},
+    {
+        "if": {"diagnosis_migraine"}, 
+        "then": "recommend_dark_room", 
+        "is_goal": True
+    },
     
     # Rule 7: Diagnosis Food Poisoning (Final Diagnosis)
-    {"if": {"no_appetite", "stomach_pain"}, "then": "diagnosis_food_poisoning", "is_goal": True},
+    {
+        "if": {"no_appetite", "stomach_pain"}, 
+        "then": "diagnosis_food_poisoning", 
+        "is_goal": True
+    },
 ]
 
 def forward_chaining_inference(rules, initial_facts, verbose: bool = False):

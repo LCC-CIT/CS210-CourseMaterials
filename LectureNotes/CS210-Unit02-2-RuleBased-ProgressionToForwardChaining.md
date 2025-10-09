@@ -25,7 +25,7 @@ author: Brian Bird
 
 ## Single Rule System
 
-### Each Rule Leads to a Goal in Hard-Coded Rules
+### Each Rule Leads to a Goal&mdash;"Hard Coded" Rules (if, elif, else)
 
 In the last lab assignment, you wrote rule-based (expert) systems in which each branch of the if-elif statement lead to a diagnosis (a goal). The rules were very simple with just a few input parameters. This example just has two parameters:
 
@@ -62,6 +62,8 @@ diagnose_symptoms(False, True)
 
 ```
 
+
+
 #### Each Rule Leads to a Goal&mdash;Rules in a List
 
 Let's improve this by separating the rules from the code. In the following program:
@@ -73,6 +75,7 @@ Let's improve this by separating the rules from the code. In the following progr
 
 ```python
 # This function demonstrates simple rule-based classification (Pattern Matching)
+# The rules are in lists of dictionaries
 
 KNOWLEDGE_BASE = [
     # Rule 1:Flu/Cold symptoms
@@ -110,6 +113,8 @@ def direct_lookup_inference(rules, patient_facts):
     return "Diagnosis: Undetermined. No direct rule matched all symptoms."
 ```
 
+
+
 #### Chains of Rules Lead to a Goal&mdash;Rules in a List
 
 A better way to do this is to make separate rules that can be chained:
@@ -136,29 +141,64 @@ These can be put in a file that will be read by the rule-based program. The file
 Here is an example program:
 
 ```python
-# This function demonstrates rule-based forward chaining
+# This program demonstrates rule-based forward chaining
+
+# 1. HARDCODED KNOWLEDGE BASE (Rules)
+# The rules are defined as a list of dictionaries. 
+# The first dicitonary in each rule, with the key "if", has a set as it's value.
+# 'if': A set of facts (strings) required to trigger the rule.
+# 'then': The new fact (string) derived when the rule fires.
+# 'is_goal': True if this fact is a final diagnosis or recommendation.
 
 KNOWLEDGE_BASE = [
     # Rule 1: Suspect Flu
-    {"if": {"fever", "cough"}, "then": "suspect_flu", "is_goal": False},
+    {
+        "if": {"fever", "cough"}, 
+        "then": "suspect_flu", 
+        "is_goal": False
+    },
     
     # Rule 2: Suspect Migraine
-    {"if": {"headache", "nausea"}, "then": "suspect_migraine", "is_goal": False},
+    {
+        "if": {"headache", "nausea"}, 
+        "then": "suspect_migraine", 
+        "is_goal": False
+    },
     
     # Rule 3: Diagnosis Influenza (Chain 1 step: needs 'suspect_flu' derived from R1)
-    {"if": {"suspect_flu", "body_aches"}, "then": "diagnosis_influenza", "is_goal": False},
+    {
+        "if": {"suspect_flu", "body_aches"}, 
+        "then": "diagnosis_influenza", 
+        "is_goal": False
+    },
     
     # Rule 4: Diagnosis Common Cold (Chain 1 step)
-    {"if": {"suspect_flu", "sore_throat"}, "then": "diagnosis_common_cold", "is_goal": False},
+    {
+        "if": {"suspect_flu", "sore_throat"}, 
+        "then": "diagnosis_common_cold", 
+        "is_goal": False
+    },
     
     # Rule 5: Recommendation for Influenza (Chain 2 step: needs 'diagnosis_influenza' derived from R3)
-    {"if": {"diagnosis_influenza"}, "then": "recommend_rest", "is_goal": True},
+    {
+        "if": {"diagnosis_influenza"}, 
+        "then": "recommend_rest", 
+        "is_goal": True
+    },
     
     # Rule 6: Recommendation for Migraine (Final Diagnosis)
-    {"if": {"diagnosis_migraine"}, "then": "recommend_dark_room", "is_goal": True},
+    {
+        "if": {"diagnosis_migraine"}, 
+        "then": "recommend_dark_room", 
+        "is_goal": True
+    },
     
     # Rule 7: Diagnosis Food Poisoning (Final Diagnosis)
-    {"if": {"no_appetite", "stomach_pain"}, "then": "diagnosis_food_poisoning", "is_goal": True},
+    {
+        "if": {"no_appetite", "stomach_pain"}, 
+        "then": "diagnosis_food_poisoning", 
+        "is_goal": True
+    },
 ]
 
 def forward_chaining_inference(rules, initial_facts, verbose: bool = False):
@@ -258,6 +298,7 @@ print("====================================")
 print(f"FINAL RESULT (Scenario 2: {patient_facts_2})")
 print(f"Recommendations: {goal_recommendations_2 if goal_recommendations_2 else 'None'}")
 print("====================================")
+
 
 ```
 
