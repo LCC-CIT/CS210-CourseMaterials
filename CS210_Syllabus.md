@@ -189,6 +189,22 @@ For upcoming closures, please visit the [Center for Accessible Resources webpage
 
 View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on the LCC web site.  
 
+### Weekly Learning Activities
+
+- Tuesday
+  - Participate in **class** (in-person, via Zoom, or watch the Zoom recording).
+  - Submit a **code review** of last week's lab for your lab partner (starting the 2nd week).
+
+- Thursday
+  - Participate in **class**.
+  - Submit the **lab production version** from last week.
+
+- Saturday
+  - Share the **beta version** of this week's lab on Discord.
+- Sunday
+  - Take the reading **quiz** over this week's assigned reading.
+  - Start the assigned **reading** for next week.
+
 ### Course Schedule
 
 (Tentative, may be subject to change)

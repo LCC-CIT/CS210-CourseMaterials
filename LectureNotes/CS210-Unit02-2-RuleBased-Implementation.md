@@ -10,14 +10,14 @@ author: Brian Bird
 
 <h1>Symbolic AI: Rule-Based AI Techniques: Implementation</h1>
 
-| Topics                                               |                           |
-| ---------------------------------------------------- | ------------------------- |
-| 1. What is AI, Python                                | 6. ANN: Image recognition |
-| 2.  Symbolic AI: I:  <mark>rule-based</mark>, search | 7. Generative AI          |
-| 3. Classical Machine Learning: Training              | 8. Custom chatbot         |
-| 3. Classical Machine Learning: Inference             | 9. LLM fine-tuning        |
-| 5. Midterm                                           | 10. Ethics                |
-|                                                      | 11. Final                 |
+| Topics                                       |                           |
+| -------------------------------------------- | ------------------------- |
+| 1. What is AI, Python                        | 6. ANN: Image recognition |
+| 2.  Symbolic AI: I:  <mark>rule-based</mark> | 7. Generative AI          |
+| 3. Classical Machine Learning: Training      | 8. Custom chatbot         |
+| 3. Classical Machine Learning: Inference     | 9. LLM fine-tuning        |
+| 5. Midterm                                   | 10. Ethics                |
+|                                              | 11. Final                 |
 
 <h2>Contents</h2>
 
@@ -40,8 +40,8 @@ This can be modeled using simple *lists* (for facts) and a collection of *if/the
 - Example Problem: A simple diagnostic system.
 - Initial Facts: `['has_fever', 'has_cough']`
 - Rules:
-  1. IF `has_fever` AND `has_cough`, THEN ADD `suspect_flu`.
-  2. IF `suspect_flu` AND `has_headache`, THEN ADD `recommend_rest`.
+  1. IF `has_fever` AND `has_cough`, THEN `suspect_flu`.
+  2. IF `suspect_flu` AND `has_headache`, THEN `recommend_rest`.
 - The "Search": A main loop repeatedly scans the list of rules. If a rule's "IF" condition is met by the current facts, its "THEN" action (adding a new fact) is executed. The loop stops when the goal fact (e.g., `recommend_rest`) is added.
 
 #### How *Forward Chaining* is Executed in the Algorithm
