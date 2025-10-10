@@ -10,8 +10,6 @@ author: Brian Bird
 
 <h1>Overview of AI</h1>
 
-
-
 | Topics                                   |                           |
 | ---------------------------------------- | ------------------------- |
 | 1. What is AI, <mark>Python</mark>       | 6. ANN: Image recognition |
@@ -291,7 +289,7 @@ Note: Some parts of this document were initially drafted with assistance from Ge
 
 
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Programming Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 [^1]: The FizzBuzz program iterates from 1 up to some specified limit.    It prints "Fizz" for multiples of 3, "Buzz" for multiples of 5, "FizzBuzz" for multiples of both, or just the number.
 

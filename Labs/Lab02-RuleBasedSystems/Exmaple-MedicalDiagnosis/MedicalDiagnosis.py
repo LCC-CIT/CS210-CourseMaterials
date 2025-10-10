@@ -8,9 +8,7 @@ def load_rules(csv_content: str) -> List[Dict[str, Any]]:
     Each rule is parsed into a dictionary with 'if' (set of conditions) and 'then' (new fact).
     """
     rules = []
-    content = csv_content.strip()                  # Remove leading/trailing whitespace
-    reader = csv.DictReader(StringIO(content))     # Read each row as a dictionary
-
+    content = csv_content.strip()      # Remove leading/trailing whitespace
     # Assume there is not a header row, parse positional columns (IF, AND, THEN, [GOAL])
     csv_reader = csv.reader(StringIO(content))
     for row in csv_reader:

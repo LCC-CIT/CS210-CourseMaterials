@@ -8,8 +8,8 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>
-  Rule-Based AI Techniques: Overview</h1>
+<h1>Rule-Based AI Techniques: Overview</h1>
+
 
 | Topics                                           |                           |
 | ------------------------------------------------ | ------------------------- |

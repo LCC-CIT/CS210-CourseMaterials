@@ -12,8 +12,6 @@ author: Brian Bird
 
 <h2>Sept. 29 through Oct. 5</h2>
 
-
-
 | Topics                                   |                               |
 | ---------------------------------------- | ----------------------------- |
 | 1. What is AI, Python                    | 6. ANN: Image recognition     |
@@ -22,8 +20,6 @@ author: Brian Bird
 | 4. Classical machine learning: inference | 9. LLM fine-tuning            |
 | 5. Midterm                               | 10. Social and ethical issues |
 |                                          | 11. Final                     |
-
-
 
 <h2>Contents</h2>
 
@@ -91,4 +87,4 @@ Ask questions in the class [Discussion channel](https://discord.com/channels/129
 
 
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Programming Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 

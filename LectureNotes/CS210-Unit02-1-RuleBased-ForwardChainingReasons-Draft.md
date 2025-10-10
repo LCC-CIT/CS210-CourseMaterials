@@ -8,11 +8,7 @@ If you eliminate the forward chaining loop, your system can only perform **one-s
 
 Here is a breakdown of what happens when you try to replace the `while new_fact_added:` loop with a simple, non-iterative search.
 
-
-
 ### The Problem with Simple, Non-Iterative Search
-
-
 
 Let's look at a sequence from your rules:
 
@@ -24,8 +20,6 @@ Let's look at a sequence from your rules:
 
 
 #### Scenario: Running the System with Simple Search (No Chaining)
-
-
 
 1. **Initial Facts:** `['fever', 'cough', 'body_aches']`
 2. **Simple Search Starts:** The system checks all rules *only* against the initial facts.
@@ -39,8 +33,6 @@ Let's look at a sequence from your rules:
 
 
 ### Where the Forward Chaining Loop is Indispensable
-
-
 
 The purpose of the `while new_fact_added:` loop is to ensure that the system's "working memory" (the `facts` set) is constantly updated with new conclusions, and that **all rules are checked again** against this expanded knowledge.
 
@@ -67,8 +59,6 @@ Here's how the analogy holds up and where it differs:
 
 ### The Analogy: Interconnected `if-elif` Statements
 
-
-
 | Forward Chaining Component | Hardcoded `if-elif` Analogy                                  |
 | -------------------------- | ------------------------------------------------------------ |
 | **Fact (Working Memory)**  | A simple **Boolean variable** or an item in a list.          |
@@ -80,8 +70,6 @@ Here's how the analogy holds up and where it differs:
 
 #### Example of the Analogy:
 
-
-
 Let's use your diagnostic system:
 
 | Forward Chaining Logic                    | Hardcoded Python Logic                              |
@@ -89,8 +77,6 @@ Let's use your diagnostic system:
 | **Facts:** `fever`, `cough`, `body_aches` | `fever = True`, `cough = True`, `body_aches = True` |
 | **Derived Fact:** `suspect_flu`           | `suspect_flu = False`                               |
 | **Derived Fact:** `diagnosis_influenza`   | `diagnosis_influenza = False`                       |
-
-Python
 
 ```
 # The Forward Chain is the repeated execution over these blocks:
@@ -122,8 +108,6 @@ if suspect_flu and body_aches:
 
 
 ### Key Difference: The Efficiency of the Loop
-
-
 
 While the analogy works perfectly to show the dependency, the structured approach in the actual Python solution is generally superior to a giant block of interconnected `if-elif` statements because of how it handles **completeness**:
 
