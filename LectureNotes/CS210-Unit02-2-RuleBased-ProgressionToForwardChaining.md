@@ -124,19 +124,7 @@ A better way to do this is to make separate rules that can be chained:
   - 'then': The new fact (string) derived when the rule fires.
   - 'is_goal': True if this fact is a final diagnosis or recommendation.
 
-Here's a table of rules:
-
-| **IF**                       | **THEN**                 | **GOAL** |
-| ---------------------------- | ------------------------ | -------- |
-| fever and cough              | suspect_flu              |          |
-| headache and nausea          | suspect_migraine         |          |
-| suspect_flu and body_aches   | diagnosis_influenza      |          |
-| suspect_flu and sore_throat  | diagnosis_common_cold    |          |
-| diagnosis_influenza          | recommend_rest           | GOAL     |
-| diagnosis_migraine           | recommend_dark_room      | GOAL     |
-| no_appetite and stomach_pain | diagnosis_food_poisoning | GOAL     |
-
-These can be put in a file that will be read by the rule-based program. The file can be edited to change or add rules.
+Here is a link to [a more detailed example](CS210-Unit02-2a-RuleDesign.html) of forward chaned rules with an explaination of how they work.
 
 Here is an example program:
 
