@@ -10,6 +10,8 @@ author: Brian Bird
 
 <h1>Overview of AI</h1>
 
+
+
 | Topics                                   |                           |
 | ---------------------------------------- | ------------------------- |
 | 1. What is AI, <mark>Python</mark>       | 6. ANN: Image recognition |
@@ -195,17 +197,47 @@ You should see output confirming the version you just installed (e.g., `Python 3
    Hello, World! Python is running.
    ```
 
+## Using VS Code for Python
+
+### Install the Python Extension
+
+- Go to the Extensions view (`Ctrl+Shift+X`).
+- Search for "Python" and install the official extension by Microsoft.
+
+### Use the Debugger
+
+1. **Open Your Project Folder**
+   - Open the folder containing your `.py` files in VS Code.
+2. **Select the Python Interpreter**
+   - Press `Ctrl+Shift+P` and type `Python: Select Interpreter`.
+   - Choose the interpreter you want to use (e.g., Python 3.x).
+3. **Set Breakpoints**
+   - Open the Python file you want to debug.
+   - Click in the gutter to the left of the line numbers to set breakpoints.
+4. **Start Debugging**
+   - Open the file you want to run (for example, `main.py`).
+   - Press `F5` to start debugging, or click the green "Run and Debug" button in the Run view (`Ctrl+Shift+D`).
+   - The debugger will stop at your breakpoints, and you can inspect variables, step through code, etc.
+5. **Debug Controls**
+   - Use the debug toolbar at the top to step over (`F10`), step into (`F11`), continue (`F5`), or stop (`Shift+F5`).
+6. **Inspect Variables**
+   - Use the "Variables" pane in the Run view to see local and global variables.
+   - Hover over variables in the editor to see their values.
+
+**Tips**
+
+- You can add `"args": ["arg1", "arg2"]` to your `.vscode/launch.json` if your script needs command-line arguments.
+- You can use the integrated terminal (`Ctrl+``) to run scripts normally with `python your_script.py`.
+
 ## Learning Python
 
-### Distictives of Python
+### Distinctives of Python
 
 - No curly braces! Indentation is used to delineate blocks of code. 
 - Dynamic typing: You don't need to declare the data types of variables.
 - Interpreted, not compiled.
 - No `;` to terminate lines. The end of the line is the end of the line.
 - Python has a distinctive *pythonic* style which is described in the [PEP-8 style guide](https://peps.python.org/pep-0008/).
-
-#### FizzBuzz Example Program
 
 Here is an implementation of the classic "FizzBuzz" program[^1] in Python:
 
@@ -246,7 +278,7 @@ Here is an [example of Object Oriented Programming in Python](Unit01-Files/oopCa
 
 
 
-### Exercise: Translate a Dice Game into Python
+### Exercise
 
 Translate a simple game from either [JavaScript](Unit01-Files/dieBattle.js) or [C#](Unit01-Files/dieBattle.cs) into Python. 
 
@@ -260,36 +292,25 @@ The game is "die battle": two players each roll a single six-sided die, and the 
 
 
 
-## More Resources
-
-### More Lecture Notes on Python
-
-- [Python Collections Data Types](CS210-Unit02-3-PythonCollectionTypes.html)&mdash;Brian Bird and Google Gemini
-- [Python Loops](CS210-Unit02-4-PythonLoops.html)&mdash;Brian Bird and Google Gemini
-
-### Online Tutorials
+## Reference
 
 - [Python Tutorial](https://docs.python.org/3/tutorial/)&mdash;Official Python Web Site
-- [Python Tutorial](https://www.w3schools.com/python/)&mdash;W3Schools
-- [The Python Handbook](https://www.freecodecamp.org/news/the-python-handbook/)&mdash;Falvio Copes, FreeCodeCamp
 - [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)&mdash;Official Python Web Site
-  - [Summary of the Style Guide]()&mdash;Brian Bird and Google Gemini
-
-### Online Videos
+  - [Summary of the Style Guide]()&mdash;Google Gemini and Brian Bird
 
 
-- [Python: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)[&mdash;CultRepo Video](https://bsky.app/profile/cultrepo.bsky.social)
+- P[ython: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)&mdash;CultRepo Video
 
   
 
-Note: Some parts of this document were initially drafted with assistance from Gemini 2.5 Flash 9/30/25
+Note: Parts of this document were drafted with assistance from Gemini 2.5 Flash 9/30/25
 
 
 ---
 
 
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Programming Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Course Materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 [^1]: The FizzBuzz program iterates from 1 up to some specified limit.    It prints "Fizz" for multiples of 3, "Buzz" for multiples of 5, "FizzBuzz" for multiples of both, or just the number.
 

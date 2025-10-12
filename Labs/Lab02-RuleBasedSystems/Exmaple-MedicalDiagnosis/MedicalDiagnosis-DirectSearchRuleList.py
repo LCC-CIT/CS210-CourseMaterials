@@ -1,3 +1,5 @@
+from knowledge_base import IF_KEY, THEN_KEY
+
 # This program demonstrates simple rule-based classification (Pattern Matching)
 
 KNOWLEDGE_BASE = [
@@ -22,7 +24,7 @@ def direct_lookup_inference(rules, patient_facts):
 
     # The system only iterates through the rules once.
     for rule in rules:
-        conditions_needed = rule['if']
+        conditions_needed = rule[IF_KEY]
 
         # Pattern Matching: Check if ALL conditions needed by the rule
         # are present in the patient's facts.
@@ -30,7 +32,7 @@ def direct_lookup_inference(rules, patient_facts):
 
         if conditions_met:
             # We found a direct match! Return the immediate conclusion.
-            return rule['then']
+            return rule[THEN_KEY]
 
     # If the loop finishes without finding a match:
     return "Diagnosis: Undetermined. No direct rule matched all symptoms."

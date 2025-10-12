@@ -1,19 +1,22 @@
 import csv
 from io import StringIO
 from typing import List, Set, Dict, Any
+from knowledge_base import IF_KEY, THEN_KEY
 
 def load_rules(csv_content: str) -> List[Dict[str, Any]]:
     """
     Loads rules from the CSV content.
-    Each rule is parsed into a dictionary with 'if' (set of conditions) and 'then' (new fact).
+    Each rule is parsed into a dictionary with keys: 'if' (set of conditions) and 'then' (new fact).
     """
     rules = []
     content = csv_content.strip()      # Remove leading/trailing whitespace
-    # Assume there is not a header row, parse positional columns (IF, AND, THEN, [GOAL])
+    # Assume there is not a header row, parse positional columns: IF(two columns) THEN, GOAL
     csv_reader = csv.reader(StringIO(content))
     for row in csv_reader:
         # Skip empty rows
-        if not row or all(not cell.strip() for cell in row):
+        is_empty_row = not row
+        all_cells_blank = all(not cell.strip() for cell in row)
+        if is_empty_row or all_cells_blank:
             continue
 
         # Map positional columns
@@ -30,8 +33,8 @@ def load_rules(csv_content: str) -> List[Dict[str, Any]]:
             conditions.add(and_val)
 
         rules.append({
-            "if": conditions,
-            "then": then_val,
+            IF_KEY: conditions,
+            THEN_KEY: then_val,
             "is_goal": bool(goal_val)
         })
     return rules
@@ -74,8 +77,8 @@ def forward_chaining_inference(rules: List[Dict[str, Any]], initial_facts: List[
             print(f"--- Iteration {iteration} ---")
 
         for rule in rules:
-            conditions_met = rule['if'].issubset(facts)
-            new_fact = rule['then']
+            conditions_met = rule[IF_KEY].issubset(facts)
+            new_fact = rule[THEN_KEY]
 
             # 1. Check IF condition (Pattern Matching)
             if conditions_met:
@@ -97,7 +100,7 @@ def extract_goals(rules: List[Dict[str, Any]], facts: Set[str]) -> List[str]:
     """
     Return the list of rule conclusions that are marked as goals and present in facts.
     """
-    return [r['then'] for r in rules if r.get('is_goal') and r['then'] in facts]
+    return [r[THEN_KEY] for r in rules if r.get('is_goal') and r[THEN_KEY] in facts]
 
 # --- Main Program Execution ---
 
