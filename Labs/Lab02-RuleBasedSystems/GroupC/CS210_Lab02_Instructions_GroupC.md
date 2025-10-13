@@ -28,7 +28,7 @@ B. Making a new expert system to do something you are interesed in. Send your in
 3. The rules for the system will be stored in a csv file.
 4. The program will load the contents of the csv file into a List of Dictionaries.
 5. The inference part of your program will implement *forward chaining*.
-6. User input and output should be seprated from code that does inference.
+6. User input and output should be separated from code that does inference.
 
 
 
