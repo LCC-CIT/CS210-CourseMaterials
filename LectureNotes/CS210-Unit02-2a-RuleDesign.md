@@ -10,14 +10,14 @@ author: Brian Bird
 
 <h1>Designing Rules for a Knowledge Base</h1>
 
-| Topics                                       |                           |
-| -------------------------------------------- | ------------------------- |
-| 1. What is AI, Python                        | 6. ANN: Image recognition |
-| 2.  Symbolic AI: I:  <mark>rule-based</mark> | 7. Generative AI          |
-| 3. Classical Machine Learning: Training      | 8. Custom chatbot         |
-| 3. Classical Machine Learning: Inference     | 9. LLM fine-tuning        |
-| 5. Midterm                                   | 10. Ethics                |
-|                                              | 11. Final                 |
+| Topics                                    |                           |
+| ----------------------------------------- | ------------------------- |
+| 1. What is AI, Python                     | 6. ANN: Image recognition |
+| 2.  Symbolic AI:  <mark>rule-based</mark> | 7. Generative AI          |
+| 3. Classical Machine Learning: Training   | 8. Custom chatbot         |
+| 4. Classical Machine Learning: Inference  | 9. LLM fine-tuning        |
+| 5. Midterm                                | 10. Ethics                |
+|                                           | 11. Final                 |
 
 <h2>Contents</h2>
 

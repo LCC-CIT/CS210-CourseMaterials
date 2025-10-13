@@ -49,11 +49,11 @@ A **dictionary** is an unordered, mutable collection of data that stores data in
 | **Mutability** | **Mutable** (keys/values can be added, removed, or changed)  |
 | **Indexing**   | Accessed by **Key**, not by numerical index                  |
 
-**Example:**
+### Declaring a Dictionary
 
-Python
+**Example:** 
 
-```
+```python
 student_profile = {
     "name": "Alice",
     "age": 21,
@@ -61,7 +61,11 @@ student_profile = {
 }
 print(student_profile)
 # Output: {'name': 'Alice', 'age': 21, 'major': 'Computer Science'}
+```
 
+### Accessing Dictionary Values using `[]`
+
+```
 # Access by key
 print(student_profile["major"])
 # Output: Computer Science
@@ -70,6 +74,82 @@ print(student_profile["major"])
 student_profile["gpa"] = 3.8
 print(student_profile)
 # Output: {'name': 'Alice', 'age': 21, 'major': 'Computer Science', 'gpa': 3.8}
+```
+
+### Accessing Dictionary Values using `get()`
+
+The **`dict.get()`** method is preferred over direct key access (e.g., `my_dict[key]`) because it handles missing keys gracefully by returning a default value instead of raising a `KeyError`.
+
+The **`get()`** method is a safer way to retrieve the value associated with a key in a dictionary. It accepts two arguments: the `key` you want to look up, and an optional `default` value to return if the key is not found.
+
+| Feature           | Description                                                  |
+| ----------------- | ------------------------------------------------------------ |
+| **Syntax**        | `dictionary.get(<key>, <default_value>)`                     |
+| **Key Found**     | Returns the value associated with the key.                   |
+| **Key Not Found** | Returns the **`default_value`** (or `None` if no default is specified). |
+| **Advantage**     | Prevents the program from crashing with a `KeyError`.        |
+
+#### Example: Basic Access with No Default Value
+
+If the key exists, `get()` returns the value. If the key is missing, it returns **`None`**.
+
+```python
+inventory = {
+    "apples": 50,
+    "bananas": 100
+}
+
+# Key exists
+apple_count = inventory.get("apples")
+print(f"Apples in stock: {apple_count}")
+# Output: Apples in stock: 50
+
+# Key does NOT exist - returns None
+orange_count = inventory.get("oranges")
+print(f"Oranges in stock: {orange_count}")
+# Output: Oranges in stock: None
+```
+
+#### Example: Access with a Specific Default Value
+
+You can provide a second argument, which is the value to return if the key is not found. This is a common and robust practice.
+
+```python
+user_settings = {
+    "theme": "dark",
+    "notifications": True
+}
+
+# Key exists
+current_theme = user_settings.get("theme", "light")
+print(f"Current Theme: {current_theme}")
+# Output: Current Theme: dark
+
+# Key does NOT exist - returns the default value "English"
+language = user_settings.get("language", "English")
+print(f"Default Language: {language}")
+# Output: Default Language: English
+```
+
+### Example: Returning a Complex Default Value
+
+The default value doesn't have to be a simple type like a string or number; it can be any valid Python object, such as a list or another dictionary.
+
+```python
+sales_data = {
+    "Q1": [1000, 1200, 950],
+    "Q2": [1500, 1800]
+}
+
+# Key exists
+q2_sales = sales_data.get("Q2", [0])
+print(f"Q2 Sales: {q2_sales}")
+# Output: Q2 Sales: [1500, 1800]
+
+# Key does NOT exist - returns the default empty list []
+q4_sales = sales_data.get("Q4", [])
+print(f"Q4 Sales: {q4_sales}")
+# Output: Q4 Sales: []
 ```
 
 
