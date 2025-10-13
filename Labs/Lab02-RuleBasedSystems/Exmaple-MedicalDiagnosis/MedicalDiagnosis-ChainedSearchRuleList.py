@@ -1,156 +1,190 @@
+from knowledge_base import IF_KEY, THEN_KEY, RESULT_TYPE_KEY, RESULT_TYPE_DIAGNOSIS, RESULT_TYPE_RECOMMENDATION
 
-# 1. HARDCODED KNOWLEDGE BASE (Rules)
+# Example Expert System for Medical Diagnosis
+# Using Forward Chaining with Chained Search Rules
+# Initial code from Gemini Flash 2.5
+# Major refactoring by Brian Bird, October 11, 2025
+
+# HARDCODED KNOWLEDGE BASE (Rules)
 # The rules are defined as a list of dictionaries. 
-# The first dicitonary in each rule, with the key "if", has a set as it's value.
 # 'if': A set of facts (strings) required to trigger the rule.
 # 'then': The new fact (string) derived when the rule fires.
-# 'is_goal': True if this fact is a final diagnosis or recommendation.
+# 'result_type': Indicates the type of fact: diagnosis or recommendation, 
+#    either one could be a final goal.
 
 KNOWLEDGE_BASE = [
     # Rule 1: Suspect Flu
     {
         "if": {"fever", "cough"}, 
         "then": "suspect_flu", 
-        "is_goal": False
+        "result_type": "INTERMEDIATE"
     },
     
     # Rule 2: Suspect Migraine
     {
         "if": {"headache", "nausea"}, 
         "then": "suspect_migraine", 
-        "is_goal": False
+        "result_type": "INTERMEDIATE"
     },
     
-    # Rule 3: Diagnosis Influenza (Chain 1 step: needs 'suspect_flu' derived from R1)
+    # Rule 3: Diagnosis Influenza (Chain step 1: needs 'suspect_flu' derived from R1)
     {
         "if": {"suspect_flu", "body_aches"}, 
         "then": "diagnosis_influenza", 
-        "is_goal": False
+        "result_type": "DIAGNOSIS"
     },
     
-    # Rule 4: Diagnosis Common Cold (Chain 1 step)
+    # Rule 4: Diagnosis Common Cold (Chain step 1, no further chaining for reccommendation)
     {
         "if": {"suspect_flu", "sore_throat"}, 
         "then": "diagnosis_common_cold", 
-        "is_goal": False
+        "result_type": "DIAGNOSIS"
     },
-    
-    # Rule 5: Recommendation for Influenza (Chain 2 step: needs 'diagnosis_influenza' derived from R3)
+
+    # Rule 5: Diagnosis Migraine (Chain step 1: needs 'suspect_migraine' derived from R2)
+    {
+        "if": {"suspect_migraine", "light_sensitivity"}, 
+        "then": "diagnosis_migraine", 
+        "result_type": "DIAGNOSIS"
+    },
+
+    # Rule 6: Recommendation for Influenza (Chain step 2: needs 'diagnosis_influenza' derived from R3)
     {
         "if": {"diagnosis_influenza"}, 
         "then": "recommend_rest", 
-        "is_goal": True
+        "result_type": "RECCOMENDATION"
     },
     
-    # Rule 6: Recommendation for Migraine (Final Diagnosis)
+    # Rule 7: Recommendation for Migraine (Chain step 2: needs 'diagnosis_migraine' derived from R2)
     {
         "if": {"diagnosis_migraine"}, 
         "then": "recommend_dark_room", 
-        "is_goal": True
+        "result_type": "RECCOMENDATION"
     },
-    
-    # Rule 7: Diagnosis Food Poisoning (Final Diagnosis)
+
+    # Rule 8: Diagnosis Food Poisoning (No chain, direct diagnosis)
     {
         "if": {"no_appetite", "stomach_pain"}, 
         "then": "diagnosis_food_poisoning", 
-        "is_goal": True
+        "result_type": "DIAGNOSIS"
     },
 ]
 
-def forward_chaining_inference(rules, initial_facts, verbose: bool = False):
+def get_diagnosis(initial_facts):
+    """
+    Get the diagnoses and recommendations based on initial facts.
+
+        Parameters:
+    - initial_facts: iterable (typically a list) of starting fact strings.
+    Returns:
+    - Dictionary with diagnoses and recommendations
+        The dictionary contains the derived facts and goal recommendations as lists.
+    """
+
+    # Perform forward chaining inference
+    derived_facts = forward_chaining_inference(KNOWLEDGE_BASE, initial_facts)
+    # Extract diagnoses and recommendations
+    results = extract_goals(KNOWLEDGE_BASE, derived_facts)
+
+    return results
+
+
+def forward_chaining_inference(rules, initial_facts):
     """
     Performs the core Forward Chaining inference process.
-    The goal is to expand the 'facts' set using the 'rules'.
 
     Parameters:
-    - rules: iterable of rule dicts with 'if' (set) and 'then' (conclusion)
-    - initial_facts: iterable of starting fact strings
-    - verbose: if True, prints iteration/apply/current-facts messages (default False)
+    - rules: iterable (typically a list) of rules. 
+        Each rule is a dictionary with keys 'if', 'then', and 'is_goal'.
+    - initial_facts: iterable (typically a list) of starting fact strings.
 
     Returns:
-    - set of derived facts
+    - List of derived facts
+        The list of facts derived from the initial facts and rules (excluding the initial facts).
     """
     # Convert the list of facts into a set for fast lookup and easy modification.
     facts = set(initial_facts)
-    if verbose:
-        print(f"--- Starting Inference with Initial Facts: {facts} ---\n")
 
     # This variable controls the main loop (The Forward Chain).
     # If a rule fires and adds a new fact, this is set to True, and the loop repeats.
     new_fact_added = True
     iteration = 0
 
-    # FORWARD CHAINING LOOP: Repeats until no new facts are found in a complete pass.
+    # FORWARD CHAINING LOOP: Repeats until no new facts are found in a complete iteration.
     while new_fact_added:
-        new_fact_added = False  # Reset the flag for the start of the new pass
+        new_fact_added = False  # Reset the flag for the start of the new iteration
         iteration += 1
 
-        if verbose:
-            print(f"--- Iteration {iteration} ---")
-
+        # Iterate through all rules to see if any are triggered by matching the conditions.
         for rule in rules:
-            conditions_needed = rule['if']
-            new_fact = rule['then']
+            conditions_needed = rule[IF_KEY]  # use the key 'if' to get the set of conditions
+            new_fact = rule[THEN_KEY]         # use the key 'then' to get the conclusion
 
-            # Check 1: Pattern Matching
-            # Check if ALL conditions_needed are currently present in the 'facts' set.
+            # Are all conditions_needed currently present in the 'facts' set?
             conditions_met = conditions_needed.issubset(facts)
 
             if conditions_met:
-                # Check 2: Assertion/Action
-                # Only add the new fact if it's not already known.
+                # Only add the new fact if it's not already in the set facts.
                 if new_fact not in facts:
                     facts.add(new_fact)
-                    new_fact_added = True
-                    # This tells the 'while' loop to run again.
-                    if verbose:
-                        print(f"  [APPLY] Rule: Required: {conditions_needed} -> Derived: {new_fact}")
+                    new_fact_added = True   # This tells the 'while' loop to run again.
 
-        if verbose:
-            print(f"  Current Derived Facts: {sorted(list(facts))}\n")
+    # Return only the derived facts (exclude initial facts) as a list
+    derived_facts = list(facts - set(initial_facts))
+    return derived_facts
 
-    return facts
 
 def extract_goals(rules, final_facts):
     """
-    Finds all facts that were derived AND are marked as a 'goal' in the rules.
-    This replaces the lambda/list comprehension filtering.
+    Finds all facts that were derived AND are marked as a diagnosis or recommendation in the rules.
+
+    Parameters:
+    - rules: List (or iterable) of rule dicts with 'then' and 'result_type' keys
+    - final_facts: List (or iterable) of fact strings derived by the inference process.
+
+    Returns:
+    - Dictionary with 'diagnoses' and 'recommendations' keys, each mapping to a list of facts.
     """
-    goal_recommendations = []
+    diagnoses = []
+    recommendations = []
     
     for rule in rules:
-        fact = rule['then']
-        is_goal = rule['is_goal']
-        
-        # Check if the fact is a GOAL and if that fact was successfully derived
-        if is_goal and fact in final_facts:
-            goal_recommendations.append(fact)
-            
-    return goal_recommendations
+        fact = rule[THEN_KEY]
+        result_type = rule[RESULT_TYPE_KEY]
+        if fact in final_facts:
+            if result_type == RESULT_TYPE_DIAGNOSIS:
+                diagnoses.append(fact)
+            elif result_type == RESULT_TYPE_RECOMMENDATION:
+                recommendations.append(fact)
+    
+    return {"diagnoses": diagnoses, "recommendations": recommendations}
 
 
-# --- Main Program Execution ---
+# --- Main Program ---
 
-# --- Scenario 1: Influenza Chain ---
+print("--- Scenario 1: Influenza Chain ---")
 patient_facts_1 = ['fever', 'cough', 'body_aches']
-final_facts_1 = forward_chaining_inference(KNOWLEDGE_BASE, patient_facts_1)
+goal_recommendations_1 = get_diagnosis(patient_facts_1)
+print(f"Diagnoses: {goal_recommendations_1.get('diagnoses') or 'None'}")
+print(f"Recommendations: {goal_recommendations_1.get('recommendations') or 'None'}")
+print()
 
-# Extract goal results using the simplified function
-goal_recommendations_1 = extract_goals(KNOWLEDGE_BASE, final_facts_1)
+print("--- Scenario 2: Common Cold ---")
+patient_facts_2 = ['fever', 'cough', 'sore_throat']
+goal_recommendations_2 = get_diagnosis(patient_facts_2)
+print(f"Diagnoses: {goal_recommendations_2.get('diagnoses') or 'None'}")
+print(f"Recommendations: {goal_recommendations_2.get('recommendations') or 'None'}")
+print()
 
-print("====================================")
-print(f"FINAL RESULT (Scenario 1: {patient_facts_1})")
-print(f"Recommendations: {goal_recommendations_1 if goal_recommendations_1 else 'None'}")
-print("====================================")
+print("--- Scenario 3: Migraine ---")
+patient_facts_3 = ['headache', 'nausea', 'light_sensitivity']
+goal_recommendations_3 = get_diagnosis(patient_facts_3)
+print(f"Diagnoses: {goal_recommendations_3.get('diagnoses') or 'None'}")
+print(f"Recommendations: {goal_recommendations_3.get('recommendations') or 'None'}")
+print()
 
-# --- Scenario 2: Food Poisoning ---
-patient_facts_2 = ['no_appetite', 'stomach_pain']
-final_facts_2 = forward_chaining_inference(KNOWLEDGE_BASE, patient_facts_2)
-
-# Extract goal results
-goal_recommendations_2 = extract_goals(KNOWLEDGE_BASE, final_facts_2)
-
-print("====================================")
-print(f"FINAL RESULT (Scenario 2: {patient_facts_2})")
-print(f"Recommendations: {goal_recommendations_2 if goal_recommendations_2 else 'None'}")
-print("====================================")
+print("--- Scenario 4: Food Poisoning ---")
+patient_facts_4 = ['no_appetite', 'stomach_pain']
+goal_recommendations_4 = get_diagnosis(patient_facts_4)
+print(f"Diagnoses: {goal_recommendations_4.get('diagnoses') or 'None'}")
+print(f"Recommendations: {goal_recommendations_4.get('recommendations') or 'None'}")
