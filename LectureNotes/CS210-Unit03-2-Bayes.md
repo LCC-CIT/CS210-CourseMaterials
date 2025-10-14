@@ -10,38 +10,37 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-| Topics                                                       |                           |
-| ------------------------------------------------------------ | ------------------------- |
-| 1. What is AI, Python                                        | 6. ANN: Image recognition |
-| 2.  Symbolic AI: rule-based                                  | 7. Generative AI          |
-| 3.  <mark>Classical Machine Learning: Bayes' Rule</mark>     | 8. Custom chatbot         |
-| 4. Classical Machine Learning: Scikit Learn Part 1           | 9. LLM fine-tuning        |
-| 5. Classical Machine Learning: Scikit Learn Part 2<br />Midterm | 10. Ethics                |
-|                                                              | 11. Final                 |
+| Topics                                                       |                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| 1. What is AI, Python                                        | 6. Artificial Neural Networks: Image recognition |
+| 2.  Symbolic AI: rule-based                                  | 7. Generative AI                                 |
+| 3.  <mark>Classical Machine Learning</mark><br />Bayes' Rule | 8. Custom chatbot                                |
+| 4. ML: ScikitLearn Part 1                                    | 9. LLM fine-tuning                               |
+| 5. ML: Scikit Learn Part 2                                   | 10. Ethics                                       |
 
 <h2>Table of Contents</h2>
 
 [TOC]
 
-# Bayes' Rule
+## Bayes' Rule
 
 *Bayes’ Rule* is a theorem in probability and statistics that describes a way to update the probabilities of predictions when given new evidence. It’s named after Thomas Bayes, who provided the first mathematical formulation of the rule in the eighteenth century (1763).
 
 At its core, Bayes’ Rule is about learning from experience. It provides a mathematical framework for integrating new evidence (a new *likelihood*) into our prior beliefs and predictions (*prior odds*). It is used in a wide range of disciplines, including medicine, psychology, and artificial intelligence.
 
-## Odds vs. Probabilities
+### Odds vs. Probabilities
 
 These are different ways of representing the concpet&mdash;the chances of something happening.
 
-### Probability
+#### Probability
 
 This is written as a fraction or a percent representing the the number of times a thing happens divided by the total number of occurance. For thowing a die, the probability of rolling a 6 (or any specific number) is 1/6 or about 16.7%.
 
-### Odds
+#### Odds
 
 This is another way of representing the same thing, but we write the ratio the number of times a thing happens to the number of times it doesn't happen. For the example above, we would write the odds as: 1:5 (one to five).
 
-## Prior odds
+### Prior odds
 
 **Definition**
 Assessment of odds before adding new information. In other words, records of past events were used to calculate the odds.
@@ -49,7 +48,7 @@ Assessment of odds before adding new information. In other words, records of pas
 **Example**  
 The odds of rain on any given day in Eugene[^1] are 146:219. This is based on past rainfall records.
 
-## Likelihood ratio
+### Likelihood ratio
 
 **Definition**
 The probability of the *observation* in the case of the *event* of interest divided by the probability of the observation in the case of no event, where:
@@ -74,7 +73,7 @@ The new information is: the probability that clouds in the morning predict rain 
 Likelihood of rain on days it is cloudy is:  7/9 &divide; 1/9 = 7
 (I chose the odds to have the same denominators so that the math would be easy, but the denominators don't have to be the same.)
 
-## Posterior odds
+### Posterior odds
 
 **Definition**
 This is the end result. The new odds that are calculated after the new information (liklihood) has been added.
@@ -88,19 +87,19 @@ This is the odds of rain on days it is cloudy in the morning.
 
 
 
-# A Sentiment Analysis Example
+## A Sentiment Analysis Example
 
 One application of the Bayes categorization methodology might be to analyze the sentiment of online blog and forum posts. For example, LCC might want to evaluate public opinion about the college by analyzing blog and forum posts to see how many express an overall positive opinion and how many are negative.
 
-## Training
+### Training
 
 Before using the AI software system to do sentiment analysis, the system has to be trained.
 
-### Labeling
+#### Labeling
 
 First the sentiment evaluation system needs to be trained. This can be done by scraping posts off the public internet, have a human read each of them and label them as positive or negative. Let's say we got 50 negative and 100 positive.
 
-### Calculating Likelihood Values
+#### Calculating Likelihood Values
 
 Next, the number of times each word appears in each category of post would be counted (this is called word *frequency*). Here are a few of the words and their frequencies:
 
@@ -135,7 +134,7 @@ Here are the results:
 | smart      | 5/500  &div; 40/1000 = 0.25   |
 | frustrate  | 85/500  &div; 5/1000 = 34.00  |
 
-### Setting a Decision Threshold
+#### Setting a Decision Threshold
 
 Next we would calculate the odds of each post having negative sentiment. In other words we would do *inference* on our training data. Let's say these were the average of the posterior probabilities for each type of post:  
 (We'd actually want to look at standard deviations, etc. as well. But let's keep this simple.)
@@ -145,7 +144,7 @@ Next we would calculate the odds of each post having negative sentiment. In othe
 
 We might then decide that 75 is the threshold value for deciding the sentiment of a post.
 
-## Inference
+### Inference
 
 *Inference* is the term we use to describe the process of making decisions based on the training. In this case, we want to make decisions based on *posterior odds* (in the form of a probability) which are calculated using the formula below. We are assuming the prior odds (odds of a post having negative sentiment) are 1:1 or a probability of 0.5.
 $$
@@ -162,7 +161,7 @@ Let's say we want to do inference on two new posts. The posts have these words (
 
 
 
-# Reference
+## Reference
 
 [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes)&mdash;Wikipedia
 
@@ -176,6 +175,6 @@ Let's say we want to do inference on two new posts. The posts have these words (
 
 ---
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI lecture notes by [Brian Bird](https://profbird.dev), written in <time>2024</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI lecture notes by [Brian Bird](https://profbird.dev), written in 2024 revised in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 MS Copilot GPT-4 was used to draft parts of these notes.
