@@ -111,8 +111,7 @@ Linear regression is a statistical tool used to predict a relationship between t
 
 **The Equation of a Line**
 
-The core of linear regression uses the simple algebraic equation for a straight line:
-
+The core of linear regression uses the simple algebraic equation for a straight line:  
 *y = mx + b*
 
 - y&mdash;The *predicted value* (the outcome we want to know).
@@ -125,9 +124,10 @@ The core of linear regression uses the simple algebraic equation for a straight 
 Imagine a company wants to predict the number of sales (y) based on the money spent on advertising (x) in a given week.
 
 Suppose the regression calculation yields the line:
-
-**Sales = 2 * Advertising Spend + 50**  
- *m* = 2 (slope) and *b* = 50 (y-intercept).
+$$
+Sales = 2 * Advertising Spend + 50
+$$
+ In this equation:  *m* = 2 (slope) and *b* = 50 (y-intercept).
 
 This means for every extra dollar spent on advertising, the company predicts an increase of 2 sales. If the company spends $100 on advertising, the predicted sales are:
 
