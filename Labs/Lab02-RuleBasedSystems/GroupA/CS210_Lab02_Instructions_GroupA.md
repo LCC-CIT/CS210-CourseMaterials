@@ -47,10 +47,8 @@ B. Making a new expert system to do something you are interesed in. Send your in
 
  Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on Moodle:
 
-1. The two files: One Python (.py) file and one .csv rule file.
+1. The files: Python (.py) files (one or more) and one .csv rule file.
 3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
-
-This will be a total of 3 files.
 
 ### Grading Criteria
 
