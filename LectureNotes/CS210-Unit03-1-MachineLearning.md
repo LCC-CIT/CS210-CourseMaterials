@@ -36,6 +36,13 @@ When talking about Machine Learning (ML), people often use the term *model*. Thi
 
 **Example of a model:** The *naive Bayes classifier* for detecting spam assigns weights (probabilities) to words in a set of words. This set of weights along with the algorithm for using them to classify an email message constitute a trained *model*.
 
+### ML Terminology
+
+- **Feature**: An individual measurable property or input used by the model (e.g., age, temperature).
+- **Label**: The output or target value the model is trying to predict (e.g., "spam" or "not spam").
+- **Training Data**: The dataset used to teach the model patterns and relationships.
+- **Test Data**: A separate dataset used to evaluate how well the model performs on unseen data.
+
 ## Types of ML
 
 ### Supervised learning 
@@ -101,7 +108,17 @@ These models use mathematical statistics for prediction and/or classification.
 
 #### Bayesian Models
 
-We have already discussed an application of naïve Bayes classification (email spam detection). 
+This type of model is based on Bayes' theorem (from the 19th century) which provides a mathematical basis for predicting the probability that something will happen or that it belongs in some category.
+
+##### Naïve Bayes
+
+A simple and fast classifier that uses Bayes' theorem and assumes all *features* are independent. 
+
+We will do a deeper dive into the naïve Bayes classifier next time.
+
+##### Bayesian Networks (aka Belief Networks)
+
+A more flexible model that represents variables (any unknowns) using a *directed graph* (a network of pointers that connect the variables). Unlike Naïve Bayes, it doesn’t assume the features are independent and instead accounts for relationships and dependencies between features.
 
 #### Regression
 
@@ -205,9 +222,9 @@ An Artificial Neural Network (ANN) is a computational model inspired by the stru
 
 ## Reference
 
-[10 Machine Learning Methods that Every Data Scientist Should Know](https://medium.com/towards-data-science/10-machine-learning-methods-that-every-data-scientist-should-know-3cc96e0eeee9)&mdash;Jorge Castañón, Towards Data Science on Medium, 2019.
+[Intro to Machine Learning](https://developers.google.com/machine-learning/intro-to-ml)&mdash;A very short Google course that introduces machine learning (ML) concepts. 
 
-[8 Machine Learning Models Explained in 20 Minutes](https://www.datacamp.com/blog/machine-learning-models-explained)&mdash;Natassha Selvaraj, DataCamp, 2022.
+[Machine Learning](https://course.elementsofai.com/4)&mdash;Elements of AI course by MiniLearn and the University of Helsinki.
 
 [What is supervised learning?](https://www.ibm.com/topics/supervised-learning)&mdash;IBM
 
@@ -215,8 +232,16 @@ An Artificial Neural Network (ANN) is a computational model inspired by the stru
 
 [What is reinforcement learning?](https://www.ibm.com/topics/reinforcement-learning)&mdash;IBM
 
+[10 Machine Learning Methods that Every Data Scientist Should Know](https://medium.com/towards-data-science/10-machine-learning-methods-that-every-data-scientist-should-know-3cc96e0eeee9)&mdash;Jorge Castañón, Towards Data Science on Medium, 2019.
+
+[8 Machine Learning Models Explained in 20 Minutes](https://www.datacamp.com/blog/machine-learning-models-explained)&mdash;Natassha Selvaraj, DataCamp, 2022.
+
+
+
 ---
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI lecture notes by [Brian Bird](https://profbird.dev), written in 2024, revised in <time>2025</time> are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
-MS Copilot GPT-4 and Gemini Flash 2.5 were used to draft parts of these notes.
+---
+
+Note: MS Copilot GPT-4, GPT-5 and Gemini Flash 2.5 were used to draft various parts of these notes.
