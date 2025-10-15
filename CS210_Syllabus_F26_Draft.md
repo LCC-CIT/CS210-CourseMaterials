@@ -42,7 +42,7 @@ Upon successful completion of this course, students will be able to:
 
 There is no textbook for this class. In place of a textbook you will read online tutorials and other free online resources.
 
- [Elements of AI](https://www.elementsofai.com) (EoAI), is a free high-quality course that I reccomend&mdash;although it won't be directly used in this course. EoAI has sections for both non-programmers and Python programmers. The programming section doesn't go very deep, but EoAI does a good job of covering many concepts relevant to this course.
+ [Elements of AI](https://www.elementsofai.com), is a free high-quality course that I reccomend, although it won't be directly used in this course. The course is mainly for non-programmers, but does a good job of covering many concepts relevant to this course.
 
 #### Learning Management System
 
@@ -89,13 +89,14 @@ See the [LCC Tutoring Services](https://www.lanecc.edu/tutor) web page for infor
 
 The table below summarizes the possible points for each assessment task as well as the course as a whole:
 
-| **Assessment Tasks**               | **Points Each** | **Total Points** | Percentage |
-| ---------------------------------- | --------------- | ---------------- | ---------- |
-| Labs  1 - 8                        | 50              | 400              | 40%        |
-| Code  Reviews<sup>*</sup> 1 - 8    | 10              | 80               | 8%         |
-| Reading  Quizzes<sup>*</sup> 1 - 8 | 10              | 80               | 8%         |
-| Term Project                       | 440             | 440              | 44%        |
-| **Course Total**                   |                 | **1000**         |            |
+| **Assessment Tasks**               | **Points Each**          | **Total Points** | Percentage |
+| ---------------------------------- | ------------------------ | ---------------- | ---------- |
+| Labs  1 - 8                        | 40                       | 320              | 32%        |
+| Code  Reviews<sup>*</sup> 1 - 8    | 8                        | 64               | 6.5%       |
+| Reading  Quizzes<sup>*</sup> 1 - 8 | 8                        | 64               | 6.5%       |
+| Term Project                       | 252                      | 252              | 25%        |
+| Midterm and Final Quizzes          | Midterm: 100, Final: 200 | 300              | 30%        |
+| **Course Total**                   |                          | **1000**         |            |
 
 <sup>*</sup> The code review and reading quiz with the lowest grade will be dropped from the grade calculation.
 
@@ -123,6 +124,15 @@ While participation and attendance are essential to succeed in this class, they 
 
 The college’s “no show, drop” policy requires that: during the first week students must complete at least one activity (a quiz or assignment) otherwise the student will be dropped from the class.
 
+### Midterm and Final Quizzes
+
+The midterm and final quizzes are given in weeks 4 and 8. See Moodle for exact dates and times. Quizzes are "closed book", but students may prepare a 8 1/2 x 11 sheet of notes to refer to during the quiz. These quizzes may be taken either:
+
+- On-campus students (hybrid modality) will take the quiz In the classroom during the normal class time.
+- online students will take the quiz In the Instructional Testing Center in the Center Building, room 311. See the [Instructional Testing Services](https://www.lanecc.edu/get-support/academic-support/instructional-testing-services) web site for testing times and procedures.  
+
+Students who live outside the Eugene/Springfield area can send an email to [online@lanecc.edu](mailto:online@lanecc.edu) well in advance of the test dates to arrange for your midterm and final to be proctored at a location near you.
+
 ### Academic Honesty
 
 While students are encouraged to discuss assignments and to use each other as resources, each student is responsible for his/her own work. In other words you can help each other, but you can’t copy any part of someone else’s work. The end product must be each student’s own individual work.
@@ -135,7 +145,7 @@ Generative AI tools such as GitHub Copilot or ChatGPT are useful resources and y
 
 - Grades for assignments submitted after the due date will be reduced by 10%.
 - No late assignments accepted after Tuesday of week 11, finals week.
-- Quizzes cannot be taken after the due date. 
+- Quizzes and exams cannot be taken after the due date. 
   Plan ahead! Exceptions will only be made for illness or emergency situations.
 
  
@@ -199,19 +209,19 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 
 (Tentative, may be subject to change)
 
-| Week             | Topics                                     | Activities                                                   |
-| ---------------- | ------------------------------------------ | ------------------------------------------------------------ |
-| **1**<br />9/30  | Intro to AI<br />Python                    | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
-| **2**<br />10/7  | Symbolic AI                                | Lab 2<br />Quiz 2<br />Code review 1                         |
-| **3**<br />10/14 | Classical Machine Learning: Training       | Quiz 3                                                       |
-| **4**<br />10/21 | Classical Machine Learning: Inference      | Lab 3<br />Quiz 4<br />Code review 2                         |
-| **5**<br />10/28 | More Machine Learning  <br />History of AI | Lab 4<br />Code review 3<br />Term project proposal<br />    |
-| **6**<br />11/4  | ANN: Image recognition                     | Lab 5<br />Quiz 5<br />Code review 4                         |
-| **7**<br />11/11 | Generative AI                              | Lab 6<br />Quiz 6<br />Code review 5                         |
-| **8**<br />11/18 | Custom chatbot                             | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
-| **9**<br />11/25 | LLM fine-tuning                            | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
-| **10**<br />12/2 | Social and ethical issues of AI            | Term Project<br /><br />Code review 8                        |
-| **11**<br />12/9 |                                            | Term project presentation                                    |
+| Week             | Topics                                | Activities                                                   |
+| ---------------- | ------------------------------------- | ------------------------------------------------------------ |
+| **1**<br />9/30  | Intro to AI<br />Python               | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
+| **2**<br />10/7  | Symbolic AI                           | Lab 2<br />Quiz 2<br />Code review 1                         |
+| **3**<br />10/14 | Classical Machine Learning: Training  | Lab 3<br />Quiz 3<br />Code review 2                         |
+| **4**<br />10/21 | Classical Machine Learning: Inference | Lab 4<br />Quiz 4<br />Code review 3                         |
+| **5**<br />10/28 | History of AI and Midterm             | Code review 4<br />Term project proposal<br />Midterm quiz:<br />- In the classroom Thurs. 10/30<br />- In the testing center Wed. 10/29 through Sat. 11/1 |
+| **6**<br />11/4  | ANN: Image recognition                | Lab 5<br />Quiz 5                                            |
+| **7**<br />11/11 | Generative AI                         | Lab 6<br />Quiz 6<br />Code review 5                         |
+| **8**<br />11/18 | Custom chatbot                        | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
+| **9**<br />11/25 | LLM fine-tuning                       | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
+| **10**<br />12/2 | Social and ethical issues of AI       | Term Project<br /><br />Code review 8                        |
+| **11**<br />12/9 | Final                                 | Final quiz:<br />- In the classroom on Tues. 12/9<br />- In the testing center Sat. 12/6, Mon. 12/8 or Tues. 12/9 |
 
 <a href="#top">Go back to the top</a>
 
