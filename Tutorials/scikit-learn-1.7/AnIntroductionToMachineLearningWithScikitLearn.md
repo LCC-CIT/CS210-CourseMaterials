@@ -113,7 +113,7 @@ array([8])
 
 The corresponding image is:
 
-[![../../_images/sphx_glr_plot_digits_last_image_001.png](https://scikit-learn.org/1.7/_images/sphx_glr_plot_digits_last_image_001.png)](https://scikit-learn.org/1.7/auto_examples/datasets/plot_digits_last_image.html)
+![sphx_glr_plot_digits_last_image_001](sphx_glr_plot_digits_last_image_001.png)
 
 As you can see, it is a challenging task: after all, the images are of poor resolution. Do you agree with the classifier?
 
