@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AnIntroductionToMachineLearningWithScikitLearn</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<p><a href="ScikitLearnTutorials.html">scikit-learn tutorials
+index</a></p>
+<h1 id="an-introduction-to-machine-learning-with-scikit-learn">An
+introduction to machine learning with scikit-learn</h1>
+<p>Section contents</p>
+<p>In this section, we introduce the <a
+href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">machine
+learning</a> vocabulary that we use throughout scikit-learn and give a
+simple learning example.</p>
+<h2 id="machine-learning-the-problem-setting">Machine learning: the
+problem setting</h2>
+<p>In general, a learning problem considers a set of n <a
+href="https://en.wikipedia.org/wiki/Sample_(statistics)" target="_blank">samples</a> of
+data and then tries to predict properties of unknown data. If each
+sample is more than a single number and, for instance, a
+multi-dimensional entry (aka <a
+href="https://en.wikipedia.org/wiki/Multivariate_random_variable" target="_blank">multivariate</a>
+data), it is said to have several attributes or
+<strong>features</strong>.</p>
+<p>Learning problems fall into a few categories:</p>
+<ul>
+<li><a
+href="https://en.wikipedia.org/wiki/Supervised_learning" target="_blank">supervised
+learning</a>, in which the data comes with additional attributes that we
+want to predict (<a
+href="https://scikit-learn.org/1.7/supervised_learning.html#supervised-learning" target="_blank">Click
+here</a> to go to the scikit-learn supervised learning page).This
+problem can be either:
+<ul>
+<li><a
+href="https://en.wikipedia.org/wiki/Classification_in_machine_learning" target="_blank">classification</a>:
+samples belong to two or more classes and we want to learn from already
+labeled data how to predict the class of unlabeled data. An example of a
+classification problem would be handwritten digit recognition, in which
+the aim is to assign each input vector to one of a finite number of
+discrete categories. Another way to think of classification is as a
+discrete (as opposed to continuous) form of supervised learning where
+one has a limited number of categories and for each of the n samples
+provided, one is to try to label them with the correct category or
+class.</li>
+<li><a
+href="https://en.wikipedia.org/wiki/Regression_analysis" target="_blank">regression</a>:
+if the desired output consists of one or more continuous variables, then
+the task is called <em>regression</em>. An example of a regression
+problem would be the prediction of the length of a salmon as a function
+of its age and weight.</li>
+</ul></li>
+<li><a
+href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">unsupervised
+learning</a>, in which the training data consists of a set of input
+vectors x without any corresponding target values. The goal in such
+problems may be to discover groups of similar examples within the data,
+where it is called <a
+href="https://en.wikipedia.org/wiki/Cluster_analysis" target="_blank">clustering</a>, or
+to determine the distribution of data within the input space, known as
+<a href="https://en.wikipedia.org/wiki/Density_estimation" target="_blank">density
+estimation</a>, or to project the data from a high-dimensional space
+down to two or three dimensions for the purpose of
+<em>visualization</em> (<a
+href="https://scikit-learn.org/1.7/unsupervised_learning.html#unsupervised-learning" target="_blank">Click
+here</a> to go to the Scikit-Learn unsupervised learning page).</li>
+</ul>
+<p>Training set and testing set</p>
+<p>Machine learning is about learning some properties of a data set and
+then testing those properties against another data set. A common
+practice in machine learning is to evaluate an algorithm by splitting a
+data set into two. We call one of those sets the <strong>training
+set</strong>, on which we learn some properties; we call the other set
+the <strong>testing set</strong>, on which we test the learned
+properties.</p>
+<h2 id="loading-an-example-dataset">Loading an example dataset</h2>
+<p><code>scikit-learn</code> comes with a few standard datasets, for
+instance the <a
+href="https://en.wikipedia.org/wiki/Iris_flower_data_set" target="_blank">iris</a> and
+<a
+href="https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits" target="_blank">digits</a>
+datasets for classification and the <a
+href="https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html" target="_blank">diabetes
+dataset</a> for regression.</p>
+<p>In the following, we start a Python interpreter from our shell and
+then load the <code>iris</code> and <code>digits</code> datasets. Our
+notational convention is that <code>$</code> denotes the shell prompt
+while <code>&gt;&gt;&gt;</code> denotes the Python interpreter
+prompt:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ python</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> digits <span class="op">=</span> datasets.load_digits()</span></code></pre></div>
+<p>A dataset is a dictionary-like object that holds all the data and
+some metadata about the data. This data is stored in the
+<code>.data</code> member, which is a <code>n_samples, n_features</code>
+array. In the case of supervised problems, one or more response
+variables are stored in the <code>.target</code> member. More details on
+the different datasets can be found in the <a
+href="https://scikit-learn.org/1.7/datasets.html#datasets" target="_blank">dedicated
+section</a>.</p>
+<p>For instance, in the case of the digits dataset,
+<code>digits.data</code> gives access to the features that can be used
+to classify the digits samples:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(digits.data)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[[ <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">5.</span> ...   <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">0.</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">0.</span> ...  <span class="fl">10.</span>   <span class="fl">0.</span>   <span class="fl">0.</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">0.</span> ...  <span class="fl">16.</span>   <span class="fl">9.</span>   <span class="fl">0.</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> ...</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">1.</span> ...   <span class="fl">6.</span>   <span class="fl">0.</span>   <span class="fl">0.</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.</span>   <span class="fl">0.</span>   <span class="fl">2.</span> ...  <span class="fl">12.</span>   <span class="fl">0.</span>   <span class="fl">0.</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.</span>   <span class="fl">0.</span>  <span class="fl">10.</span> ...  <span class="fl">12.</span>   <span class="fl">1.</span>   <span class="fl">0.</span>]]</span></code></pre></div>
+<p>and <code>digits.target</code> gives the ground truth for the digit
+dataset, that is the number corresponding to each digit image that we
+are trying to learn:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> digits.target</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, ..., <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">8</span>])</span></code></pre></div>
+<p>Shape of the data arrays</p>
+<p>The data is always a 2D array, shape
+<code>(n_samples, n_features)</code>, although the original data may
+have had a different shape. In the case of the digits, each original
+sample is an image of shape <code>(8, 8)</code> and can be accessed
+using:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> digits.images[<span class="dv">0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>array([[  <span class="fl">0.</span>,   <span class="fl">0.</span>,   <span class="fl">5.</span>,  <span class="fl">13.</span>,   <span class="fl">9.</span>,   <span class="fl">1.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">0.</span>,  <span class="fl">13.</span>,  <span class="fl">15.</span>,  <span class="fl">10.</span>,  <span class="fl">15.</span>,   <span class="fl">5.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">3.</span>,  <span class="fl">15.</span>,   <span class="fl">2.</span>,   <span class="fl">0.</span>,  <span class="fl">11.</span>,   <span class="fl">8.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">4.</span>,  <span class="fl">12.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>,   <span class="fl">8.</span>,   <span class="fl">8.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">5.</span>,   <span class="fl">8.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>,   <span class="fl">9.</span>,   <span class="fl">8.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">4.</span>,  <span class="fl">11.</span>,   <span class="fl">0.</span>,   <span class="fl">1.</span>,  <span class="fl">12.</span>,   <span class="fl">7.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">2.</span>,  <span class="fl">14.</span>,   <span class="fl">5.</span>,  <span class="fl">10.</span>,  <span class="fl">12.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>       [  <span class="fl">0.</span>,   <span class="fl">0.</span>,   <span class="fl">6.</span>,  <span class="fl">13.</span>,  <span class="fl">10.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>,   <span class="fl">0.</span>]])</span></code></pre></div>
+<p>The <a
+href="https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py" target="_blank">simple
+example on this dataset</a> illustrates how starting from the original
+problem one can shape the data for consumption in scikit-learn.</p>
+<p>Loading from external datasets</p>
+<p>To load from an external dataset, please refer to <a
+href="https://scikit-learn.org/1.7/datasets/loading_other_datasets.html#external-datasets" target="_blank">loading
+external datasets</a>.</p>
+<h2 id="learning-and-predicting">Learning and predicting</h2>
+<p>In the case of the digits dataset, the task is to predict, given an
+image, which digit it represents. We are given samples of each of the 10
+possible classes (the digits zero through nine) on which we <em>fit</em>
+an <a href="https://en.wikipedia.org/wiki/Estimator" target="_blank">estimator</a> to be
+able to <em>predict</em> the classes to which unseen samples belong.</p>
+<p>In scikit-learn, an estimator for classification is a Python object
+that implements the methods <code>fit(X, y)</code> and
+<code>predict(T)</code>.</p>
+<p>An example of an estimator is the class <code>sklearn.svm.SVC</code>,
+which implements <a
+href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support
+vector classification</a>. The estimator’s constructor takes as
+arguments the model’s parameters.</p>
+<p>For now, we will consider the estimator as a black box:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn <span class="im">import</span> svm</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> svm.SVC(gamma<span class="op">=</span><span class="fl">0.001</span>, C<span class="op">=</span><span class="fl">100.</span>)</span></code></pre></div>
+<p>Choosing the parameters of the model</p>
+<p>In this example, we set the value of <code>gamma</code> manually. To
+find good values for these parameters, we can use tools such as <a
+href="https://scikit-learn.org/1.7/modules/grid_search.html#grid-search" target="_blank">grid
+search</a> and <a
+href="https://scikit-learn.org/1.7/modules/cross_validation.html#cross-validation" target="_blank">cross
+validation</a>.</p>
+<p>The <code>clf</code> (for classifier) estimator instance is first
+fitted to the model; that is, it must <em>learn</em> from the model.
+This is done by passing our training set to the <code>fit</code> method.
+For the training set, we’ll use all the images from our dataset, except
+for the last image, which we’ll reserve for our predicting. We select
+the training set with the <code>[:-1]</code> Python syntax, which
+produces a new array that contains all but the last item from
+<code>digits.data</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(digits.data[:<span class="op">-</span><span class="dv">1</span>], digits.target[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>SVC(C<span class="op">=</span><span class="fl">100.0</span>, gamma<span class="op">=</span><span class="fl">0.001</span>)</span></code></pre></div>
+<p>Now you can <em>predict</em> new values. In this case, you’ll predict
+using the last image from <code>digits.data</code>. By predicting,
+you’ll determine the image from the training set that best matches the
+last image.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.predict(digits.data[<span class="op">-</span><span class="dv">1</span>:])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">8</span>])</span></code></pre></div>
+<p>The corresponding image is:</p>
+<p><a
+href="https://scikit-learn.org/1.7/auto_examples/datasets/plot_digits_last_image.html" target="_blank"><img
+src="https://scikit-learn.org/1.7/_images/sphx_glr_plot_digits_last_image_001.png"
+alt="../../_images/sphx_glr_plot_digits_last_image_001.png" /></a></p>
+<p>As you can see, it is a challenging task: after all, the images are
+of poor resolution. Do you agree with the classifier?</p>
+<p>A complete example of this classification problem is available as an
+example that you can run and study: <a
+href="https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py" target="_blank">Recognizing
+hand-written digits</a>.</p>
+<h2 id="new-features-in-scikit-learn-1.5-1.7">New Features in
+scikit-learn 1.5-1.7</h2>
+<p>Since this tutorial was originally written for scikit-learn 1.4,
+several important features have been added in versions 1.5, 1.6, and 1.7
+that enhance the machine learning workflow:</p>
+<h3 id="enhanced-array-api-support">Enhanced Array API Support</h3>
+<p>scikit-learn 1.7 now supports Array API-compliant inputs, making it
+easier to work with data from libraries like PyTorch and CuPy. This
+means you can now pass tensors and arrays from these libraries directly
+to many scikit-learn functions without conversion:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> torch</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_true <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_pred <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> accuracy_score(y_true, y_pred)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.75</span></span></code></pre></div>
+<h3 id="improved-sparse-data-handling">Improved Sparse Data
+Handling</h3>
+<p>scikit-learn now supports both traditional sparse matrices
+(<code>scipy.sparse.spmatrix</code>) and the newer sparse arrays
+(<code>scipy.sparse.sparray</code>), providing better compatibility with
+future SciPy versions:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> scipy.sparse <span class="im">import</span> csr_array  <span class="co"># New sparse array format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_sparse <span class="op">=</span> csr_array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> SVC()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_sparse, y)  <span class="co"># Works seamlessly with sparse arrays</span></span></code></pre></div>
+<h3 id="enhanced-model-visualization">Enhanced Model Visualization</h3>
+<p>In Jupyter notebooks, estimators now display a more informative HTML
+representation showing all parameters with non-default values
+highlighted, and include a copy button for easy configuration:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(max_iter<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf  <span class="co"># In Jupyter, this shows enhanced HTML representation</span></span></code></pre></div>
+<h3 id="advanced-gradient-boosting-features">Advanced Gradient Boosting
+Features</h3>
+<p><code>HistGradientBoostingClassifier</code> and
+<code>HistGradientBoostingRegressor</code> now support explicit
+validation sets for better early stopping:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_train, X_val, y_train, y_val <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(enable_metadata_routing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_train, y_train, X_val<span class="op">=</span>X_val, y_val<span class="op">=</span>y_val)</span></code></pre></div>
+<h3 id="enhanced-roc-curve-visualization">Enhanced ROC Curve
+Visualization</h3>
+<p>The new <code>from_cv_results()</code> method in
+<code>RocCurveDisplay</code> allows automatic generation of ROC curves
+from cross-validation results:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> RocCurveDisplay</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cv_results <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span><span class="dv">5</span>, return_estimator<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> RocCurveDisplay.from_cv_results(cv_results, X, y)</span></code></pre></div>
+<p>These enhancements make scikit-learn 1.7 more powerful and
+user-friendly while maintaining backward compatibility with code written
+for earlier versions.</p>
+<p><strong>Note:</strong> scikit-learn 1.7 supports Python versions 3.10
+to 3.13, with experimental support for free-threaded CPython. Version
+1.7.2 also adds support for Python 3.14.</p>
+<h2 id="conventions">Conventions</h2>
+<p>scikit-learn estimators follow certain rules to make their behavior
+more predictive. These are described in more detail in the <a
+href="https://scikit-learn.org/1.7/glossary.html#glossary" target="_blank">Glossary of
+Common Terms and API Elements</a>.</p>
+<h3 id="type-casting">Type casting</h3>
+<p>Where possible, input of type <code>float32</code> will maintain its
+data type. Otherwise input will be cast to <code>float64</code>:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn <span class="im">import</span> kernel_approximation</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> rng <span class="op">=</span> np.random.RandomState(<span class="dv">0</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X <span class="op">=</span> rng.rand(<span class="dv">10</span>, <span class="dv">2000</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X <span class="op">=</span> np.array(X, dtype<span class="op">=</span><span class="st">&#39;float32&#39;</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X.dtype</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>dtype(<span class="st">&#39;float32&#39;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> transformer <span class="op">=</span> kernel_approximation.RBFSampler()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_new <span class="op">=</span> transformer.fit_transform(X)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_new.dtype</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>dtype(<span class="st">&#39;float32&#39;</span>)</span></code></pre></div>
+<p>In this example, <code>X</code> is <code>float32</code>, and is
+unchanged by <code>fit_transform(X)</code>.</p>
+<p>Using <code>float32</code>-typed training (or testing) data is often
+more efficient than using the usual <code>float64</code>
+<code>dtype</code>: it allows to reduce the memory usage and sometimes
+also reduces processing time by leveraging the vector instructions of
+the CPU. However it can sometimes lead to numerical stability problems
+causing the algorithm to be more sensitive to the scale of the values
+and <a
+href="https://scikit-learn.org/1.7/modules/preprocessing.html#preprocessing-scaler" target="_blank">require
+adequate preprocessing</a>.</p>
+<p>Keep in mind however that not all scikit-learn estimators attempt to
+work in <code>float32</code> mode. For instance, some transformers will
+always cast their input to <code>float64</code> and return
+<code>float64</code> transformed values as a result.</p>
+<p>Regression targets are cast to <code>float64</code> and
+classification targets are maintained:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> SVC()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(iris.data, iris.target)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>SVC()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(clf.predict(iris.data[:<span class="dv">3</span>]))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(iris.data, iris.target_names[iris.target])</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>SVC()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(clf.predict(iris.data[:<span class="dv">3</span>]))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;setosa&#39;</span>]</span></code></pre></div>
+<p>Here, the first <code>predict()</code> returns an integer array,
+since <code>iris.target</code> (an integer array) was used in
+<code>fit</code>. The second <code>predict()</code> returns a string
+array, since <code>iris.target_names</code> was for fitting.</p>
+<h3 id="refitting-and-updating-parameters">Refitting and updating
+parameters</h3>
+<p>Hyper-parameters of an estimator can be updated after it has been
+constructed via the <a
+href="https://scikit-learn.org/1.7/glossary.html#term-set_params" target="_blank">set_params()</a>
+method. Calling <code>fit()</code> more than once will overwrite what
+was learned by any previous <code>fit()</code>:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X, y <span class="op">=</span> load_iris(return_X_y<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> SVC()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.set_params(kernel<span class="op">=</span><span class="st">&#39;linear&#39;</span>).fit(X, y)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>SVC(kernel<span class="op">=</span><span class="st">&#39;linear&#39;</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.predict(X[:<span class="dv">5</span>])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.set_params(kernel<span class="op">=</span><span class="st">&#39;rbf&#39;</span>).fit(X, y)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>SVC()</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.predict(X[:<span class="dv">5</span>])</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span></code></pre></div>
+<p>Here, the default kernel <code>rbf</code> is first changed to
+<code>linear</code> via <a
+href="https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC.set_params" target="_blank"><code>SVC.set_params()</code></a>
+after the estimator has been constructed, and changed back to
+<code>rbf</code> to refit the estimator and to make a second
+prediction.</p>
+<h3 id="multiclass-vs.-multilabel-fitting">Multiclass vs. multilabel
+fitting</h3>
+<p>When using <a
+href="https://scikit-learn.org/1.7/modules/classes.html#module-sklearn.multiclass" target="_blank"><code>multiclass classifiers</code></a>,
+the learning and prediction task that is performed is dependent on the
+format of the target data fit upon:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.multiclass <span class="im">import</span> OneVsRestClassifier</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelBinarizer</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">3</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">1</span>]]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> classif <span class="op">=</span> OneVsRestClassifier(estimator<span class="op">=</span>SVC(random_state<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> classif.fit(X, y).predict(X)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>])</span></code></pre></div>
+<p>In the above case, the classifier is fit on a 1d array of multiclass
+labels and the <code>predict()</code> method therefore provides
+corresponding multiclass predictions. It is also possible to fit upon a
+2d array of binary label indicators:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> LabelBinarizer().fit_transform(y)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> classif.fit(X, y).predict(X)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>array([[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]])</span></code></pre></div>
+<p>Here, the classifier is <code>fit()</code> on a 2d binary label
+representation of <code>y</code>, using the <a
+href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer" target="_blank"><code>LabelBinarizer</code></a>.
+In this case <code>predict()</code> returns a 2d array representing the
+corresponding multilabel predictions.</p>
+<p>Note that the fourth and fifth instances returned all zeroes,
+indicating that they matched none of the three labels <code>fit</code>
+upon. With multilabel outputs, it is similarly possible for an instance
+to be assigned multiple labels:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MultiLabelBinarizer</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> [[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> MultiLabelBinarizer().fit_transform(y)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> classif.fit(X, y).predict(X)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>array([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>]])</span></code></pre></div>
+<p>In this case, the classifier is fit upon instances each assigned
+multiple labels. The <a
+href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer" target="_blank"><code>MultiLabelBinarizer</code></a>
+is used to binarize the 2d array of multilabels to <code>fit</code>
+upon. As a result, <code>predict()</code> returns a 2d array with
+multiple predicted labels for each instance.</p>
+<hr />
+<p>This original version of this tutorial was written by scikit-learn
+developers under the <a
+href="https://opensource.org/license/BSD-3-clause" target="_blank">BSD License</a>.</p>
+<hr />
+<p>The code examples and text were updated for scikit-learn version 1.7
+by Brian Bird using Claude Sonet 4, 10/19/2025</p>
+<hr />
+</body>
+</html>
