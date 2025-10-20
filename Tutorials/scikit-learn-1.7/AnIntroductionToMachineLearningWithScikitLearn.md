@@ -2,9 +2,9 @@
 
 # An introduction to machine learning with scikit-learn
 
-Section contents
-
 In this section, we introduce the [machine learning](https://en.wikipedia.org/wiki/Machine_learning) vocabulary that we use throughout scikit-learn and give a simple learning example.
+
+To run the code in this tutorial, you must first install scikit-learn and all of its required dependencies. Please refer to the [installation instructions page](https://scikit-learn.org/1.7/install.html#installation-instructions) for more information and for system-specific instructions.
 
 ## Machine learning: the problem setting
 
