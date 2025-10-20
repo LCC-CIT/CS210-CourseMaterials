@@ -49,20 +49,6 @@ less fetch_data.py
 python fetch_data.py
 ```
 
-## What's New in scikit-learn 1.7 for Text Processing
-
-scikit-learn 1.7 introduces several enhancements that improve the text processing workflow:
-
-- **Enhanced Estimator Visualization**: In Jupyter notebooks, estimators now display comprehensive parameter information with non-default parameters highlighted, and include a copy button for easy configuration of nested pipelines and hyperparameter searches.
-
-- **Sparse Array Compatibility**: All text processing estimators now support both traditional `scipy.sparse` matrices and the new sparse arrays (`sparray`), ensuring future compatibility as SciPy transitions to sparse arrays.
-
-- **Extended Array API Support**: Several metrics used in text classification now support Array API-compatible data structures from libraries like PyTorch or CuPy, with the `array-api-compat` module now natively integrated.
-
-- **Improved Pipeline Configuration**: The enhanced HTML representation makes it easier to configure complex text processing pipelines with multiple transformers and classifiers.
-
-These improvements make text processing workflows more robust and user-friendly while maintaining backward compatibility with existing code.
-
 ## Loading the 20 newsgroups dataset
 
 The dataset is called “Twenty Newsgroups”. Here is the official description, quoted from the [website](http://people.csail.mit.edu/jrennie/20Newsgroups/):
@@ -431,6 +417,20 @@ Here are a few suggestions to help further your scikit-learn intuition upon the 
 - Try using [Truncated SVD](https://scikit-learn.org/1.7/modules/decomposition.html#lsa) for [latent semantic analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis).
 - Have a look at using [Out-of-core Classification](https://scikit-learn.org/1.7/auto_examples/applications/plot_out_of_core_classification.html#sphx-glr-auto-examples-applications-plot-out-of-core-classification-py) to learn from data that would not fit into the computer main memory.
 - Have a look at the [Hashing Vectorizer](https://scikit-learn.org/1.7/modules/feature_extraction.html#hashing-vectorizer) as a memory efficient alternative to [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer).
+
+## What's New in scikit-learn 1.7 for Text Processing
+
+scikit-learn 1.7 introduces several enhancements that improve the text processing workflow:
+
+- **Enhanced Estimator Visualization**: In Jupyter notebooks, estimators now display comprehensive parameter information with non-default parameters highlighted, and include a copy button for easy configuration of nested pipelines and hyperparameter searches.
+
+- **Sparse Array Compatibility**: All text processing estimators now support both traditional `scipy.sparse` matrices and the new sparse arrays (`sparray`), ensuring future compatibility as SciPy transitions to sparse arrays.
+
+- **Extended Array API Support**: Several metrics used in text classification now support Array API-compatible data structures from libraries like PyTorch or CuPy, with the `array-api-compat` module now natively integrated.
+
+- **Improved Pipeline Configuration**: The enhanced HTML representation makes it easier to configure complex text processing pipelines with multiple transformers and classifiers.
+
+These improvements make text processing workflows more robust and user-friendly while maintaining backward compatibility with existing code.
 
 
 

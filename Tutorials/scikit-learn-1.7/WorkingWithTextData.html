@@ -76,31 +76,7 @@ first).</p>
 <pre><code>cd $TUTORIAL_HOME/data/languages
 less fetch_data.py
 python fetch_data.py</code></pre>
-<h2 id="whats-new-in-scikit-learn-1.7-for-text-processing">What’s New in
-scikit-learn 1.7 for Text Processing</h2>
-<p>scikit-learn 1.7 introduces several enhancements that improve the
-text processing workflow:</p>
-<ul>
-<li><p><strong>Enhanced Estimator Visualization</strong>: In Jupyter
-notebooks, estimators now display comprehensive parameter information
-with non-default parameters highlighted, and include a copy button for
-easy configuration of nested pipelines and hyperparameter
-searches.</p></li>
-<li><p><strong>Sparse Array Compatibility</strong>: All text processing
-estimators now support both traditional <code>scipy.sparse</code>
-matrices and the new sparse arrays (<code>sparray</code>), ensuring
-future compatibility as SciPy transitions to sparse arrays.</p></li>
-<li><p><strong>Extended Array API Support</strong>: Several metrics used
-in text classification now support Array API-compatible data structures
-from libraries like PyTorch or CuPy, with the
-<code>array-api-compat</code> module now natively integrated.</p></li>
-<li><p><strong>Improved Pipeline Configuration</strong>: The enhanced
-HTML representation makes it easier to configure complex text processing
-pipelines with multiple transformers and classifiers.</p></li>
-</ul>
-<p>These improvements make text processing workflows more robust and
-user-friendly while maintaining backward compatibility with existing
-code.</p>
+
 <h2 id="loading-the-20-newsgroups-dataset">Loading the 20 newsgroups
 dataset</h2>
 <p>The dataset is called “Twenty Newsgroups”. Here is the official
@@ -504,6 +480,33 @@ href="https://scikit-learn.org/1.7/modules/feature_extraction.html#hashing-vecto
 Vectorizer</a> as a memory efficient alternative to <a
 href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" target="_blank"><code>CountVectorizer</code></a>.</li>
 </ul>
+<h2 id="whats-new-in-scikit-learn-1.7-for-text-processing">What’s New in
+scikit-learn 1.7 for Text Processing</h2>
+<p>scikit-learn 1.7 introduces several enhancements that improve the
+text processing workflow:</p>
+<ul>
+<li><p><strong>Enhanced Estimator Visualization</strong>: In Jupyter
+notebooks, estimators now display comprehensive parameter information
+with non-default parameters highlighted, and include a copy button for
+easy configuration of nested pipelines and hyperparameter
+searches.</p></li>
+<li><p><strong>Sparse Array Compatibility</strong>: All text processing
+estimators now support both traditional <code>scipy.sparse</code>
+matrices and the new sparse arrays (<code>sparray</code>), ensuring
+future compatibility as SciPy transitions to sparse arrays.</p></li>
+<li><p><strong>Extended Array API Support</strong>: Several metrics used
+in text classification now support Array API-compatible data structures
+from libraries like PyTorch or CuPy, with the
+<code>array-api-compat</code> module now natively integrated.</p></li>
+<li><p><strong>Improved Pipeline Configuration</strong>: The enhanced
+HTML representation makes it easier to configure complex text processing
+pipelines with multiple transformers and classifiers.</p></li>
+</ul>
+<p>These improvements make text processing workflows more robust and
+user-friendly while maintaining backward compatibility with existing
+code.</p>
+<br>
+
 <hr />
 <p>This original version of this tutorial was written by scikit-learn
 developers under the <a
