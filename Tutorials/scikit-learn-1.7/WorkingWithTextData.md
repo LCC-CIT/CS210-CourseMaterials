@@ -24,7 +24,7 @@ The source of this tutorial can be found within your scikit-learn folder:
 scikit-learn/doc/tutorial/text_analytics/
 ```
 
-The source can also be found [on Github](https://github.com/scikit-learn/scikit-learn/tree/main/doc/tutorial/text_analytics).
+The source can also be found [on Github](https://github.com/scikit-learn/scikit-learn/tree/1.4.X/doc/tutorial/text_analytics).
 
 The tutorial folder should contain the following sub-folders:
 
