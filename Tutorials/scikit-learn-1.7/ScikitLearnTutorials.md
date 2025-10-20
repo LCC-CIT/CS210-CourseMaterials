@@ -45,7 +45,7 @@ in the IPython-console. You can then simply copy and paste the examples directly
 
 ---
 
-This tutorial is updated from "An introduction to machine learning with scikit-learn" by scikit-learn developers. Original Source: https://scikit-learn.org/1.4/tutorial/basic/tutorial.html under the [BSD License](https://opensource.org/license/BSD-3-clause).  
+These tutorials are updated from "scikit-learn Tutorials" by scikit-learn developers. Original Source: https://scikit-learn.org/1.4/tutorial/index.html under the [BSD License](https://opensource.org/license/BSD-3-clause).  
 
 ---
 
