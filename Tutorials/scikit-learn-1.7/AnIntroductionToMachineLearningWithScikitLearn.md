@@ -119,75 +119,6 @@ As you can see, it is a challenging task: after all, the images are of poor reso
 
 A complete example of this classification problem is available as an example that you can run and study: [Recognizing hand-written digits](https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py).
 
-## New Features in scikit-learn 1.5-1.7
-
-Since this tutorial was originally written for scikit-learn 1.4, several important features have been added in versions 1.5, 1.6, and 1.7 that enhance the machine learning workflow:
-
-### Enhanced Array API Support
-
-scikit-learn 1.7 now supports Array API-compliant inputs, making it easier to work with data from libraries like PyTorch and CuPy. This means you can now pass tensors and arrays from these libraries directly to many scikit-learn functions without conversion:
-
-```python
->>> import torch
->>> from sklearn.metrics import accuracy_score
->>> y_true = torch.tensor([0, 1, 1, 0])
->>> y_pred = torch.tensor([0, 1, 0, 0])
->>> accuracy_score(y_true, y_pred)
-0.75
-```
-
-### Improved Sparse Data Handling
-
-scikit-learn now supports both traditional sparse matrices (`scipy.sparse.spmatrix`) and the newer sparse arrays (`scipy.sparse.sparray`), providing better compatibility with future SciPy versions:
-
-```python
->>> from scipy.sparse import csr_array  # New sparse array format
->>> from sklearn.svm import SVC
->>> X_sparse = csr_array([[0, 1], [1, 0]])
->>> y = [0, 1]
->>> clf = SVC()
->>> clf.fit(X_sparse, y)  # Works seamlessly with sparse arrays
-```
-
-### Enhanced Model Visualization
-
-In Jupyter notebooks, estimators now display a more informative HTML representation showing all parameters with non-default values highlighted, and include a copy button for easy configuration:
-
-```python
->>> from sklearn.ensemble import HistGradientBoostingClassifier
->>> clf = HistGradientBoostingClassifier(max_iter=100, learning_rate=0.1)
->>> clf  # In Jupyter, this shows enhanced HTML representation
-```
-
-### Advanced Gradient Boosting Features
-
-`HistGradientBoostingClassifier` and `HistGradientBoostingRegressor` now support explicit validation sets for better early stopping:
-
-```python
->>> from sklearn.ensemble import HistGradientBoostingClassifier
->>> from sklearn.model_selection import train_test_split
->>> 
->>> X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
->>> clf = HistGradientBoostingClassifier(enable_metadata_routing=True)
->>> clf.fit(X_train, y_train, X_val=X_val, y_val=y_val)
-```
-
-### Enhanced ROC Curve Visualization
-
-The new `from_cv_results()` method in `RocCurveDisplay` allows automatic generation of ROC curves from cross-validation results:
-
-```python
->>> from sklearn.model_selection import cross_validate
->>> from sklearn.metrics import RocCurveDisplay
->>> 
->>> cv_results = cross_validate(clf, X, y, cv=5, return_estimator=True)
->>> RocCurveDisplay.from_cv_results(cv_results, X, y)
-```
-
-These enhancements make scikit-learn 1.7 more powerful and user-friendly while maintaining backward compatibility with code written for earlier versions.
-
-**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 also adds support for Python 3.14.
-
 ## Conventions
 
 scikit-learn estimators follow certain rules to make their behavior more predictive.  These are described in more detail in the [Glossary of Common Terms and API Elements](https://scikit-learn.org/1.7/glossary.html#glossary).
@@ -310,6 +241,75 @@ array([[1, 1, 0, 0, 0],
 ```
 
 In this case, the classifier is fit upon instances each assigned multiple labels. The [`MultiLabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer) is used to binarize the 2d array of multilabels to `fit` upon. As a result, `predict()` returns a 2d array with multiple predicted labels for each instance.
+
+## New Features in scikit-learn 1.5-1.7
+
+Since this tutorial was originally written for scikit-learn 1.4, several important features have been added in versions 1.5, 1.6, and 1.7 that enhance the machine learning workflow:
+
+### Enhanced Array API Support
+
+scikit-learn 1.7 now supports Array API-compliant inputs, making it easier to work with data from libraries like PyTorch and CuPy. This means you can now pass tensors and arrays from these libraries directly to many scikit-learn functions without conversion:
+
+```python
+>>> import torch
+>>> from sklearn.metrics import accuracy_score
+>>> y_true = torch.tensor([0, 1, 1, 0])
+>>> y_pred = torch.tensor([0, 1, 0, 0])
+>>> accuracy_score(y_true, y_pred)
+0.75
+```
+
+### Improved Sparse Data Handling
+
+scikit-learn now supports both traditional sparse matrices (`scipy.sparse.spmatrix`) and the newer sparse arrays (`scipy.sparse.sparray`), providing better compatibility with future SciPy versions:
+
+```python
+>>> from scipy.sparse import csr_array  # New sparse array format
+>>> from sklearn.svm import SVC
+>>> X_sparse = csr_array([[0, 1], [1, 0]])
+>>> y = [0, 1]
+>>> clf = SVC()
+>>> clf.fit(X_sparse, y)  # Works seamlessly with sparse arrays
+```
+
+### Enhanced Model Visualization
+
+In Jupyter notebooks, estimators now display a more informative HTML representation showing all parameters with non-default values highlighted, and include a copy button for easy configuration:
+
+```python
+>>> from sklearn.ensemble import HistGradientBoostingClassifier
+>>> clf = HistGradientBoostingClassifier(max_iter=100, learning_rate=0.1)
+>>> clf  # In Jupyter, this shows enhanced HTML representation
+```
+
+### Advanced Gradient Boosting Features
+
+`HistGradientBoostingClassifier` and `HistGradientBoostingRegressor` now support explicit validation sets for better early stopping:
+
+```python
+>>> from sklearn.ensemble import HistGradientBoostingClassifier
+>>> from sklearn.model_selection import train_test_split
+>>> 
+>>> X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
+>>> clf = HistGradientBoostingClassifier(enable_metadata_routing=True)
+>>> clf.fit(X_train, y_train, X_val=X_val, y_val=y_val)
+```
+
+### Enhanced ROC Curve Visualization
+
+The new `from_cv_results()` method in `RocCurveDisplay` allows automatic generation of ROC curves from cross-validation results:
+
+```python
+>>> from sklearn.model_selection import cross_validate
+>>> from sklearn.metrics import RocCurveDisplay
+>>> 
+>>> cv_results = cross_validate(clf, X, y, cv=5, return_estimator=True)
+>>> RocCurveDisplay.from_cv_results(cv_results, X, y)
+```
+
+These enhancements make scikit-learn 1.7 more powerful and user-friendly while maintaining backward compatibility with code written for earlier versions.
+
+**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 also adds support for Python 3.14.
 
 
 

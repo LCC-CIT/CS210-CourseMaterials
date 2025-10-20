@@ -283,73 +283,7 @@ of poor resolution. Do you agree with the classifier?</p>
 example that you can run and study: <a
 href="https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py" target="_blank">Recognizing
 hand-written digits</a>.</p>
-<h2 id="new-features-in-scikit-learn-1.5-1.7">New Features in
-scikit-learn 1.5-1.7</h2>
-<p>Since this tutorial was originally written for scikit-learn 1.4,
-several important features have been added in versions 1.5, 1.6, and 1.7
-that enhance the machine learning workflow:</p>
-<h3 id="enhanced-array-api-support">Enhanced Array API Support</h3>
-<p>scikit-learn 1.7 now supports Array API-compliant inputs, making it
-easier to work with data from libraries like PyTorch and CuPy. This
-means you can now pass tensors and arrays from these libraries directly
-to many scikit-learn functions without conversion:</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> torch</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_true <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_pred <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> accuracy_score(y_true, y_pred)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.75</span></span></code></pre></div>
-<h3 id="improved-sparse-data-handling">Improved Sparse Data
-Handling</h3>
-<p>scikit-learn now supports both traditional sparse matrices
-(<code>scipy.sparse.spmatrix</code>) and the newer sparse arrays
-(<code>scipy.sparse.sparray</code>), providing better compatibility with
-future SciPy versions:</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> scipy.sparse <span class="im">import</span> csr_array  <span class="co"># New sparse array format</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_sparse <span class="op">=</span> csr_array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> SVC()</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_sparse, y)  <span class="co"># Works seamlessly with sparse arrays</span></span></code></pre></div>
-<h3 id="enhanced-model-visualization">Enhanced Model Visualization</h3>
-<p>In Jupyter notebooks, estimators now display a more informative HTML
-representation showing all parameters with non-default values
-highlighted, and include a copy button for easy configuration:</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(max_iter<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf  <span class="co"># In Jupyter, this shows enhanced HTML representation</span></span></code></pre></div>
-<h3 id="advanced-gradient-boosting-features">Advanced Gradient Boosting
-Features</h3>
-<p><code>HistGradientBoostingClassifier</code> and
-<code>HistGradientBoostingRegressor</code> now support explicit
-validation sets for better early stopping:</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_train, X_val, y_train, y_val <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(enable_metadata_routing<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_train, y_train, X_val<span class="op">=</span>X_val, y_val<span class="op">=</span>y_val)</span></code></pre></div>
-<h3 id="enhanced-roc-curve-visualization">Enhanced ROC Curve
-Visualization</h3>
-<p>The new <code>from_cv_results()</code> method in
-<code>RocCurveDisplay</code> allows automatic generation of ROC curves
-from cross-validation results:</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> RocCurveDisplay</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cv_results <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span><span class="dv">5</span>, return_estimator<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> RocCurveDisplay.from_cv_results(cv_results, X, y)</span></code></pre></div>
-<p>These enhancements make scikit-learn 1.7 more powerful and
-user-friendly while maintaining backward compatibility with code written
-for earlier versions.</p>
-<p><strong>Note:</strong> scikit-learn 1.7 supports Python versions 3.10
-to 3.13, with experimental support for free-threaded CPython. Version
-1.7.2 also adds support for Python 3.14.</p>
+
 <h2 id="conventions">Conventions</h2>
 <p>scikit-learn estimators follow certain rules to make their behavior
 more predictive. These are described in more detail in the <a
@@ -492,6 +426,73 @@ href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.Multi
 is used to binarize the 2d array of multilabels to <code>fit</code>
 upon. As a result, <code>predict()</code> returns a 2d array with
 multiple predicted labels for each instance.</p>
+<h2 id="new-features-in-scikit-learn-1.5-1.7">New Features in
+scikit-learn 1.5-1.7</h2>
+<p>Since this tutorial was originally written for scikit-learn 1.4,
+several important features have been added in versions 1.5, 1.6, and 1.7
+that enhance the machine learning workflow:</p>
+<h3 id="enhanced-array-api-support">Enhanced Array API Support</h3>
+<p>scikit-learn 1.7 now supports Array API-compliant inputs, making it
+easier to work with data from libraries like PyTorch and CuPy. This
+means you can now pass tensors and arrays from these libraries directly
+to many scikit-learn functions without conversion:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> torch</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_true <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_pred <span class="op">=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> accuracy_score(y_true, y_pred)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.75</span></span></code></pre></div>
+<h3 id="improved-sparse-data-handling">Improved Sparse Data
+Handling</h3>
+<p>scikit-learn now supports both traditional sparse matrices
+(<code>scipy.sparse.spmatrix</code>) and the newer sparse arrays
+(<code>scipy.sparse.sparray</code>), providing better compatibility with
+future SciPy versions:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> scipy.sparse <span class="im">import</span> csr_array  <span class="co"># New sparse array format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_sparse <span class="op">=</span> csr_array([[<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>]])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> SVC()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_sparse, y)  <span class="co"># Works seamlessly with sparse arrays</span></span></code></pre></div>
+<h3 id="enhanced-model-visualization">Enhanced Model Visualization</h3>
+<p>In Jupyter notebooks, estimators now display a more informative HTML
+representation showing all parameters with non-default values
+highlighted, and include a copy button for easy configuration:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(max_iter<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf  <span class="co"># In Jupyter, this shows enhanced HTML representation</span></span></code></pre></div>
+<h3 id="advanced-gradient-boosting-features">Advanced Gradient Boosting
+Features</h3>
+<p><code>HistGradientBoostingClassifier</code> and
+<code>HistGradientBoostingRegressor</code> now support explicit
+validation sets for better early stopping:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingClassifier</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_train, X_val, y_train, y_val <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf <span class="op">=</span> HistGradientBoostingClassifier(enable_metadata_routing<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> clf.fit(X_train, y_train, X_val<span class="op">=</span>X_val, y_val<span class="op">=</span>y_val)</span></code></pre></div>
+<h3 id="enhanced-roc-curve-visualization">Enhanced ROC Curve
+Visualization</h3>
+<p>The new <code>from_cv_results()</code> method in
+<code>RocCurveDisplay</code> allows automatic generation of ROC curves
+from cross-validation results:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.metrics <span class="im">import</span> RocCurveDisplay</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cv_results <span class="op">=</span> cross_validate(clf, X, y, cv<span class="op">=</span><span class="dv">5</span>, return_estimator<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> RocCurveDisplay.from_cv_results(cv_results, X, y)</span></code></pre></div>
+<p>These enhancements make scikit-learn 1.7 more powerful and
+user-friendly while maintaining backward compatibility with code written
+for earlier versions.</p>
+<p><strong>Note:</strong> scikit-learn 1.7 supports Python versions 3.10
+to 3.13, with experimental support for free-threaded CPython. Version
+1.7.2 also adds support for Python 3.14.</p>
 <hr />
 <p>This original version of this tutorial was written by scikit-learn
 developers under the <a
