@@ -20,7 +20,7 @@ Please refer to the [installation instructions](https://scikit-learn.org/1.7/ins
 
 The source of this tutorial can be found within your scikit-learn folder:
 
-```
+```python
 scikit-learn/doc/tutorial/text_analytics/
 ```
 
@@ -35,7 +35,7 @@ The tutorial folder should contain the following sub-folders:
 
 You can already copy the skeletons into a new folder somewhere on your hard-drive named `sklearn_tut_workspace`, where you will edit your own files for the exercises while keeping the original skeletons intact:
 
-```
+```python
 cp -r skeletons work_directory/sklearn_tut_workspace
 ```
 
@@ -43,7 +43,7 @@ Machine learning algorithms need data. Go to each `$TUTORIAL_HOME/data` sub-fold
 
 For instance:
 
-```
+```python
 cd $TUTORIAL_HOME/data/languages
 less fetch_data.py
 python fetch_data.py
@@ -59,44 +59,44 @@ In the following we will use the built-in dataset loader for 20 newsgroups from 
 
 In order to get faster execution times for this first example, we will work on a partial dataset with only 4 categories out of the 20 available in the dataset:
 
-```
->>> categories = ['alt.atheism', 'soc.religion.christian',
+```python
+categories = ['alt.atheism', 'soc.religion.christian',
 ...               'comp.graphics', 'sci.med']
 ```
 
 We can now load the list of files matching those categories as follows:
 
-```
->>> from sklearn.datasets import fetch_20newsgroups
->>> twenty_train = fetch_20newsgroups(subset='train',
+```python
+from sklearn.datasets import fetch_20newsgroups
+twenty_train = fetch_20newsgroups(subset='train',
 ...     categories=categories, shuffle=True, random_state=42)
 ```
 
 The returned dataset is a `scikit-learn` “bunch”: a simple holder object with fields that can be both accessed as python `dict` keys or `object` attributes for convenience, for instance the `target_names` holds the list of the requested category names:
 
-```
->>> twenty_train.target_names
+```python
+twenty_train.target_names
 ['alt.atheism', 'comp.graphics', 'sci.med', 'soc.religion.christian']
 ```
 
 The files themselves are loaded in memory in the `data` attribute. For reference the filenames are also available:
 
-```
->>> len(twenty_train.data)
+```python
+len(twenty_train.data)
 2257
->>> len(twenty_train.filenames)
+len(twenty_train.filenames)
 2257
 ```
 
 Let’s print the first lines of the first loaded file:
 
-```
->>> print("\n".join(twenty_train.data[0].split("\n")[:3]))
+```python
+print("\n".join(twenty_train.data[0].split("\n")[:3]))
 From: sd345@city.ac.uk (Michael Collier)
 Subject: Converting images to HP LaserJet III?
 Nntp-Posting-Host: hampton
 
->>> print(twenty_train.target_names[twenty_train.target[0]])
+print(twenty_train.target_names[twenty_train.target[0]])
 comp.graphics
 ```
 
@@ -104,15 +104,15 @@ Supervised learning algorithms will require a category label for each document i
 
 For speed and space efficiency reasons, `scikit-learn` loads the target attribute as an array of integers that corresponds to the index of the category name in the `target_names` list. The category integer id of each sample is stored in the `target` attribute:
 
-```
->>> twenty_train.target[:10]
+```python
+twenty_train.target[:10]
 array([1, 1, 3, 3, 3, 3, 3, 2, 2, 2])
 ```
 
 It is possible to get back the category names as follows:
 
-```
->>> for t in twenty_train.target[:10]:
+```python
+for t in twenty_train.target[:10]:
 ...     print(twenty_train.target_names[t])
 ...
 comp.graphics
@@ -152,18 +152,18 @@ Fortunately, **most values in X will be zeros** since for a given document less 
 
 Text preprocessing, tokenizing and filtering of stopwords are all included in [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer), which builds a dictionary of features and transforms documents to feature vectors:
 
-```
->>> from sklearn.feature_extraction.text import CountVectorizer
->>> count_vect = CountVectorizer()
->>> X_train_counts = count_vect.fit_transform(twenty_train.data)
->>> X_train_counts.shape
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+count_vect = CountVectorizer()
+X_train_counts = count_vect.fit_transform(twenty_train.data)
+X_train_counts.shape
 (2257, 35788)
 ```
 
 [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) supports counts of N-grams of words or consecutive characters. Once fitted, the vectorizer has built a dictionary of feature indices:
 
-```
->>> count_vect.vocabulary_.get(u'algorithm')
+```python
+count_vect.vocabulary_.get(u'algorithm')
 4690
 ```
 
@@ -181,20 +181,20 @@ This downscaling is called [tf–idf](https://en.wikipedia.org/wiki/Tf-idf) for 
 
 Both **tf** and **tf–idf** can be computed as follows using [`TfidfTransformer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer):
 
-```
->>> from sklearn.feature_extraction.text import TfidfTransformer
->>> tf_transformer = TfidfTransformer(use_idf=False).fit(X_train_counts)
->>> X_train_tf = tf_transformer.transform(X_train_counts)
->>> X_train_tf.shape
+```python
+from sklearn.feature_extraction.text import TfidfTransformer
+tf_transformer = TfidfTransformer(use_idf=False).fit(X_train_counts)
+X_train_tf = tf_transformer.transform(X_train_counts)
+X_train_tf.shape
 (2257, 35788)
 ```
 
 In the above example-code, we firstly use the `fit(..)` method to fit our estimator to the data and secondly the `transform(..)` method to transform our count-matrix to a tf-idf representation. These two steps can be combined to achieve the same end result faster by skipping redundant processing. This is done through using the `fit_transform(..)` method as shown below, and as mentioned in the note in the previous section:
 
-```
->>> tfidf_transformer = TfidfTransformer()
->>> X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
->>> X_train_tfidf.shape
+```python
+tfidf_transformer = TfidfTransformer()
+X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
+X_train_tfidf.shape
 (2257, 35788)
 ```
 
@@ -202,21 +202,21 @@ In the above example-code, we firstly use the `fit(..)` method to fit our estima
 
 Now that we have our features, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the multinomial variant:
 
-```
->>> from sklearn.naive_bayes import MultinomialNB
->>> clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
+```python
+from sklearn.naive_bayes import MultinomialNB
+clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
 ```
 
 To try to predict the outcome on a new document we need to extract the features using almost the same feature extracting chain as before. The difference is that we call `transform` instead of `fit_transform` on the transformers, since they have already been fit to the training set:
 
-```
->>> docs_new = ['God is love', 'OpenGL on the GPU is fast']
->>> X_new_counts = count_vect.transform(docs_new)
->>> X_new_tfidf = tfidf_transformer.transform(X_new_counts)
+```python
+docs_new = ['God is love', 'OpenGL on the GPU is fast']
+X_new_counts = count_vect.transform(docs_new)
+X_new_tfidf = tfidf_transformer.transform(X_new_counts)
 
->>> predicted = clf.predict(X_new_tfidf)
+predicted = clf.predict(X_new_tfidf)
 
->>> for doc, category in zip(docs_new, predicted):
+for doc, category in zip(docs_new, predicted):
 ...     print('%r => %s' % (doc, twenty_train.target_names[category]))
 ...
 'God is love' => soc.religion.christian
@@ -227,9 +227,9 @@ To try to predict the outcome on a new document we need to extract the features 
 
 In order to make the vectorizer => transformer => classifier easier to work with, `scikit-learn` provides a [`Pipeline`](https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline) class that behaves like a compound classifier:
 
-```
->>> from sklearn.pipeline import Pipeline
->>> text_clf = Pipeline([
+```python
+from sklearn.pipeline import Pipeline
+text_clf = Pipeline([
 ...     ('vect', CountVectorizer()),
 ...     ('tfidf', TfidfTransformer()),
 ...     ('clf', MultinomialNB()),
@@ -240,8 +240,8 @@ The names `vect`, `tfidf` and `clf` (classifier) are arbitrary. We will use them
 
 **Note:** In scikit-learn 1.7, when you display pipeline objects in Jupyter notebooks, you'll see enhanced HTML representations with comprehensive parameter information and a copy button for easy configuration.
 
-```
->>> text_clf.fit(twenty_train.data, twenty_train.target)
+```python
+text_clf.fit(twenty_train.data, twenty_train.target)
 Pipeline(...)
 ```
 
@@ -249,21 +249,21 @@ Pipeline(...)
 
 Evaluating the predictive accuracy of the model is equally easy:
 
-```
->>> import numpy as np
->>> twenty_test = fetch_20newsgroups(subset='test',
+```python
+import numpy as np
+twenty_test = fetch_20newsgroups(subset='test',
 ...     categories=categories, shuffle=True, random_state=42)
->>> docs_test = twenty_test.data
->>> predicted = text_clf.predict(docs_test)
->>> np.mean(predicted == twenty_test.target)
+docs_test = twenty_test.data
+predicted = text_clf.predict(docs_test)
+np.mean(predicted == twenty_test.target)
 0.8348...
 ```
 
 We achieved 83.5% accuracy. Let's see if we can do better with a linear [support vector machine (SVM)](https://scikit-learn.org/1.7/modules/svm.html#svm), which is widely regarded as one of the best text classification algorithms (although it's also a bit slower than naïve Bayes). We can change the learner by simply plugging a different classifier object into our pipeline:
 
-```
->>> from sklearn.linear_model import SGDClassifier
->>> text_clf = Pipeline([
+```python
+from sklearn.linear_model import SGDClassifier
+text_clf = Pipeline([
 ...     ('vect', CountVectorizer()),
 ...     ('tfidf', TfidfTransformer()),
 ...     ('clf', SGDClassifier(loss='hinge', penalty='l2',
@@ -271,18 +271,18 @@ We achieved 83.5% accuracy. Let's see if we can do better with a linear [support
 ...                           max_iter=5, tol=None)),
 ... ])
 
->>> text_clf.fit(twenty_train.data, twenty_train.target)
+text_clf.fit(twenty_train.data, twenty_train.target)
 Pipeline(...)
->>> predicted = text_clf.predict(docs_test)
->>> np.mean(predicted == twenty_test.target)
+predicted = text_clf.predict(docs_test)
+np.mean(predicted == twenty_test.target)
 0.9101...
 ```
 
 We achieved 91.3% accuracy using the SVM. `scikit-learn` provides further utilities for more detailed performance analysis of the results:
 
-```
->>> from sklearn import metrics
->>> print(metrics.classification_report(twenty_test.target, predicted,
+```python
+from sklearn import metrics
+print(metrics.classification_report(twenty_test.target, predicted,
 ...     target_names=twenty_test.target_names))
                         precision    recall  f1-score   support
 
@@ -296,7 +296,7 @@ soc.religion.christian       0.90      0.95      0.93       398
           weighted avg       0.91      0.91      0.91      1502
 
 
->>> metrics.confusion_matrix(twenty_test.target, predicted)
+metrics.confusion_matrix(twenty_test.target, predicted)
 array([[256,  11,  16,  36],
        [  4, 380,   3,   2],
        [  5,  35, 353,   3],
@@ -311,9 +311,9 @@ We’ve already encountered some parameters such as `use_idf` in the `TfidfTrans
 
 Instead of tweaking the parameters of the various components of the chain, it is possible to run an exhaustive search of the best parameters on a grid of possible values. We try out all classifiers on either words or bigrams, with or without idf, and with a penalty parameter of either 0.01 or 0.001 for the linear SVM:
 
-```
->>> from sklearn.model_selection import GridSearchCV
->>> parameters = {
+```python
+from sklearn.model_selection import GridSearchCV
+parameters = {
 ...     'vect__ngram_range': [(1, 1), (1, 2)],
 ...     'tfidf__use_idf': (True, False),
 ...     'clf__alpha': (1e-2, 1e-3),
@@ -322,29 +322,29 @@ Instead of tweaking the parameters of the various components of the chain, it is
 
 Obviously, such an exhaustive search can be expensive. If we have multiple CPU cores at our disposal, we can tell the grid searcher to try these eight parameter combinations in parallel with the `n_jobs` parameter. If we give this parameter a value of `-1`, grid search will detect how many cores are installed and use them all:
 
-```
->>> gs_clf = GridSearchCV(text_clf, parameters, cv=5, n_jobs=-1)
+```python
+gs_clf = GridSearchCV(text_clf, parameters, cv=5, n_jobs=-1)
 ```
 
 The grid search instance behaves like a normal `scikit-learn` model. Let’s perform the search on a smaller subset of the training data to speed up the computation:
 
-```
->>> gs_clf = gs_clf.fit(twenty_train.data[:400], twenty_train.target[:400])
+```python
+gs_clf = gs_clf.fit(twenty_train.data[:400], twenty_train.target[:400])
 ```
 
 The result of calling `fit` on a `GridSearchCV` object is a classifier that we can use to `predict`:
 
-```
->>> twenty_train.target_names[gs_clf.predict(['God is love'])[0]]
+```python
+twenty_train.target_names[gs_clf.predict(['God is love'])[0]]
 'soc.religion.christian'
 ```
 
 The object’s `best_score_` and `best_params_` attributes store the best mean score and the parameters setting corresponding to that score:
 
-```
->>> gs_clf.best_score_
+```python
+gs_clf.best_score_
 0.9...
->>> for param_name in sorted(parameters.keys()):
+for param_name in sorted(parameters.keys()):
 ...     print("%s: %r" % (param_name, gs_clf.best_params_[param_name]))
 ...
 clf__alpha: 0.001
@@ -360,7 +360,7 @@ The `cv_results_` parameter can be easily imported into pandas as a `DataFrame` 
 
 To do the exercises, copy the content of the ‘skeletons’ folder as a new folder named ‘workspace’:
 
-```
+```python
 cp -r skeletons workspace
 ```
 
@@ -368,7 +368,7 @@ You can then edit the content of the workspace without fear of losing the origin
 
 Then fire an ipython shell and run the work-in-progress script with:
 
-```
+```python
 [1] %run workspace/exercise_XX_script.py arg1 arg2 arg3
 ```
 
@@ -385,7 +385,7 @@ Refine the implementation and iterate until the exercise is solved.
 
 ipython command line:
 
-```
+```python
 %run workspace/exercise_01_language_train_model.py data/languages/paragraphs/
 ```
 
@@ -397,7 +397,7 @@ ipython command line:
 
 ipython command line:
 
-```
+```python
 %run workspace/exercise_02_sentiment.py data/movie_reviews/txt_sentoken/
 ```
 

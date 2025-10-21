@@ -28,10 +28,9 @@ Machine learning is about learning some properties of a data set and then testin
 In the following, we start a Python interpreter from our shell and then load the `iris` and `digits` datasets.  Our notational convention is that `$` denotes the shell prompt while `>>>` denotes the Python interpreter prompt:
 
 ```python
-$ python
->>> from sklearn import datasets
->>> iris = datasets.load_iris()
->>> digits = datasets.load_digits()
+from sklearn import datasets
+iris = datasets.load_iris()
+digits = datasets.load_digits()
 ```
 
 A dataset is a dictionary-like object that holds all the data and some metadata about the data. This data is stored in the `.data` member, which is a `n_samples, n_features` array. In the case of supervised problems, one or more response variables are stored in the `.target` member. More details on the different datasets can be found in the [dedicated section](https://scikit-learn.org/1.7/datasets.html#datasets).
@@ -39,7 +38,7 @@ A dataset is a dictionary-like object that holds all the data and some metadata 
 For instance, in the case of the digits dataset, `digits.data` gives access to the features that can be used to classify the digits samples:
 
 ```python
->>> print(digits.data)
+print(digits.data)
 [[ 0.   0.   5. ...   0.   0.   0.]
  [ 0.   0.   0. ...  10.   0.   0.]
  [ 0.   0.   0. ...  16.   9.   0.]
@@ -52,7 +51,7 @@ For instance, in the case of the digits dataset, `digits.data` gives access to t
 and `digits.target` gives the ground truth for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
 
 ```python
->>> digits.target
+digits.target
 array([0, 1, 2, ..., 8, 9, 8])
 ```
 
@@ -61,7 +60,7 @@ Shape of the data arrays
 The data is always a 2D array, shape `(n_samples, n_features)`, although the original data may have had a different shape. In the case of the digits, each original sample is an image of shape `(8, 8)` and can be accessed using:
 
 ```python
->>> digits.images[0]
+digits.images[0]
 array([[  0.,   0.,   5.,  13.,   9.,   1.,   0.,   0.],
        [  0.,   0.,  13.,  15.,  10.,  15.,   5.,   0.],
        [  0.,   3.,  15.,   2.,   0.,  11.,   8.,   0.],
@@ -89,8 +88,8 @@ An example of an estimator is the class `sklearn.svm.SVC`, which implements [sup
 For now, we will consider the estimator as a black box:
 
 ```python
->>> from sklearn import svm
->>> clf = svm.SVC(gamma=0.001, C=100.)
+from sklearn import svm
+clf = svm.SVC(gamma=0.001, C=100.)
 ```
 
 Choosing the parameters of the model
@@ -100,14 +99,14 @@ In this example, we set the value of `gamma` manually. To find good values for t
 The `clf` (for classifier) estimator instance is first fitted to the model; that is, it must *learn* from the model. This is done by passing our training set to the `fit` method. For the training set, we’ll use all the images from our dataset, except for the last image, which we’ll reserve for our predicting. We select the training set with the `[:-1]` Python syntax, which produces a new array that contains all but the last item from `digits.data`:
 
 ```python
->>> clf.fit(digits.data[:-1], digits.target[:-1])
+clf.fit(digits.data[:-1], digits.target[:-1])
 SVC(C=100.0, gamma=0.001)
 ```
 
 Now you can *predict* new values. In this case, you’ll predict using the last image from `digits.data`. By predicting, you’ll determine the image from the training set that best matches the last image.
 
 ```python
->>> clf.predict(digits.data[-1:])
+clf.predict(digits.data[-1:])
 array([8])
 ```
 
@@ -128,18 +127,18 @@ scikit-learn estimators follow certain rules to make their behavior more predict
 Where possible, input of type `float32` will maintain its data type. Otherwise input will be cast to `float64`:
 
 ```python
->>> import numpy as np
->>> from sklearn import kernel_approximation
+import numpy as np
+from sklearn import kernel_approximation
 
->>> rng = np.random.RandomState(0)
->>> X = rng.rand(10, 2000)
->>> X = np.array(X, dtype='float32')
->>> X.dtype
+rng = np.random.RandomState(0)
+X = rng.rand(10, 2000)
+X = np.array(X, dtype='float32')
+X.dtype
 dtype('float32')
 
->>> transformer = kernel_approximation.RBFSampler()
->>> X_new = transformer.fit_transform(X)
->>> X_new.dtype
+transformer = kernel_approximation.RBFSampler()
+X_new = transformer.fit_transform(X)
+X_new.dtype
 dtype('float32')
 ```
 
@@ -152,20 +151,20 @@ Keep in mind however that not all scikit-learn estimators attempt to work in `fl
 Regression targets are cast to `float64` and classification targets are maintained:
 
 ```python
->>> from sklearn import datasets
->>> from sklearn.svm import SVC
->>> iris = datasets.load_iris()
->>> clf = SVC()
->>> clf.fit(iris.data, iris.target)
+from sklearn import datasets
+from sklearn.svm import SVC
+iris = datasets.load_iris()
+clf = SVC()
+clf.fit(iris.data, iris.target)
 SVC()
 
->>> list(clf.predict(iris.data[:3]))
+list(clf.predict(iris.data[:3]))
 [0, 0, 0]
 
->>> clf.fit(iris.data, iris.target_names[iris.target])
+clf.fit(iris.data, iris.target_names[iris.target])
 SVC()
 
->>> list(clf.predict(iris.data[:3]))
+list(clf.predict(iris.data[:3]))
 ['setosa', 'setosa', 'setosa']
 ```
 
@@ -176,20 +175,20 @@ Here, the first `predict()` returns an integer array, since `iris.target` (an in
 Hyper-parameters of an estimator can be updated after it has been constructed via the [set_params()](https://scikit-learn.org/1.7/glossary.html#term-set_params) method. Calling `fit()` more than once will overwrite what was learned by any previous `fit()`:
 
 ```python
->>> import numpy as np
->>> from sklearn.datasets import load_iris
->>> from sklearn.svm import SVC
->>> X, y = load_iris(return_X_y=True)
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+X, y = load_iris(return_X_y=True)
 
->>> clf = SVC()
->>> clf.set_params(kernel='linear').fit(X, y)
+clf = SVC()
+clf.set_params(kernel='linear').fit(X, y)
 SVC(kernel='linear')
->>> clf.predict(X[:5])
+clf.predict(X[:5])
 array([0, 0, 0, 0, 0])
 
->>> clf.set_params(kernel='rbf').fit(X, y)
+clf.set_params(kernel='rbf').fit(X, y)
 SVC()
->>> clf.predict(X[:5])
+clf.predict(X[:5])
 array([0, 0, 0, 0, 0])
 ```
 
@@ -200,23 +199,23 @@ Here, the default kernel `rbf` is first changed to `linear` via [`SVC.set_params
 When using [`multiclass classifiers`](https://scikit-learn.org/1.7/modules/classes.html#module-sklearn.multiclass), the learning and prediction task that is performed is dependent on the format of the target data fit upon:
 
 ```python
->>> from sklearn.svm import SVC
->>> from sklearn.multiclass import OneVsRestClassifier
->>> from sklearn.preprocessing import LabelBinarizer
+from sklearn.svm import SVC
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.preprocessing import LabelBinarizer
 
->>> X = [[1, 2], [2, 4], [4, 5], [3, 2], [3, 1]]
->>> y = [0, 0, 1, 1, 2]
+X = [[1, 2], [2, 4], [4, 5], [3, 2], [3, 1]]
+y = [0, 0, 1, 1, 2]
 
->>> classif = OneVsRestClassifier(estimator=SVC(random_state=0))
->>> classif.fit(X, y).predict(X)
+classif = OneVsRestClassifier(estimator=SVC(random_state=0))
+classif.fit(X, y).predict(X)
 array([0, 0, 1, 1, 2])
 ```
 
 In the above case, the classifier is fit on a 1d array of multiclass labels and the `predict()` method therefore provides corresponding multiclass predictions. It is also possible to fit upon a 2d array of binary label indicators:
 
 ```python
->>> y = LabelBinarizer().fit_transform(y)
->>> classif.fit(X, y).predict(X)
+y = LabelBinarizer().fit_transform(y)
+classif.fit(X, y).predict(X)
 array([[1, 0, 0],
        [1, 0, 0],
        [0, 1, 0],
@@ -229,10 +228,10 @@ Here, the classifier is `fit()`  on a 2d binary label representation of `y`, usi
 Note that the fourth and fifth instances returned all zeroes, indicating that they matched none of the three labels `fit` upon. With multilabel outputs, it is similarly possible for an instance to be assigned multiple labels:
 
 ```python
->>> from sklearn.preprocessing import MultiLabelBinarizer
->>> y = [[0, 1], [0, 2], [1, 3], [0, 2, 3], [2, 4]]
->>> y = MultiLabelBinarizer().fit_transform(y)
->>> classif.fit(X, y).predict(X)
+from sklearn.preprocessing import MultiLabelBinarizer
+y = [[0, 1], [0, 2], [1, 3], [0, 2, 3], [2, 4]]
+y = MultiLabelBinarizer().fit_transform(y)
+classif.fit(X, y).predict(X)
 array([[1, 1, 0, 0, 0],
        [1, 0, 1, 0, 0],
        [0, 1, 0, 1, 0],
@@ -251,11 +250,11 @@ Since this tutorial was originally written for scikit-learn 1.4, several importa
 scikit-learn 1.7 now supports Array API-compliant inputs, making it easier to work with data from libraries like PyTorch and CuPy. This means you can now pass tensors and arrays from these libraries directly to many scikit-learn functions without conversion:
 
 ```python
->>> import torch
->>> from sklearn.metrics import accuracy_score
->>> y_true = torch.tensor([0, 1, 1, 0])
->>> y_pred = torch.tensor([0, 1, 0, 0])
->>> accuracy_score(y_true, y_pred)
+import torch
+from sklearn.metrics import accuracy_score
+y_true = torch.tensor([0, 1, 1, 0])
+y_pred = torch.tensor([0, 1, 0, 0])
+accuracy_score(y_true, y_pred)
 0.75
 ```
 
@@ -264,12 +263,12 @@ scikit-learn 1.7 now supports Array API-compliant inputs, making it easier to wo
 scikit-learn now supports both traditional sparse matrices (`scipy.sparse.spmatrix`) and the newer sparse arrays (`scipy.sparse.sparray`), providing better compatibility with future SciPy versions:
 
 ```python
->>> from scipy.sparse import csr_array  # New sparse array format
->>> from sklearn.svm import SVC
->>> X_sparse = csr_array([[0, 1], [1, 0]])
->>> y = [0, 1]
->>> clf = SVC()
->>> clf.fit(X_sparse, y)  # Works seamlessly with sparse arrays
+from scipy.sparse import csr_array  # New sparse array format
+from sklearn.svm import SVC
+X_sparse = csr_array([[0, 1], [1, 0]])
+y = [0, 1]
+clf = SVC()
+clf.fit(X_sparse, y)  # Works seamlessly with sparse arrays
 ```
 
 ### Enhanced Model Visualization
@@ -277,9 +276,9 @@ scikit-learn now supports both traditional sparse matrices (`scipy.sparse.spmatr
 In Jupyter notebooks, estimators now display a more informative HTML representation showing all parameters with non-default values highlighted, and include a copy button for easy configuration:
 
 ```python
->>> from sklearn.ensemble import HistGradientBoostingClassifier
->>> clf = HistGradientBoostingClassifier(max_iter=100, learning_rate=0.1)
->>> clf  # In Jupyter, this shows enhanced HTML representation
+from sklearn.ensemble import HistGradientBoostingClassifier
+clf = HistGradientBoostingClassifier(max_iter=100, learning_rate=0.1)
+clf  # In Jupyter, this shows enhanced HTML representation
 ```
 
 ### Advanced Gradient Boosting Features
@@ -287,12 +286,12 @@ In Jupyter notebooks, estimators now display a more informative HTML representat
 `HistGradientBoostingClassifier` and `HistGradientBoostingRegressor` now support explicit validation sets for better early stopping:
 
 ```python
->>> from sklearn.ensemble import HistGradientBoostingClassifier
->>> from sklearn.model_selection import train_test_split
->>> 
->>> X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
->>> clf = HistGradientBoostingClassifier(enable_metadata_routing=True)
->>> clf.fit(X_train, y_train, X_val=X_val, y_val=y_val)
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
+clf = HistGradientBoostingClassifier(enable_metadata_routing=True)
+clf.fit(X_train, y_train, X_val=X_val, y_val=y_val)
 ```
 
 ### Enhanced ROC Curve Visualization
@@ -300,11 +299,11 @@ In Jupyter notebooks, estimators now display a more informative HTML representat
 The new `from_cv_results()` method in `RocCurveDisplay` allows automatic generation of ROC curves from cross-validation results:
 
 ```python
->>> from sklearn.model_selection import cross_validate
->>> from sklearn.metrics import RocCurveDisplay
->>> 
->>> cv_results = cross_validate(clf, X, y, cv=5, return_estimator=True)
->>> RocCurveDisplay.from_cv_results(cv_results, X, y)
+from sklearn.model_selection import cross_validate
+from sklearn.metrics import RocCurveDisplay
+
+cv_results = cross_validate(clf, X, y, cv=5, return_estimator=True)
+RocCurveDisplay.from_cv_results(cv_results, X, y)
 ```
 
 These enhancements make scikit-learn 1.7 more powerful and user-friendly while maintaining backward compatibility with code written for earlier versions.

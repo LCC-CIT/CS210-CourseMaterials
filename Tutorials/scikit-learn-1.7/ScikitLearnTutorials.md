@@ -31,11 +31,7 @@
 
 ## Note on IPython
 
-The code-examples in the above tutorials are written in a *python-console* format and are intended to be executed in [IPython](https://ipython.org/) using doctest_mode. But you can simply execute them in the console by copying the code in a way that omits the >>> at the beginning of the line.  
-**doctest_mode**
-
-If you wish to easily execute these examples in *IPython* (an interactive command line Python interpreter), use: `%doctest_mode` [^1].  In the IPython-console. You can then simply copy and paste the examples directly into IPython without having to worry about removing the **>>>** manually.
-
+Some of the tutorials have code blocks start with >>> and are intended to be executed in [IPython](https://ipython.org/) using doctest_mode. IPPython has not been updated since 2020 (it is replaced by Jupyter notbooks).  But you can simply execute the code in the Python interactive console by copying the code in a way that omits the >>> at the beginning of the line.  
 
 
 ---
