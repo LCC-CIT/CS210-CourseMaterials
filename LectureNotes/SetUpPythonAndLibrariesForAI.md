@@ -32,7 +32,7 @@ NumPy is a scientific computing library for efficient array processing, offering
 ### scikit-learn
 Scikit-learn is a library for traditional machine learning in Python, built on NumPy arrays. It offers a consistent interface to a wide range of models and tools, many beyond the scope of this course. As you deepen your understanding, the [official documentation](https://scikit-learn.org/stable/documentation.html) is an essential resource.
 
-## TensorFlow with Keras
+### TensorFlow with Keras
 TensorFlow is a widely adopted, open-source framework and toolkit developed by Google. It provides deep learning neural network functionality and includes Keras, a user-friendly Python API (programming interface). 
 
 - provides direct access to the GPU.
