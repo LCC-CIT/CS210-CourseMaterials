@@ -2,7 +2,9 @@
 
 # An introduction to machine learning with scikit-learn
 
-In this section, we introduce the [machine learning](https://en.wikipedia.org/wiki/Machine_learning) vocabulary that we use throughout scikit-learn and give a simple learning example.
+[TOC]
+
+In this tutorial, we introduce the [machine learning](https://en.wikipedia.org/wiki/Machine_learning) vocabulary that we use throughout scikit-learn and give a simple learning example.
 
 To run the code in this tutorial, you must first install scikit-learn and all of its required dependencies. Please refer to the [installation instructions page](https://scikit-learn.org/1.7/install.html#installation-instructions) for more information and for system-specific instructions.
 
@@ -17,7 +19,7 @@ Learning problems fall into a few categories:
   - [regression](https://en.wikipedia.org/wiki/Regression_analysis): if the desired output consists of one or more continuous variables, then the task is called *regression*. An example of a regression problem would be the prediction of the length of a salmon as a function of its age and weight.
 - [unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning), in which the training data consists of a set of input vectors x without any corresponding target values. The goal in such problems may be to discover groups of similar examples within the data, where it is called [clustering](https://en.wikipedia.org/wiki/Cluster_analysis), or to determine the distribution of data within the input space, known as [density estimation](https://en.wikipedia.org/wiki/Density_estimation), or to project the data from a high-dimensional space down to two or three dimensions for the purpose of *visualization* ([Click here](https://scikit-learn.org/1.7/unsupervised_learning.html#unsupervised-learning) to go to the Scikit-Learn unsupervised learning page).
 
-Training set and testing set
+### Training set and testing set
 
 Machine learning is about learning some properties of a data set and then testing those properties against another data set. A common practice in machine learning is to evaluate an algorithm by splitting a data set into two. We call one of those sets the **training set**, on which we learn some properties; we call the other set the **testing set**, on which we test the learned properties.
 
@@ -39,21 +41,27 @@ For instance, in the case of the digits dataset, `digits.data` gives access to t
 
 ```python
 print(digits.data)
-[[ 0.   0.   5. ...   0.   0.   0.]
- [ 0.   0.   0. ...  10.   0.   0.]
- [ 0.   0.   0. ...  16.   9.   0.]
- ...
- [ 0.   0.   1. ...   6.   0.   0.]
- [ 0.   0.   2. ...  12.   0.   0.]
- [ 0.   0.  10. ...  12.   1.   0.]]
 ```
+*Result:*
 
-and `digits.target` gives the ground truth for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
+> [[ 0.   0.   5. ...   0.   0.   0.]
+>  [ 0.   0.   0. ...  10.   0.   0.]
+>  [ 0.   0.   0. ...  16.   9.   0.]
+>  ...
+>  [ 0.   0.   1. ...   6.   0.   0.]
+>  [ 0.   0.   2. ...  12.   0.   0.]
+>  [ 0.   0.  10. ...  12.   1.   0.]]
+
+
+The list `digits.target` holds the labels for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
 
 ```python
 digits.target
-array([0, 1, 2, ..., 8, 9, 8])
 ```
+
+*Result:*
+
+> array([0, 1, 2, ..., 8, 9, 8])
 
 Shape of the data arrays
 
@@ -61,19 +69,23 @@ The data is always a 2D array, shape `(n_samples, n_features)`, although the ori
 
 ```python
 digits.images[0]
-array([[  0.,   0.,   5.,  13.,   9.,   1.,   0.,   0.],
-       [  0.,   0.,  13.,  15.,  10.,  15.,   5.,   0.],
-       [  0.,   3.,  15.,   2.,   0.,  11.,   8.,   0.],
-       [  0.,   4.,  12.,   0.,   0.,   8.,   8.,   0.],
-       [  0.,   5.,   8.,   0.,   0.,   9.,   8.,   0.],
-       [  0.,   4.,  11.,   0.,   1.,  12.,   7.,   0.],
-       [  0.,   2.,  14.,   5.,  10.,  12.,   0.,   0.],
-       [  0.,   0.,   6.,  13.,  10.,   0.,   0.,   0.]])
 ```
+
+*result:*
+
+> array([[  0.,   0.,   5.,  13.,   9.,   1.,   0.,   0.],
+>        [  0.,   0.,  13.,  15.,  10.,  15.,   5.,   0.],
+>        [  0.,   3.,  15.,   2.,   0.,  11.,   8.,   0.],
+>        [  0.,   4.,  12.,   0.,   0.,   8.,   8.,   0.],
+>        [  0.,   5.,   8.,   0.,   0.,   9.,   8.,   0.],
+>        [  0.,   4.,  11.,   0.,   1.,  12.,   7.,   0.],
+>        [  0.,   2.,  14.,   5.,  10.,  12.,   0.,   0.],
+>        [  0.,   0.,   6.,  13.,  10.,   0.,   0.,   0.]])
+
 
 The [simple example on this dataset](https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py) illustrates how starting from the original problem one can shape the data for consumption in scikit-learn.
 
-Loading from external datasets
+### Loading from external datasets
 
 To load from an external dataset, please refer to [loading external datasets](https://scikit-learn.org/1.7/datasets/loading_other_datasets.html#external-datasets).
 
@@ -100,15 +112,22 @@ The `clf` (for classifier) estimator instance is first fitted to the model; that
 
 ```python
 clf.fit(digits.data[:-1], digits.target[:-1])
-SVC(C=100.0, gamma=0.001)
 ```
+*result:*
+
+> SVC(C=100.0, gamma=0.001)
+
 
 Now you can *predict* new values. In this case, you’ll predict using the last image from `digits.data`. By predicting, you’ll determine the image from the training set that best matches the last image.
 
 ```python
 clf.predict(digits.data[-1:])
-array([8])
 ```
+result:
+
+> array([8])
+>
+
 
 The corresponding image is:
 
