@@ -6,7 +6,7 @@ generator: Typora
 author: Brian Bird
 ---
 
-<h1>Set Up Python Packages for AI</h1>
+<h1>Set Up Python Packages for ML</h1>
 
 **CS 210, Intro to AI Programming**
 
