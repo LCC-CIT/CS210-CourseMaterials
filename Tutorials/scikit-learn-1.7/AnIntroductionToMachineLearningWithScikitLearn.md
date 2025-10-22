@@ -10,24 +10,24 @@ To run the code in this tutorial, you must first install scikit-learn and all of
 
 ## Machine learning: the problem setting
 
-In general, a learning problem considers a set of n [samples](https://en.wikipedia.org/wiki/Sample_(statistics)) of data and then tries to predict properties of unknown data. If each sample is more than a single number and, for instance, a multi-dimensional entry (aka [multivariate](https://en.wikipedia.org/wiki/Multivariate_random_variable) data), it is said to have several attributes or **features**.
+In general, a learning problem considers a set of n [samples](https://en.wikipedia.org/wiki/Sample_(statistics)) of data and then tries to predict properties of unknown data. If each sample is more than a single number and, for instance, a multi-dimensional entry (aka [multivariate](https://en.wikipedia.org/wiki/Multivariate_random_variable) data), it is said to have several attributes or [features](https://scikit-learn.org/1.7/glossary.html#term-features).
 
 Learning problems fall into a few categories:
 
-- [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning), in which the data comes with additional attributes that we want to predict ([Click here](https://scikit-learn.org/1.7/supervised_learning.html#supervised-learning) to go to the scikit-learn supervised learning page).This problem can be either:
-  - [classification](https://en.wikipedia.org/wiki/Classification_in_machine_learning): samples belong to two or more classes and we want to learn from already labeled data how to predict the class of unlabeled data. An example of a classification problem would be handwritten digit recognition, in which the aim is to assign each input vector to one of a finite number of discrete categories.  Another way to think of classification is as a discrete (as opposed to continuous) form of supervised learning where one has a limited number of categories and for each of the n samples provided, one is to try to label them with the correct category or class.
-  - [regression](https://en.wikipedia.org/wiki/Regression_analysis): if the desired output consists of one or more continuous variables, then the task is called *regression*. An example of a regression problem would be the prediction of the length of a salmon as a function of its age and weight.
-- [unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning), in which the training data consists of a set of input vectors x without any corresponding target values. The goal in such problems may be to discover groups of similar examples within the data, where it is called [clustering](https://en.wikipedia.org/wiki/Cluster_analysis), or to determine the distribution of data within the input space, known as [density estimation](https://en.wikipedia.org/wiki/Density_estimation), or to project the data from a high-dimensional space down to two or three dimensions for the purpose of *visualization* ([Click here](https://scikit-learn.org/1.7/unsupervised_learning.html#unsupervised-learning) to go to the Scikit-Learn unsupervised learning page).
+- [Supervised learning](https://en.wikipedia.org/wiki/Supervised_learning), in which the data comes with additional attributes that we want to predict ([Click here](https://scikit-learn.org/1.7/supervised_learning.html#supervised-learning) to go to the scikit-learn supervised learning page).This problem can be either:
+  - [Classification](https://en.wikipedia.org/wiki/Classification_in_machine_learning): samples belong to two or more classes and we want to learn from already labeled data how to predict the class of unlabeled data. An example of a classification problem would be handwritten digit recognition, in which the aim is to assign each input vector to one of a finite number of discrete categories.  Another way to think of classification is as a discrete (as opposed to continuous) form of supervised learning where one has a limited number of categories and for each of the n samples provided, one is to try to label them with the correct category or class.
+  - [Regression](https://en.wikipedia.org/wiki/Regression_analysis): if the desired output consists of one or more continuous variables, then the task is called *regression*. An example of a regression problem would be the prediction of the length of a salmon as a function of its age and weight.
+- [Unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning), in which the training data consists of a set of input vectors x without any corresponding target values. The goal in such problems may be to discover groups of similar examples within the data, where it is called [clustering](https://en.wikipedia.org/wiki/Cluster_analysis), or to determine the distribution of data within the input space, known as [density estimation](https://en.wikipedia.org/wiki/Density_estimation), or to project the data from a high-dimensional space down to two or three dimensions for the purpose of *visualization* ([Click here](https://scikit-learn.org/1.7/unsupervised_learning.html#unsupervised-learning) to go to the Scikit-Learn unsupervised learning page).
 
 ### Training set and testing set
 
-Machine learning is about learning some properties of a data set and then testing those properties against another data set. A common practice in machine learning is to evaluate an algorithm by splitting a data set into two. We call one of those sets the **training set**, on which we learn some properties; we call the other set the **testing set**, on which we test the learned properties.
+Machine learning is about learning some properties of a data set and then testing those properties against another data set. A common practice in machine learning is to evaluate an algorithm by splitting a data set into two. We call one of those sets the *training set*, on which we learn some properties; we call the other set the *testing set*, on which we test the learned properties.
 
-## Loading an example dataset
+### Loading an example dataset
 
 `scikit-learn` comes with a few standard datasets, for instance the [iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) and [digits](https://archive.ics.uci.edu/dataset/683/mnist+database+of+handwritten+digits) datasets for classification and the [diabetes dataset](https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html) for regression.
 
-In the following, we start a Python interpreter from our shell and then load the `iris` and `digits` datasets.  Our notational convention is that `$` denotes the shell prompt while `>>>` denotes the Python interpreter prompt:
+In the following, we start a Python interpreter from our shell and then load the `iris` and `digits` datasets. 
 
 ```python
 from sklearn import datasets
@@ -42,15 +42,14 @@ For instance, in the case of the digits dataset, `digits.data` gives access to t
 ```python
 print(digits.data)
 ```
-*Result:*
-
+> *Result:*  
 > [[ 0.   0.   5. ...   0.   0.   0.]
->  [ 0.   0.   0. ...  10.   0.   0.]
->  [ 0.   0.   0. ...  16.   9.   0.]
->  ...
->  [ 0.   0.   1. ...   6.   0.   0.]
->  [ 0.   0.   2. ...  12.   0.   0.]
->  [ 0.   0.  10. ...  12.   1.   0.]]
+> [ 0.   0.   0. ...  10.   0.   0.]
+> [ 0.   0.   0. ...  16.   9.   0.]
+> ...
+> [ 0.   0.   1. ...   6.   0.   0.]
+> [ 0.   0.   2. ...  12.   0.   0.]
+> [ 0.   0.  10. ...  12.   1.   0.]]
 
 
 The list `digits.target` holds the labels for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
@@ -59,11 +58,10 @@ The list `digits.target` holds the labels for the digit dataset, that is the num
 digits.target
 ```
 
-*Result:*
-
+> *Result:*
 > array([0, 1, 2, ..., 8, 9, 8])
 
-Shape of the data arrays
+#### Shape of the data arrays
 
 The data is always a 2D array, shape `(n_samples, n_features)`, although the original data may have had a different shape. In the case of the digits, each original sample is an image of shape `(8, 8)` and can be accessed using:
 
@@ -71,16 +69,15 @@ The data is always a 2D array, shape `(n_samples, n_features)`, although the ori
 digits.images[0]
 ```
 
-*result:*
-
+> *result:*
 > array([[  0.,   0.,   5.,  13.,   9.,   1.,   0.,   0.],
->        [  0.,   0.,  13.,  15.,  10.,  15.,   5.,   0.],
->        [  0.,   3.,  15.,   2.,   0.,  11.,   8.,   0.],
->        [  0.,   4.,  12.,   0.,   0.,   8.,   8.,   0.],
->        [  0.,   5.,   8.,   0.,   0.,   9.,   8.,   0.],
->        [  0.,   4.,  11.,   0.,   1.,  12.,   7.,   0.],
->        [  0.,   2.,  14.,   5.,  10.,  12.,   0.,   0.],
->        [  0.,   0.,   6.,  13.,  10.,   0.,   0.,   0.]])
+>     [  0.,   0.,  13.,  15.,  10.,  15.,   5.,   0.],
+>     [  0.,   3.,  15.,   2.,   0.,  11.,   8.,   0.],
+>     [  0.,   4.,  12.,   0.,   0.,   8.,   8.,   0.],
+>     [  0.,   5.,   8.,   0.,   0.,   9.,   8.,   0.],
+>     [  0.,   4.,  11.,   0.,   1.,  12.,   7.,   0.],
+>     [  0.,   2.,  14.,   5.,  10.,  12.,   0.,   0.],
+>     [  0.,   0.,   6.,  13.,  10.,   0.,   0.,   0.]])
 
 
 The [simple example on this dataset](https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py) illustrates how starting from the original problem one can shape the data for consumption in scikit-learn.
@@ -104,7 +101,7 @@ from sklearn import svm
 clf = svm.SVC(gamma=0.001, C=100.)
 ```
 
-Choosing the parameters of the model
+### Choosing the parameters of the model
 
 In this example, we set the value of `gamma` manually. To find good values for these parameters, we can use tools such as [grid search](https://scikit-learn.org/1.7/modules/grid_search.html#grid-search) and [cross validation](https://scikit-learn.org/1.7/modules/cross_validation.html#cross-validation).
 
@@ -113,8 +110,7 @@ The `clf` (for classifier) estimator instance is first fitted to the model; that
 ```python
 clf.fit(digits.data[:-1], digits.target[:-1])
 ```
-*result:*
-
+> *result:*  
 > SVC(C=100.0, gamma=0.001)
 
 
@@ -123,10 +119,8 @@ Now you can *predict* new values. In this case, you’ll predict using the last 
 ```python
 clf.predict(digits.data[-1:])
 ```
-result:
-
+> result:  
 > array([8])
->
 
 
 The corresponding image is:
@@ -161,9 +155,8 @@ transformer = kernel_approximation.RBFSampler()
 X_new = transformer.fit_transform(X)
 X_new.dtype
 ```
-*result:*
-
->dtype('float32')
+> *result:*  
+> dtype('float32')
 
 In this example, `X` is `float32`, and is unchanged by `fit_transform(X)`.
 
@@ -180,28 +173,26 @@ iris = datasets.load_iris()
 clf = SVC()
 clf.fit(iris.data, iris.target)
 ```
-*result:*
->SVC()
+> *result:*  
+> SVC()
+
 ```python
 list(clf.predict(iris.data[:3]))
 ```
-*result:*
-
->[np.int64(0), np.int64(0), np.int64(0)]
+> *result:*  
+> [np.int64(0), np.int64(0), np.int64(0)]
 
 ```python
 clf.fit(iris.data, iris.target_names[iris.target])
 ```
-*result:*
-
->SVC()
+> *result:*  
+> SVC()
 
 ```python
 list(clf.predict(iris.data[:3]))
 ```
-*result:*
-
->[np.str_('setosa'), np.str_('setosa'), np.str_('setosa')]
+> *result:*  
+> [np.str_('setosa'), np.str_('setosa'), np.str_('setosa')]
 
 Here, the first `predict()` returns an integer array, since `iris.target` (an integer array) was used in `fit`. The second `predict()` returns a string array, since `iris.target_names` was for fitting.
 
@@ -218,27 +209,26 @@ X, y = load_iris(return_X_y=True)
 clf = SVC()
 clf.set_params(kernel='linear').fit(X, y)
 ```
-*result:*
-
+> *result:*  
 > SVC(kernel='linear')
 
 ```python
 clf.predict(X[:5])
 ```
-*result:*
-
->array([0, 0, 0, 0, 0])
+> *result:*  
+> array([0, 0, 0, 0, 0])
 
 ```python
 clf.set_params(kernel='rbf').fit(X, y)
 ```
-*result:*
->SVC()
+> *result:*  
+> SVC()
+
 ```python
 clf.predict(X[:5])
 ```
-*result:*
->array([0, 0, 0, 0, 0])
+> *result:*  
+> array([0, 0, 0, 0, 0])
 
 
 Here, the default kernel `rbf` is first changed to `linear` via [`SVC.set_params()`](https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC.set_params) after the estimator has been constructed, and changed back to `rbf` to refit the estimator and to make a second prediction.
@@ -257,22 +247,25 @@ y = [0, 0, 1, 1, 2]
 
 classif = OneVsRestClassifier(estimator=SVC(random_state=0))
 classif.fit(X, y).predict(X)
-array([0, 0, 1, 1, 2])
 ```
+*result:*
+>array([0, 0, 1, 1, 2])
 
 In the above case, the classifier is fit on a 1d array of multiclass labels and the `predict()` method therefore provides corresponding multiclass predictions. It is also possible to fit upon a 2d array of binary label indicators:
 
 ```python
 y = LabelBinarizer().fit_transform(y)
 classif.fit(X, y).predict(X)
-array([[1, 0, 0],
-       [1, 0, 0],
-       [0, 1, 0],
-       [0, 0, 0],
-       [0, 0, 0]])
 ```
+>*result:*
+>array([[1, 0, 0],
+>       [1, 0, 0],
+>       [0, 1, 0],
+>       [0, 0, 0],
+>       [0, 0, 0]])
 
-Here, the classifier is `fit()`  on a 2d binary label representation of `y`, using the [`LabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer). In this case `predict()` returns a 2d array representing the corresponding multilabel predictions.
+
+Here, the classifier is `fit()` on a 2d binary label representation of `y`, using the [`LabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer). In this case `predict()` returns a 2d array representing the corresponding multilabel predictions.
 
 Note that the fourth and fifth instances returned all zeroes, indicating that they matched none of the three labels `fit` upon. With multilabel outputs, it is similarly possible for an instance to be assigned multiple labels:
 
@@ -281,14 +274,16 @@ from sklearn.preprocessing import MultiLabelBinarizer
 y = [[0, 1], [0, 2], [1, 3], [0, 2, 3], [2, 4]]
 y = MultiLabelBinarizer().fit_transform(y)
 classif.fit(X, y).predict(X)
-array([[1, 1, 0, 0, 0],
-       [1, 0, 1, 0, 0],
-       [0, 1, 0, 1, 0],
-       [1, 0, 1, 0, 0],
-       [1, 0, 1, 0, 0]])
 ```
+> *result:*
+> array([[1, 1, 0, 0, 0],
+>        [1, 0, 1, 0, 0],
+>        [0, 1, 0, 1, 0],
+>        [1, 0, 1, 0, 0],
+>        [1, 0, 1, 0, 0]])
 
-In this case, the classifier is fit upon instances each assigned multiple labels. The [`MultiLabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer) is used to binarize the 2d array of multilabels to `fit` upon. As a result, `predict()` returns a 2d array with multiple predicted labels for each instance.
+
+In this case, the classifier is fit on instances that are each assigned multiple labels. The [`MultiLabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer) is used to binarize the 2d array of multilabels to `fit` upon. As a result, `predict()` returns a 2d array with multiple predicted labels for each instance.
 
 ## New Features in scikit-learn 1.5-1.7
 
@@ -304,8 +299,10 @@ from sklearn.metrics import accuracy_score
 y_true = torch.tensor([0, 1, 1, 0])
 y_pred = torch.tensor([0, 1, 0, 0])
 accuracy_score(y_true, y_pred)
-0.75
 ```
+>*result:*
+>0.75
+
 
 ### Improved Sparse Data Handling
 
@@ -357,17 +354,17 @@ RocCurveDisplay.from_cv_results(cv_results, X, y)
 
 These enhancements make scikit-learn 1.7 more powerful and user-friendly while maintaining backward compatibility with code written for earlier versions.
 
-**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 also adds support for Python 3.14.
+**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 of scikit-learn also adds support for Python 3.14.
 
 
 
 ---
 
-This original version of this tutorial was written by scikit-learn developers under the [BSD License](https://opensource.org/license/BSD-3-clause).  
+This [original version of this tutorial](https://scikit-learn.org/1.4/tutorial/basic/tutorial.html) was written by scikit-learn developers under a [BSD License](https://opensource.org/license/BSD-3-clause).  
 
 ---
 
-The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025
+The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025.
 
 ---
 
