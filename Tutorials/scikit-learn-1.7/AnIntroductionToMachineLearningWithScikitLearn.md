@@ -10,7 +10,7 @@ To run the code in this tutorial, you must first install scikit-learn and all of
 
 ## Machine learning: the problem setting
 
-In general, a learning problem considers a set of n [samples](https://en.wikipedia.org/wiki/Sample_(statistics)) of data and then tries to predict properties of unknown data. If each sample is more than a single number and, for instance, a multi-dimensional entry (aka [multivariate](https://en.wikipedia.org/wiki/Multivariate_random_variable) data), it is said to have several attributes or [features](https://scikit-learn.org/1.7/glossary.html#term-features).
+In general, a learning problem considers a set of n [samples](https://scikit-learn.org/1.7/glossary.html#term-samples) of known (training) data and then tries to predict properties of unknown data. If each sample is more than a single number and, for instance, a multi-dimensional entry (aka [multivariate](https://en.wikipedia.org/wiki/Multivariate_random_variable) data), it is said to have multiple attributes or [features](https://scikit-learn.org/1.7/glossary.html#term-features).
 
 Learning problems fall into a few categories:
 
@@ -25,19 +25,18 @@ Machine learning is about learning some properties of a data set and then testin
 
 ### Loading an example dataset
 
-`scikit-learn` comes with a few standard datasets, for instance the [iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) and [digits](https://archive.ics.uci.edu/dataset/683/mnist+database+of+handwritten+digits) datasets for classification and the [diabetes dataset](https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html) for regression.
+`scikit-learn` comes with a few standard datasets[^1], for instance the [iris](https://en.wikipedia.org/wiki/Iris_flower_data_set) and [digits](https://archive.ics.uci.edu/dataset/683/mnist+database+of+handwritten+digits) datasets for classification and the [diabetes dataset](https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html) for regression.
 
-In the following, we start a Python interpreter from our shell and then load the `iris` and `digits` datasets. 
+In the following, we start a Python interpreter from our shell and then load the `digits` dataset. 
 
 ```python
 from sklearn import datasets
-iris = datasets.load_iris()
 digits = datasets.load_digits()
 ```
 
-A dataset is a dictionary-like object that holds all the data and some metadata about the data. This data is stored in the `.data` member, which is a `n_samples, n_features` array. In the case of supervised problems, one or more response variables are stored in the `.target` member. More details on the different datasets can be found in the [dedicated section](https://scikit-learn.org/1.7/datasets.html#datasets).
+A *dataset* is a dictionary-like object that holds all the data and some metadata about the data. This data is stored in the `.data` member, which is a `n_samples, n_features` array. In the case of supervised problems, one or more response variables are stored in the `.target` member. More details on the different datasets can be found in the [dedicated section](https://scikit-learn.org/1.7/datasets.html#datasets).
 
-For instance, in the case of the digits dataset, `digits.data` gives access to the features that can be used to classify the digits samples:
+For instance, in the case of the digits dataset, `digits.data` gives access to the features[^2] that can be used to classify the digits samples:
 
 ```python
 print(digits.data)
@@ -52,7 +51,7 @@ print(digits.data)
 > [ 0.   0.  10. ...  12.   1.   0.]]
 
 
-The list `digits.target` holds the labels for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
+The list `digits.target` holds the *labels* for the digit dataset, that is the number corresponding to each digit image that we are trying to learn:
 
 ```python
 digits.target
@@ -80,7 +79,7 @@ digits.images[0]
 >     [  0.,   0.,   6.,  13.,  10.,   0.,   0.,   0.]])
 
 
-The [simple example on this dataset](https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py) illustrates how starting from the original problem one can shape the data for consumption in scikit-learn.
+The [simple example on this dataset](https://scikit-learn.org/1.7/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py) illustrates how starting from the original problem one can shape the data for consumption in scikit-learn. In this example the 8x8 array in `digits.images` was flattened into 64 elements in a single row of the `digits.data` array.
 
 ### Loading from external datasets
 
@@ -88,7 +87,7 @@ To load from an external dataset, please refer to [loading external datasets](ht
 
 ## Learning and predicting
 
-In the case of the digits dataset, the task is to predict, given an image, which digit it represents. We are given samples of each of the 10 possible classes (the digits zero through nine) on which we *fit* an [estimator](https://en.wikipedia.org/wiki/Estimator) to be able to *predict* the classes to which unseen samples belong.
+In the case of the digits dataset, the task is to predict, given an image, which digit it represents. We are given samples of each of the 10 possible classes (the digits zero through nine) which we use to [fit](https://scikit-learn.org/1.7/glossary.html#term-fit) (train) a model using an [estimator](https://scikit-learn.org/1.7/glossary.html#term-estimator)[^3] which will also be able to [predict](https://scikit-learn.org/1.7/glossary.html#term-predict) the classes into which new (previously unseen by the model) samples belong.
 
 In scikit-learn, an estimator for classification is a Python object that implements the methods `fit(X, y)` and `predict(T)`.
 
@@ -105,7 +104,7 @@ clf = svm.SVC(gamma=0.001, C=100.)
 
 In this example, we set the value of `gamma` manually. To find good values for these parameters, we can use tools such as [grid search](https://scikit-learn.org/1.7/modules/grid_search.html#grid-search) and [cross validation](https://scikit-learn.org/1.7/modules/cross_validation.html#cross-validation).
 
-The `clf` (for classifier) estimator instance is first fitted to the model; that is, it must *learn* from the model. This is done by passing our training set to the `fit` method. For the training set, we’ll use all the images from our dataset, except for the last image, which we’ll reserve for our predicting. We select the training set with the `[:-1]` Python syntax, which produces a new array that contains all but the last item from `digits.data`:
+The `clf` (classifier) estimator instance is first fitted to the model; that is, it must *learn* from the model. This is done by passing our training set to the `fit` method. For the training set, we’ll use all the image data from our dataset, except data for the last image, which we’ll reserve for testing prediction. We select the training set with the `[:-1]` Python syntax, which produces a new array that contains all but the last item from `digits.data`:
 
 ```python
 clf.fit(digits.data[:-1], digits.target[:-1])
@@ -354,17 +353,15 @@ RocCurveDisplay.from_cv_results(cv_results, X, y)
 
 These enhancements make scikit-learn 1.7 more powerful and user-friendly while maintaining backward compatibility with code written for earlier versions.
 
-**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 of scikit-learn also adds support for Python 3.14.
+**Note:** scikit-learn 1.7 supports Python versions 3.10 to 3.13, with experimental support for free-threaded CPython. Version 1.7.2 of scikit-learn added support for Python 3.14.
 
 
 
 ---
 
 This [original version of this tutorial](https://scikit-learn.org/1.4/tutorial/basic/tutorial.html) was written by scikit-learn developers under a [BSD License](https://opensource.org/license/BSD-3-clause).  
+The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4 on 10/19/2025 with more revisions 10/22/2025.
 
----
-
-The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025.
-
----
-
+[^1]: scikit-learn includes over a dozen popular datasets as well as artificial data generators. See [Dataset Loading Utilities](https://scikit-learn.org/stable/datasets.html#datasets) in the user guide.
+[^2]: The features for the digits dataset were derived from 32x32 bitmaps which were divided into nonoverlapping blocks of 4x4. The number of "on" pixels were counted in each block. This produced a matrix of 8x8 where each element is an integer in the range 0..16. These 64 integers are the features (attributes) which form each row of the data array.
+[^3]: Each ML model in scikit-learn has one or more estimators that implement the algorithms for that model. The key methons on an estimator are:   `fit(x, y)` which learns the parameters of the estimator from the training dataset. `predict(x)` which makes predictions based on the trained model.
