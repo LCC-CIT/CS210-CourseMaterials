@@ -1,6 +1,6 @@
-[scikit-learn tutorials index](ScikitLearnTutorials.md)
+> [scikit-learn tutorials index](ScikitLearnTutorials.md)
 
-# An introduction to machine learning with scikit-learn
+<h1>An introduction to machine learning with scikit-learn</h1>
 
 [TOC]
 
@@ -148,22 +148,26 @@ Where possible, input of type `float32` will maintain its data type. Otherwise i
 ```python
 import numpy as np
 from sklearn import kernel_approximation
-
 rng = np.random.RandomState(0)
 X = rng.rand(10, 2000)
 X = np.array(X, dtype='float32')
 X.dtype
-dtype('float32')
+```
+> *result:*
+>dtype('float32')
 
+```python
 transformer = kernel_approximation.RBFSampler()
 X_new = transformer.fit_transform(X)
 X_new.dtype
-dtype('float32')
 ```
+*result:*
+
+>dtype('float32')
 
 In this example, `X` is `float32`, and is unchanged by `fit_transform(X)`.
 
-Using `float32`-typed training (or testing) data is often more efficient than using the usual `float64` `dtype`: it allows to reduce the memory usage and sometimes also reduces processing time by leveraging the vector instructions of the CPU. However it can sometimes lead to numerical stability problems causing the algorithm to be more sensitive to the scale of the values and [require adequate preprocessing](https://scikit-learn.org/1.7/modules/preprocessing.html#preprocessing-scaler).
+Using `float32`-typed training (or testing) data is often more efficient than using the usual `float64` `dtype`: it allows reduced memory usage and sometimes also reduces processing time by leveraging the vector instructions of the CPU. However it can sometimes lead to numerical stability problems causing the algorithm to be more sensitive to the scale of the values and [require adequate preprocessing](https://scikit-learn.org/1.7/modules/preprocessing.html#preprocessing-scaler).
 
 Keep in mind however that not all scikit-learn estimators attempt to work in `float32` mode. For instance, some transformers will always cast their input to `float64` and return `float64` transformed values as a result.
 
@@ -175,23 +179,35 @@ from sklearn.svm import SVC
 iris = datasets.load_iris()
 clf = SVC()
 clf.fit(iris.data, iris.target)
-SVC()
-
-list(clf.predict(iris.data[:3]))
-[0, 0, 0]
-
-clf.fit(iris.data, iris.target_names[iris.target])
-SVC()
-
-list(clf.predict(iris.data[:3]))
-['setosa', 'setosa', 'setosa']
 ```
+*result:*
+>SVC()
+```python
+list(clf.predict(iris.data[:3]))
+```
+*result:*
+
+>[np.int64(0), np.int64(0), np.int64(0)]
+
+```python
+clf.fit(iris.data, iris.target_names[iris.target])
+```
+*result:*
+
+>SVC()
+
+```python
+list(clf.predict(iris.data[:3]))
+```
+*result:*
+
+>[np.str_('setosa'), np.str_('setosa'), np.str_('setosa')]
 
 Here, the first `predict()` returns an integer array, since `iris.target` (an integer array) was used in `fit`. The second `predict()` returns a string array, since `iris.target_names` was for fitting.
 
 ### Refitting and updating parameters
 
-Hyper-parameters of an estimator can be updated after it has been constructed via the [set_params()](https://scikit-learn.org/1.7/glossary.html#term-set_params) method. Calling `fit()` more than once will overwrite what was learned by any previous `fit()`:
+[Hyper-parameters](https://scikit-learn.org/1.7/glossary.html#term-hyper-parameter) of an estimator can be updated after it has been constructed via the [set_params()](https://scikit-learn.org/1.7/glossary.html#term-set_params) method. Calling `fit()` more than once will overwrite what was learned by any previous `fit()`:
 
 ```python
 import numpy as np
@@ -201,15 +217,29 @@ X, y = load_iris(return_X_y=True)
 
 clf = SVC()
 clf.set_params(kernel='linear').fit(X, y)
-SVC(kernel='linear')
-clf.predict(X[:5])
-array([0, 0, 0, 0, 0])
-
-clf.set_params(kernel='rbf').fit(X, y)
-SVC()
-clf.predict(X[:5])
-array([0, 0, 0, 0, 0])
 ```
+*result:*
+
+> SVC(kernel='linear')
+
+```python
+clf.predict(X[:5])
+```
+*result:*
+
+>array([0, 0, 0, 0, 0])
+
+```python
+clf.set_params(kernel='rbf').fit(X, y)
+```
+*result:*
+>SVC()
+```python
+clf.predict(X[:5])
+```
+*result:*
+>array([0, 0, 0, 0, 0])
+
 
 Here, the default kernel `rbf` is first changed to `linear` via [`SVC.set_params()`](https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC.set_params) after the estimator has been constructed, and changed back to `rbf` to refit the estimator and to make a second prediction.
 
