@@ -1,4 +1,3 @@
-
 [scikit-learn tutorials index](ScikitLearnTutorials.md)
 
 <h1>Working With Text Data</h1>
@@ -20,28 +19,7 @@ To get started with this tutorial, you must first install *scikit-learn* and all
 
 Please refer to the [installation instructions](https://scikit-learn.org/1.7/install.html#installation-instructions) page for more information and for system-specific instructions.
 
-The source code for this tutorial is [on GitHub](https://github.com/scikit-learn/scikit-learn/tree/1.4.X/doc/tutorial/text_analytics).
-
-The tutorial folder should contain the following sub-folders:
-
-- `*.rst files` - the source of the tutorial document written with sphinx
-- `data` - folder to put the datasets used during the tutorial
-- `skeletons` - sample incomplete scripts for the exercises
-- `solutions` - solutions of the exercises
-
-Copy the skeletons folder into a new folder somewhere on your hard-drive named `sklearn_tut_workspace`, where you can edit your own files for the exercises while keeping the original skeletons intact:
-
-```python
-cp -r skeletons work_directory/sklearn_tut_workspace
-```
-
-Machine learning algorithms need data. Go to each `$TUTORIAL_HOME/data` sub-folder and run the `fetch_data.py` script from there (after having read them first).
-
-Note: `fetch_data.py` imports the `lxml` module for XML processing.  You will need to install that package with the command: `pip install lxml`.
-
-Now run `fetch_data.py` in the languages and movie_reviews folders. For instance:
-
-## Loading the 20 newsgroups dataset
+### Loading the 20 newsgroups dataset
 
 The dataset is called “Twenty Newsgroups”. Here is the official description, quoted from the [website](http://qwone.com/~jason/20Newsgroups/):
 
@@ -56,12 +34,16 @@ categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med'
 ```
 
 We can now load the list of files matching those categories as follows:
-(This will take a minute or more to load.)
+***(This will take a minute or more to load.)***
 
 ```python
 from sklearn.datasets import fetch_20newsgroups
 twenty_train = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
 ```
+
+#### Exploring the Data
+
+Now that the 4 newsgroups are loaded into `twenty_train`, (note that it's just four not twenty) lets explore the dataset. (This isn't part of the training process&mdash; it's just to help you understand the dataset.)
 
 The returned dataset is a `scikit-learn` “bunch”: a simple holder object with fields that can be both accessed as python `dict` keys or `object` attributes for convenience, for instance the `target_names` holds the list of the requested category names:
 
@@ -132,7 +114,7 @@ You might have noticed that the samples were shuffled randomly when we called `f
 
 ## Extracting features from text files
 
-In order to perform machine learning on text documents, we first need to turn the text content into numerical feature vectors.
+In order to perform machine learning on text documents, we first need to turn the text content into *numerical* *feature vectors*.
 
 ### Bags of words
 
@@ -143,50 +125,74 @@ The most intuitive way to do so is to use a bags of words representation:
 
 The bags of words representation implies that `n_features` is the number of distinct words in the corpus: this number is typically larger than 100,000.
 
-If `n_samples == 10000`, storing `X` as a NumPy array of type float32 would require 10000 x 100000 x 4 bytes = **4GB in RAM** which is a lot for the average consumer computer.
+If `n_samples == 10000`, storing `X` as a NumPy array of type float32 would require 10000 x 100000 x 4 bytes = 4GB in RAM which is a lot for the average consumer computer.
 
-Fortunately, <u>most values in X will be zeros</u> since for a given document less than a few thousand distinct words will be used. For this reason we say that bags of words are typically *high-dimensional sparse* datasets. We can save a lot of memory by only storing the non-zero parts of the feature vectors in memory.
+Fortunately, <u>most values in x will be zeros</u> since for a given document less than a few thousand distinct words will be used. For this reason we say that bags of words are typically *high-dimensional sparse* datasets. We can save a lot of memory by only storing the non-zero parts of the feature vectors in memory.
 
 `scipy.sparse` matrices are data structures that do exactly this, and `scikit-learn` has built-in support for these structures. 
 
 **Note:** In scikit-learn 1.7, all text processing estimators now also accept the new sparse arrays (`sparray`) in addition to traditional sparse matrices, ensuring compatibility with future versions of SciPy as it transitions from sparse matrices to sparse arrays.
 
-### Tokenizing text with `scikit-learn`
+### Tokenize the Text and Build Feature Vectors
 
-Text preprocessing, tokenizing and filtering of stopwords are all included in [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer), which builds a dictionary of features and transforms documents to feature vectors:
+Text preprocessing[^1], tokenizing[^2] and filtering (removal) of stopwords[^3] are all included in [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer), which:
+
+- Builds a dictionary of features in which each unique token (word) found across all documents is assigned a specific index (a column number in the resulting matrix).
+-  Transforms documents to feature vectors[^4]. Each document is transformed into a vector (a row in the matrix) where the value at each position corresponds to the count (*frequency*) of a specific word (*feature*) from the dictionary in that document.
+
+This code does all that:
 
 ```python
 from sklearn.feature_extraction.text import CountVectorizer
 count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(twenty_train.data)
+```
+
+#### Code Explanation
+
+- `from sklearn.feature_extraction.text import CountVectorizer`
+  Imports the `CountVectorizer` class from the scikit-learn library. `CountVectorizer` is a feature extractor.
+- `count_vect = CountVectorizer()`
+  Creates an instance of the `CountVectorizer`. This object now holds the logic for the entire text-to-numerical conversion process and has stored the vocabulary of the `twenty_train` dataset.
+- `X_train_counts = count_vect.fit_transform(twenty_train.data)`
+  This is the main operation, which performs two main steps: `fit` and *`transform`*
+  - *fit*: the vectorizer learns from the input text data (`twenty_train.data`) by scanning all the documents to identify every unique word, performing text preprocessing and tokenizing in the process. This builds an internal dictionary of features.
+  - *transform*: The vectorizer then uses the internal dictionary of features to convert the text documents into a numerical matrix. Each document is converted into a *feature vector* (a row) where the values are the counts of each word in the dictionary. The resulting feature vector matrix, `X_train_counts`, is the numerical representation of the training data.
+
+#### Explore the Feature Vector Matrix
+
+The feature vectors are now stored in `X_train_counts` which is a scipy sparse matrix. Lets take a look at it.
+
+```python
 X_train_counts.shape
 ```
 
 > *response:*  
 > (2257, 35788)
 
-[`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) supports counts of N-grams of words or consecutive characters. Once fitted, the vectorizer will have built a dictionary of feature indices:
+[`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) supports counts of words (or *N-grams* of words or consecutive characters). Once fitted, our vectorizer object will have built a dictionary of feature indices:
 
 ```python
-count_vect.vocabulary_.get(u'algorithm')
+count_vect.vocabulary_.get('algorithm')
 ```
 
 > *response*  
 > 4690
 
-The index value of a word in the vocabulary is linked to its frequency in the whole training corpus.
+- `count_vect` is the `CountVectorizer` object for our `train_twenty` project.
+- .`vocabulary_` is a Python attribute which is a dictionary containing a mapping of terms to feature indices. (Words are the keys and the values are indices into the feature matrix, `X_train_counts`)
 
-### From occurrences to frequencies
+- `.get('algorithm')` gets a count of the word "algorithm" in the 
 
-Occurrence count is a good start but there is an issue: longer documents will have higher average count values than shorter documents, even though they might talk about the same topics.
+### Transform Occurrences to Frequencies
 
-To avoid these potential discrepancies it suffices to divide the number of occurrences of each word in a document by the total number of words in the document: these new features are called `tf` for *Term Frequencies*.
+The count obtained above, was the number of occurances of the word "algorithm" across the entire corpus. Occurrence count is a good start but there is an issue: longer documents will have higher average count values than shorter documents, even though they might be about the same topics.
 
-Another refinement on top of `tf` is to downscale weights for words that occur in many documents in the corpus and are therefore less informative than those that occur only in a smaller portion of the corpus.
+We can avoid this potential discrepancy by dividing the number of occurrences of each unique word in a document by the total number of words in the document: these will be new features called `tf` for *Term Frequencies*.
 
-This downscaling is called [tf–idf](https://en.wikipedia.org/wiki/Tf-idf) for “Term Frequency times Inverse Document Frequency”.
+#### Calculating Term Frequency
 
-Both **tf** and **tf–idf** can be computed as follows using [`TfidfTransformer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer):
+The scipy sparse matrix of *term frequencies* can be computed using [`TfidfTransformer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer). (This code is an example, we won't use `X_train-tf`  after this.)
 
 ```python
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -198,7 +204,13 @@ X_train_tf.shape
 > *resposnse:*  
 > (2257, 35788)
 
-In the above example-code, we first used the `fit(..)` method to fit our estimator to the data and secondly the `transform(..)` method to transform our count-matrix to a tf-idf representation. These two steps can be combined to achieve the same end result faster by skipping redundant processing. This is done through using the `fit_transform(..)` method as shown below, and as mentioned in the note in the previous section:
+In the above example-code, we first used the `fit(..)` method to fit our estimator[^5] to the data and secondly the `transform(..)` method to transform our count-matrix to a `tf` representation. 
+
+#### Calculating *Term Frequency* and *Inverse Term Frequency*
+
+Another refinement on top of `tf` is to give a lower weight to words that occur across many documents in the corpus and are therefore are less informative than those that occur only in a smaller portion of the corpus.
+
+This weight reduction is called [tf–idf](https://en.wikipedia.org/wiki/Tf-idf) for “*Term Frequency* times *Inverse Document Frequency*”. The calculation of `tf` and `idf` can be combined. This is done through using the `fit_transform(..)` method as shown below:
 
 ```python
 tfidf_transformer = TfidfTransformer()
@@ -209,14 +221,18 @@ X_train_tfidf.shape
 > *respoonse:*  
 > (2257, 35788)
 
+`X_train_tfidf` is the scipy sparce matrix containg the new feature vectors.
+
 ## Training a classifier
 
-Now that we have our features, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the multinomial variant:
+Now that we have our features in `X_train_tfidf`, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the *multinomial*[^6] variant:
 
 ```python
 from sklearn.naive_bayes import MultinomialNB
 clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
 ```
+
+## Making Predictions
 
 To try to predict the outcome on a new document we need to extract the features using almost the same feature extracting chain as before. The difference is that we call `transform` instead of `fit_transform` on the transformers, since they have already been fit to the training set:
 
@@ -235,6 +251,30 @@ for doc, category in zip(docs_new, predicted):
 > 'God is love' => soc.religion.christian
 > 'OpenGL on the GPU is fast' => comp.graphics
 
+**Explanation:**
+
+- `docs_new = ['God is love', 'OpenGL on the GPU is fast']`
+  Creates a list of new text documents that the classifier will attempt to categorize.
+
+- `X_new_counts = count_vect.transform(docs_new)`
+  Tokenizes the new documents and converts them into a feature matrix of word counts. It uses the vocabulary that the `count_vect` object learned from the training data.
+
+- `X_new_tfidf = tfidf_transformer.transform(X_new_counts)`
+
+  Converts the new count matrix into a normalized *Term Frequency* times *Inverse Document Frequency* representation.
+
+- `predicted = clf.predict(X_new_tfidf)`
+
+  **The prdiction happens here!** The previously trained classifier *predicts* the category (topic) for each of the new documents.
+
+- `for doc, category in zip(docs_new, predicted):`
+
+  Starts a loop to iterate through the original new documents and their corresponding predicted category indices.
+
+- `print('%r => %s' % (doc, twenty_train.target_names[category]))`
+
+  **Prints the result** by showing the original document string (`doc`) followed by the category name, which is retrieved from the list of target names using the predicted numerical index (`category`).
+
 ## Building a pipeline
 
 In order to make the vectorizer => transformer => classifier easier to work with, `scikit-learn` provides a [`Pipeline`](https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline) class that behaves like a compound classifier:
@@ -248,18 +288,28 @@ text_clf = Pipeline([
  ])
 ```
 
-The names `vect`, `tfidf` and `clf` (classifier) are arbitrary. We will use them to perform grid search for suitable hyperparameters below. We can now train the model with a single command:
+The names `vect`, `tfidf` and `clf` (classifier) are arbitrary. We will use them to perform grid search for suitable hyperparameters[^7] below. We can now train the model with a single command:
 
 **Note:** In scikit-learn 1.7, when you display pipeline objects in Jupyter notebooks, you'll see enhanced HTML representations with comprehensive parameter information and a copy button for easy configuration.
 
 ```python
 text_clf.fit(twenty_train.data, twenty_train.target)
-Pipeline(...)
 ```
 
 > *response:*  
 > Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),
 >                 ('clf', MultinomialNB())])
+
+**Estimators and hyperparameters used in the pipeline:**
+
+Each of the estimators passed to the `text_clf` pipeline `fit` method contians a hyper parameter attribute that has a default value but can also be set to a new value. In our example we are using default values.
+
+- CountVectorizer (`vect`). 
+  *ngram_range* is a tuple (start, end) that specifies the minimum and maximum lengths of contiguous word sequences (N-grams) to be extracted as features (tokens). The default is (1, 1).
+- TfidfTransformer (`tfidf`).   
+  *use_idf* is set this to True or False determining whether the Inverse Document Frequency calculation is used. The default  is True.
+- MultinomialNB (`clf`)  
+  A key hyperparameter is *alpha* (known as the smoothing parameter). This small value is added to all counts to prevent zero probabilities. The default vlaue is 1.0.
 
 ## Evaluation of the performance on the test set
 
@@ -313,7 +363,7 @@ print(metrics.classification_report(twenty_test.target, predicted,
 ```
 
 >*Response:*  
->                   alt.atheism       0.95      0.80      0.87       319
+>                    alt.atheism       0.95      0.80      0.87       319
 >              comp.graphics       0.87      0.98      0.92       389
 >                           sci.med       0.94      0.89      0.91       396
 >  soc.religion.christian      0.90      0.95      0.93       398
@@ -391,15 +441,30 @@ A more detailed summary of the search is available at `gs_clf.cv_results_`.
 
 The `cv_results_` parameter can be easily imported into pandas as a `DataFrame` for further inspection.
 
-### Exercises
+## Exercises
 
-To do the exercises, copy the content of the ‘skeletons’ folder as a new folder named ‘workspace’:
+### Setup for All the Exercises
+
+The source code for these exercises is [on GitHub](https://github.com/scikit-learn/scikit-learn/tree/1.4.X/doc/tutorial/text_analytics).
+
+The tutorial folder on GitHub should contain the following sub-folders:
+
+- `*.rst files` - the source of the tutorial document written with sphinx
+- `data` - folder to put the datasets used during the tutorial
+- `skeletons` - sample incomplete scripts for the exercises
+- `solutions` - solutions of the exercises
+
+Copy the skeletons folder into a new folder somewhere on your hard-drive named `sklearn_tut_workspace`, where you can edit your own files for the exercises while keeping the original skeletons intact:
 
 ```python
-cp -r skeletons sklearn_tut_workspace
+cp -r skeletons work_directory/sklearn_tut_workspace
 ```
 
-You can then edit the content of the workspace without fear of losing the original exercise instructions.
+Machine learning algorithms need data. Go to each `$TUTORIAL_HOME/data` sub-folder and run the `fetch_data.py` script from there (after having read them first).
+
+Note: `fetch_data.py` imports the `lxml` module for XML processing.  You will need to install that package with the command: `pip install lxml`.
+
+Now run `fetch_data.py` in the languages and movie_reviews folders. For instance:
 
 Then start the Python interpreter and run the work-in-progress script with:
 
@@ -413,7 +478,7 @@ Refine the implementation and iterate until the exercise is solved.
 
 **For each exercise, the skeleton file provides all the necessary import statements, boilerplate code to load the data and sample code to evaluate the predictive accuracy of the model.**
 
-## Exercise 1: Language identification
+### Exercise 1: Language identification
 
 - Write a text classification pipeline using a custom preprocessor and `TfidfVectorizer` set up to use character based n-grams, using data from Wikipedia articles as the training set.
 - Evaluate the performance on some held out test set.
@@ -424,7 +489,7 @@ ipython command line:
 %run workspace/exercise_01_language_train_model.py data/languages/paragraphs/
 ```
 
-## Exercise 2: Sentiment Analysis on movie reviews
+### Exercise 2: Sentiment Analysis on movie reviews
 
 - Write a text classification pipeline to classify movie reviews as either positive or negative.
 - Find a good set of parameters using grid search.
@@ -436,13 +501,13 @@ ipython command line:
 %run workspace/exercise_02_sentiment.py data/movie_reviews/txt_sentoken/
 ```
 
-## Exercise 3: CLI text classification utility
+### Exercise 3: CLI text classification utility
 
 Using the results of the previous exercises and the `cPickle` module of the standard library, write a command line utility that detects the language of some text provided on `stdin` and estimate the polarity (positive or negative) if the text is written in English.
 
 Bonus point if the utility is able to give a confidence level for its predictions.
 
-## Where to from here
+### Where to from here
 
 Here are a few suggestions to help further your scikit-learn intuition upon the completion of this tutorial:
 
@@ -465,17 +530,21 @@ scikit-learn 1.7 introduces several enhancements that improve the text processin
 
 - **Improved Pipeline Configuration**: The enhanced HTML representation makes it easier to configure complex text processing pipelines with multiple transformers and classifiers.
 
-These improvements make text processing workflows more robust and user-friendly while maintaining backward compatibility with existing code.
-
 
 
 ---
 
-This original version of this tutorial was written by scikit-learn developers under the [BSD License](https://opensource.org/license/BSD-3-clause).  
+This [original version](https://scikit-learn.org/1.4/tutorial/text_analytics/working_with_text_data.html) of this tutorial was written by scikit-learn developers under a [BSD License](https://opensource.org/license/BSD-3-clause).  
 
----
+The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025 and 10/23/2025
 
-The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025
+[^1]: *Text preprossesing* is the initial set of steps to clean and standardize raw text data before analysis. This often includes converting all text to lowercase, removing punctuation, and handling special characters to ensure consistency. ↩
+[^2]: *Tokenizing* is the process of breaking down a text document into smaller units called *tokens*. Tokens are usually words, but can also be individual characters or parts of words.
+[^3]: *Stopwords* are common words (like "the," "a," "is," "and," "of") that generally don't carry significant meaning for classification or analysis. Removing them helps reduce the size of the feature set and can improve model performance.
+[^4]: A *feature vector* in the context of scikit-learn is a one-dimensional array of numerical values that represents a single data point (or sample) to be used by a machine learning algorithm.
+[^5]: *Estimators* are objects in scikit-learn that can learn parameters from data by implementing a `.fit()` method. These include: *Predictors* (Models): like `MultinomialNB` or `LinearRegression` and *Transformers* (Preprocessing Tools) like `CountVectorizer` or `StandardScaler` that learn rules to transform or process data.
 
----
+[^6]: *Multinomial* in this context, means the classifier is built to handle data with many features. The "multi" refers to the entire vocabulary of unique words, where every word is treated as a separate feature. The model works by learning the relative frequency of all the words for a specific topic.
+[^7]: *Hyperparameter* refers to a configuration setting that is external to the model and whose value can't be estimated from the data. Instead, a hyperparameter's value must be set by the developer.
+
 
