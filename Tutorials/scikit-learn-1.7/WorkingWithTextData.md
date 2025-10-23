@@ -386,7 +386,6 @@ for param_name in sorted(parameters.keys()):
 > clf_ _alpha: 0.001
 > tfidf_ _use_idf: True
 > vect_ _ngram_range: (1, 1)
->
 
 A more detailed summary of the search is available at `gs_clf.cv_results_`.
 
@@ -397,12 +396,12 @@ The `cv_results_` parameter can be easily imported into pandas as a `DataFrame` 
 To do the exercises, copy the content of the ‘skeletons’ folder as a new folder named ‘workspace’:
 
 ```python
-cp -r skeletons workspace
+cp -r skeletons sklearn_tut_workspace
 ```
 
 You can then edit the content of the workspace without fear of losing the original exercise instructions.
 
-Then fire an ipython shell and run the work-in-progress script with:
+Then start the Python interpreter and run the work-in-progress script with:
 
 ```python
 [1] %run workspace/exercise_XX_script.py arg1 arg2 arg3
