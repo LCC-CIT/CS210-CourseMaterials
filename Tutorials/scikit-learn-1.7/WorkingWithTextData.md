@@ -536,7 +536,9 @@ scikit-learn 1.7 introduces several enhancements that improve the text processin
 
 This [original version](https://scikit-learn.org/1.4/tutorial/text_analytics/working_with_text_data.html) of this tutorial was written by scikit-learn developers under a [BSD License](https://opensource.org/license/BSD-3-clause).  
 
-The code examples and text were updated for scikit-learn version 1.7 by Brian Bird using Claude Sonet 4, 10/19/2025 and 10/23/2025
+The code examples and text were updated for scikit-learn version 1.7 by Brian Bird, 10/23/2025
+
+Note: Claude Sonet 4 and Gemini Flash 2.5 were used to assist in drafting the revisions to this tutorial.
 
 [^1]: *Text preprossesing* is the initial set of steps to clean and standardize raw text data before analysis. This often includes converting all text to lowercase, removing punctuation, and handling special characters to ensure consistency. ↩
 [^2]: *Tokenizing* is the process of breaking down a text document into smaller units called *tokens*. Tokens are usually words, but can also be individual characters or parts of words.
