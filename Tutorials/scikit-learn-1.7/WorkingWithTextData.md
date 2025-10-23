@@ -43,7 +43,7 @@ twenty_train = fetch_20newsgroups(subset='train', categories=categories, shuffle
 
 #### Exploring the Data
 
-Now that the 4 newsgroups are loaded into `twenty_train`, (note that it's just four not twenty) lets explore the dataset. (This isn't part of the training process&mdash; it's just to help you understand the dataset.)
+Now that the 4 newsgroups are loaded into `twenty_train`, (note that it's just the four specified in `categories` not twenty) lets explore the dataset. (This isn't part of the training process&mdash; it's just to help you understand the dataset.)
 
 The returned dataset is a `scikit-learn` “bunch”: a simple holder object with fields that can be both accessed as python `dict` keys or `object` attributes for convenience, for instance the `target_names` holds the list of the requested category names:
 
@@ -313,7 +313,7 @@ Each of the estimators passed to the `text_clf` pipeline `fit` method contians a
 
 ## Evaluation of the performance on the test set
 
-Evaluating the predictive accuracy of the model is equally easy:
+Evaluating the predictive accuracy of the model is equally easy. The news post text files that `fetch_20newsgroups` pulls data sets from are organized in *training* and *test* directories. To eveluate the performance of the classifier we will use the test posts.
 
 ```python
 import numpy as np
@@ -322,7 +322,6 @@ twenty_test = fetch_20newsgroups(subset='test',
 docs_test = twenty_test.data
 predicted = text_clf.predict(docs_test)
 np.mean(predicted == twenty_test.target)
-
 ```
 
 > *response:*  
@@ -381,7 +380,7 @@ metrics.confusion_matrix(twenty_test.target, predicted)
 > [  5,  35, 353,   3],
 > [  5,  11,   4, 378]])
 
-As expected the confusion matrix shows that posts from the newsgroups on atheism and Christianity are more often confused for one another than with computer graphics.
+As expected the *confusion matrix* shows that posts from the newsgroups on atheism and Christianity are more often confused for one another than with computer graphics.
 
 ## Parameter tuning using grid search
 
