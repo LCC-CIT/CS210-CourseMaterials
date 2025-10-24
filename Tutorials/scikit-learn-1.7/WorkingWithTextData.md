@@ -112,13 +112,15 @@ for t in twenty_train.target[:10]:
 
 You might have noticed that the samples were shuffled randomly when we called `fetch_20newsgroups(..., shuffle=True, random_state=42)`: this is useful if you wish to select only a subset of samples to quickly train a model and get a first idea of the results before re-training on the complete dataset later.
 
-## Extracting features from text files
+## Building Feature Vectors and Training
+
+### Extracting features from text files
 
 In order to perform machine learning on text documents, we first need to turn the text content into *numerical* *feature vectors*.
 
-### Bags of words
+#### Bags of words
 
-The most intuitive way to do so is to use a bags of words representation:
+The most intuitive way to do so is to use a "bags of words" representation:
 
 1. Assign a fixed integer id to each word occurring in any document of the training set (for instance, by building a dictionary from words to integer indices).
 2. For each document `#i`, count the number of occurrences of each word `w` and store it in `X[i, j]` as the value of feature `#j` where `j` is the index of word `w` in the dictionary.
@@ -133,7 +135,7 @@ Fortunately, <u>most values in x will be zeros</u> since for a given document le
 
 **Note:** In scikit-learn 1.7, all text processing estimators now also accept the new sparse arrays (`sparray`) in addition to traditional sparse matrices, ensuring compatibility with future versions of SciPy as it transitions from sparse matrices to sparse arrays.
 
-### Tokenize the Text and Build Feature Vectors
+#### Tokenize the Text and Build Feature Vectors
 
 Text preprocessing[^1], tokenizing[^2] and filtering (removal) of stopwords[^3] are all included in [`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer), which:
 
@@ -148,7 +150,7 @@ count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(twenty_train.data)
 ```
 
-#### Code Explanation
+##### Code Explanation
 
 - `from sklearn.feature_extraction.text import CountVectorizer`
   Imports the `CountVectorizer` class from the scikit-learn library. `CountVectorizer` is a feature extractor.
@@ -159,7 +161,7 @@ X_train_counts = count_vect.fit_transform(twenty_train.data)
   - *fit*: the vectorizer learns from the input text data (`twenty_train.data`) by scanning all the documents to identify every unique word, performing text preprocessing and tokenizing in the process. This builds an internal dictionary of features.
   - *transform*: The vectorizer then uses the internal dictionary of features to convert the text documents into a numerical matrix. Each document is converted into a *feature vector* (a row) where the values are the counts of each word in the dictionary. The resulting feature vector matrix, `X_train_counts`, is the numerical representation of the training data.
 
-#### Explore the Feature Vector Matrix
+##### Explore the Feature Vector Matrix
 
 The feature vectors are now stored in `X_train_counts` which is a scipy sparse matrix. Lets take a look at it.
 
@@ -184,13 +186,13 @@ count_vect.vocabulary_.get('algorithm')
 
 - `.get('algorithm')` gets a count of the word "algorithm" in the 
 
-### Transform Occurrences to Frequencies
+#### Transform Occurance Counts to Frequencies
 
 The count obtained above, was the number of occurances of the word "algorithm" across the entire corpus. Occurrence count is a good start but there is an issue: longer documents will have higher average count values than shorter documents, even though they might be about the same topics.
 
 We can avoid this potential discrepancy by dividing the number of occurrences of each unique word in a document by the total number of words in the document: these will be new features called `tf` for *Term Frequencies*.
 
-#### Calculating Term Frequency
+##### Calculating Term Frequency
 
 The scipy sparse matrix of *term frequencies* can be computed using [`TfidfTransformer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer). (This code is an example, we won't use `X_train-tf`  after this.)
 
@@ -206,7 +208,7 @@ X_train_tf.shape
 
 In the above example-code, we first used the `fit(..)` method to fit our estimator[^5] to the data and secondly the `transform(..)` method to transform our count-matrix to a `tf` representation. 
 
-#### Calculating *Term Frequency* and *Inverse Term Frequency*
+##### Calculating Term Frequency and Inverse Term Frequency
 
 Another refinement on top of `tf` is to give a lower weight to words that occur across many documents in the corpus and are therefore are less informative than those that occur only in a smaller portion of the corpus.
 
@@ -223,7 +225,7 @@ X_train_tfidf.shape
 
 `X_train_tfidf` is the scipy sparce matrix containg the new feature vectors.
 
-## Training a classifier
+### Training a classifier
 
 Now that we have our features in `X_train_tfidf`, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the *multinomial*[^6] variant:
 
@@ -232,7 +234,7 @@ from sklearn.naive_bayes import MultinomialNB
 clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
 ```
 
-## Making Predictions
+### Making Predictions
 
 To try to predict the outcome on a new document we need to extract the features using almost the same feature extracting chain as before. The difference is that we call `transform` instead of `fit_transform` on the transformers, since they have already been fit to the training set:
 
@@ -275,7 +277,7 @@ for doc, category in zip(docs_new, predicted):
 
   **Prints the result** by showing the original document string (`doc`) followed by the category name, which is retrieved from the list of target names using the predicted numerical index (`category`).
 
-## Building a pipeline
+## Building a Pipeline
 
 In order to make the vectorizer => transformer => classifier easier to work with, `scikit-learn` provides a [`Pipeline`](https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline) class that behaves like a compound classifier:
 
@@ -311,7 +313,7 @@ Each of the estimators passed to the `text_clf` pipeline `fit` method contians a
 - MultinomialNB (`clf`)  
   A key hyperparameter is *alpha* (known as the smoothing parameter). This small value is added to all counts to prevent zero probabilities. The default vlaue is 1.0.
 
-## Evaluation of the performance on the test set
+## Testing Classification Accuracy
 
 Evaluating the predictive accuracy of the model is equally easy. The news post text files that `fetch_20newsgroups` pulls data sets from are organized in *training* and *test* directories. To eveluate the performance of the classifier we will use the test posts.
 
@@ -382,7 +384,7 @@ metrics.confusion_matrix(twenty_test.target, predicted)
 
 As expected the *confusion matrix* shows that posts from the newsgroups on atheism and Christianity are more often confused for one another than with computer graphics.
 
-## Parameter tuning using grid search
+## Parameter Tuning Using Grid Search
 
 We’ve already encountered some parameters such as `use_idf` in the `TfidfTransformer`. Classifiers tend to have many parameters as well; e.g., `MultinomialNB` includes a smoothing parameter `alpha` and `SGDClassifier` has a penalty parameter `alpha` and configurable loss and penalty terms in the objective function (see the module documentation, or use the Python `help` function to get a description of these).
 
