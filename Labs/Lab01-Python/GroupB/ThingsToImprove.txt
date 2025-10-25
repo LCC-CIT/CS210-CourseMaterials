@@ -1,0 +1,2 @@
+Room reservations should check for projector for the small room. 
+The logic should be made more logical overall.
