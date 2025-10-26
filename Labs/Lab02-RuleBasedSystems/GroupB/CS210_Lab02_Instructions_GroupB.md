@@ -29,6 +29,7 @@ B. Making a new expert system to do something you are interesed in. Send your in
 4. The program will load the contents of the csv file into a List of Dictionaries.
 5. The inference part of your program will implement *forward chaining*.
 6. User input and output should be separated from code that does inference.
+7. There will be a module that runs tests on the primary inference function and checks all combinations of inputs that the system can recognize.
 
 
 
