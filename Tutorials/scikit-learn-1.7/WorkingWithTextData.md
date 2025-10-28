@@ -172,7 +172,7 @@ X_train_counts.shape
 > *response:*  
 > (2257, 35788)
 
-[`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) supports counts of words (or *N-grams* of words or consecutive characters). Once fitted, our vectorizer object will have built a dictionary of feature indices:
+[`CountVectorizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) supports counts of words (or *N-grams*[^5] of words or consecutive characters). Once fitted, our vectorizer object will have built a dictionary of feature indices:
 
 ```python
 count_vect.vocabulary_.get('algorithm')
@@ -206,7 +206,7 @@ X_train_tf.shape
 > *resposnse:*  
 > (2257, 35788)
 
-In the above example-code, we first used the `fit(..)` method to fit our estimator[^5] to the data and secondly the `transform(..)` method to transform our count-matrix to a `tf` representation. 
+In the above example-code, we first used the `fit(..)` method to fit our estimator[^6] to the data and secondly the `transform(..)` method to transform our count-matrix to a `tf` representation. 
 
 ##### Calculating Term Frequency and Inverse Term Frequency
 
@@ -227,7 +227,7 @@ X_train_tfidf.shape
 
 ### Training a classifier
 
-Now that we have our features in `X_train_tfidf`, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the *multinomial*[^6] variant:
+Now that we have our features in `X_train_tfidf`, we can train a classifier to try to predict the category of a post. Let's start with a [naïve Bayes](https://scikit-learn.org/1.7/modules/naive_bayes.html#naive-bayes) classifier, which provides a nice baseline for this task. `scikit-learn` includes several variants of this classifier, and the one most suitable for word counts is the *multinomial*[^7] variant:
 
 ```python
 from sklearn.naive_bayes import MultinomialNB
@@ -290,7 +290,7 @@ text_clf = Pipeline([
  ])
 ```
 
-The names `vect`, `tfidf` and `clf` (classifier) are arbitrary. We will use them to perform grid search for suitable hyperparameters[^7] below. We can now train the model with a single command:
+The names `vect`, `tfidf` and `clf` (classifier) are arbitrary. We will use them to perform grid search for suitable hyperparameters[^8] below. We can now train the model with a single command:
 
 **Note:** In scikit-learn 1.7, when you display pipeline objects in Jupyter notebooks, you'll see enhanced HTML representations with comprehensive parameter information and a copy button for easy configuration.
 
@@ -329,7 +329,11 @@ np.mean(predicted == twenty_test.target)
 > *response:*  
 > np.float64(0.9101198402130493)
 
-We achieved 83.5% accuracy. Let's see if we can do better with a linear [support vector machine (SVM)](https://scikit-learn.org/1.7/modules/svm.html#svm), which is widely regarded as one of the best text classification algorithms (although it's also a bit slower than naïve Bayes). We can change the learner by simply plugging a different classifier object into our pipeline:
+We achieved 83.5% accuracy. 
+
+### Train and Test a Support Vector Machine
+
+Let's see if we can do better with a linear [support vector machine (SVM)](https://scikit-learn.org/1.7/modules/svm.html#svm), which is widely regarded as one of the best text classification algorithms (although it's also a bit slower than naïve Bayes). We can change the learner by simply plugging a different classifier object into our pipeline:
 
 ```python
 from sklearn.linear_model import SGDClassifier
@@ -354,16 +358,20 @@ np.mean(predicted == twenty_test.target)
 > *Response:*  
 > np.float64(0.9101198402130493)
 
-We achieved 91.3% accuracy using the SVM. `scikit-learn` provides further utilities for more detailed performance analysis of the results:
+We achieved 91.3% accuracy using the SVM.
+
+#### Classification Report
+
+ `scikit-learn` provides further utilities for more detailed performance analysis of the results:
 
 ```python
 from sklearn import metrics
 print(metrics.classification_report(twenty_test.target, predicted,
      target_names=twenty_test.target_names))
-                        precision    recall  f1-score   support
 ```
 
 >*Response:*  
+>                                      precision    recall  f1-score   support
 >                    alt.atheism       0.95      0.80      0.87       319
 >              comp.graphics       0.87      0.98      0.92       389
 >                           sci.med       0.94      0.89      0.91       396
@@ -373,22 +381,44 @@ print(metrics.classification_report(twenty_test.target, predicted,
 >     ​                   macro avg      0.91      0.91      0.91     1502
 >     ​             weighted avg       0.91      0.91      0.91      1502
 
+#### Confusion Matrix
+
 ```python
 metrics.confusion_matrix(twenty_test.target, predicted)
 ```
 >*Response:*  
->array([[256,  11,  16,  36],
-> [  4, 380,   3,   2],
-> [  5,  35, 353,   3],
-> [  5,  11,   4, 378]])
+>array([
+>    [256,  11,  16,  36],
+>    [  4, 380,   3,   2],
+>    [  5,  35, 353,   3],
+>    [  5,  11,   4, 378]
+>])
 
-As expected the *confusion matrix* shows that posts from the newsgroups on atheism and Christianity are more often confused for one another than with computer graphics.
+The  *confusion matrix*[^9] is arranged as follows:
+
+- **Rows** represent the actual classes of the documents (the ground truth). 
+  - **TP** (True Positive) is the count of posts correctly classified as in a class.
+  - **FN** (False Negative) is the count of posts incorrectly classified as outside a class.
+- **Columns** represent the predicted classes made by the classifier.
+  - **FP** (False Positive) is the count of posts incorrectly classified as in a class.
+
+The diagonal represents correct classifications.
+
+|                         | **Predicted Atheism** | **Predicted Graphics** | **Predicted Medical** | **Predicted Christianity** |
+| ----------------------- | --------------------- | ---------------------- | --------------------- | -------------------------- |
+| **Actual Atheism**      | **256** (TP)          | 11 (FN)                | 16 (FN)               | 36 (FN)                    |
+| **Actual Graphics**     | 4 (FN)                | **380** (TP)           | 3 (FN)                | 2 (FN)                     |
+| **Actual Medical**      | 5 (FN)                | 35 (FN)                | **353** (TP)          | 3 (FN)                     |
+| **Actual Christianity** | 5 (FN)                | 11 (FN)                | 4 (FN)                | **378** (TP)               |
+|                         | 14  FP                | 57  FP                 | 23  FP                | 41  FP                     |
+
+As expected, this shows that posts from the newsgroups on atheism and Christianity are more often confused for one another than with computer graphics.
 
 ## Parameter Tuning Using Grid Search
 
 We’ve already encountered some parameters such as `use_idf` in the `TfidfTransformer`. Classifiers tend to have many parameters as well; e.g., `MultinomialNB` includes a smoothing parameter `alpha` and `SGDClassifier` has a penalty parameter `alpha` and configurable loss and penalty terms in the objective function (see the module documentation, or use the Python `help` function to get a description of these).
 
-Instead of tweaking the parameters of the various components of the chain, it is possible to run an exhaustive search of the best parameters on a grid of possible values. We try out all classifiers on either words or bigrams, with or without idf, and with a penalty parameter of either 0.01 or 0.001 for the linear SVM:
+Instead of tweaking the parameters of the various components of the chain, it is possible to run an exhaustive search of the best parameters on a grid of possible values. We try out all classifiers on either words or *bigrams*[^10], with or without *idf*, and with a penalty parameter of either 0.01 or 0.001 for the linear SVM:
 
 ```python
 from sklearn.model_selection import GridSearchCV
@@ -405,13 +435,15 @@ Obviously, such an exhaustive search can be expensive. If we have multiple CPU c
 gs_clf = GridSearchCV(text_clf, parameters, cv=5, n_jobs=-1)
 ```
 
-The grid search instance behaves like a normal `scikit-learn` model. Let’s perform the search on a smaller subset of the training data to speed up the computation:
+Note that `txt_clf` is still the SVG classifier, which is the classifier whose parameters we are tuning with grid search. The grid search instance behaves like a normal `scikit-learn` model. 
+
+Let’s perform the search on a smaller subset of the training data to speed up the computation:
 
 ```python
 gs_clf = gs_clf.fit(twenty_train.data[:400], twenty_train.target[:400])
 ```
 
-The result of calling `fit` on a `GridSearchCV` object is a classifier that we can use to `predict`:
+Calling `fit` on a `GridSearchCV` object returns a classifier that we can use to `predict`:
 
 ```python
 twenty_train.target_names[gs_clf.predict(['God is love'])[0]]
@@ -438,7 +470,7 @@ for param_name in sorted(parameters.keys()):
 > tfidf_ _use_idf: True
 > vect_ _ngram_range: (1, 1)
 
-A more detailed summary of the search is available at `gs_clf.cv_results_`.
+You can get a more detailed summary of the search from `gs_clf.cv_results_`.
 
 The `cv_results_` parameter can be easily imported into pandas as a `DataFrame` for further inspection.
 
@@ -450,10 +482,10 @@ The source code for these exercises is [on GitHub](https://github.com/scikit-lea
 
 The tutorial folder on GitHub should contain the following sub-folders:
 
-- `*.rst files` - the source of the tutorial document written with sphinx
-- `data` - folder to put the datasets used during the tutorial
-- `skeletons` - sample incomplete scripts for the exercises
-- `solutions` - solutions of the exercises
+- `*.rst files` - the source of the tutorial document written with sphinx.
+- `data` - folder to put the datasets used during the tutorial.
+- `skeletons` - sample incomplete scripts for the exercises.
+- `solutions` - solutions of the exercises.
 
 Copy the skeletons folder into a new folder somewhere on your hard-drive named `sklearn_tut_workspace`, where you can edit your own files for the exercises while keeping the original skeletons intact:
 
@@ -465,15 +497,15 @@ Machine learning algorithms need data. Go to each `$TUTORIAL_HOME/data` sub-fold
 
 Note: `fetch_data.py` imports the `lxml` module for XML processing.  You will need to install that package with the command: `pip install lxml`.
 
-Now run `fetch_data.py` in the languages and movie_reviews folders. For instance:
+Now run `fetch_data.py` in the languages and movie_reviews folders.
 
-Then start the Python interpreter and run the work-in-progress script with:
+Then  run the work-in-progress script with:
 
 ```python
-[1] %run workspace/exercise_XX_script.py arg1 arg2 arg3
+python exercise_XX_script.py arg1 arg2 arg3
 ```
 
-If an exception is triggered, use `%debug` to fire-up a post mortem ipdb session.
+Or run the script in an IDE where you can edit and debug more easily.
 
 Refine the implementation and iterate until the exercise is solved.
 
@@ -545,9 +577,13 @@ Note: Claude Sonet 4 and Gemini Flash 2.5 were used to assist in drafting the re
 [^2]: *Tokenizing* is the process of breaking down a text document into smaller units called *tokens*. Tokens are usually words, but can also be individual characters or parts of words.
 [^3]: *Stopwords* are common words (like "the," "a," "is," "and," "of") that generally don't carry significant meaning for classification or analysis. Removing them helps reduce the size of the feature set and can improve model performance.
 [^4]: A *feature vector* in the context of scikit-learn is a one-dimensional array of numerical values that represents a single data point (or sample) to be used by a machine learning algorithm.
-[^5]: *Estimators* are objects in scikit-learn that can learn parameters from data by implementing a `.fit()` method. These include: *Predictors* (Models): like `MultinomialNB` or `LinearRegression` and *Transformers* (Preprocessing Tools) like `CountVectorizer` or `StandardScaler` that learn rules to transform or process data.
+[^5]: An *n-gram* is a contiguous sequence of N items from a given sample of text.
+[^6]: *Estimators* are objects in scikit-learn that can learn parameters from data by implementing a `.fit()` method. These include: *Predictors* (Models): like `MultinomialNB` or `LinearRegression` and *Transformers* (Preprocessing Tools) like `CountVectorizer` or `StandardScaler` that learn rules to transform or process data.
+[^7]: *Multinomial* in this context, means the classifier is built to handle data with many features. The "multi" refers to the entire vocabulary of unique words, where every word is treated as a separate feature. The model works by learning the relative frequency of all the words for a specific topic.
+[^8]: *Hyperparameter* refers to a configuration setting that is external to the model and whose value can't be estimated from the data. Instead, a hyperparameter's value must be set by the developer.
 
-[^6]: *Multinomial* in this context, means the classifier is built to handle data with many features. The "multi" refers to the entire vocabulary of unique words, where every word is treated as a separate feature. The model works by learning the relative frequency of all the words for a specific topic.
-[^7]: *Hyperparameter* refers to a configuration setting that is external to the model and whose value can't be estimated from the data. Instead, a hyperparameter's value must be set by the developer.
+[^9]: A *confusion matrix* is a table used to evaluate the performance of a classification model on a set of test data for which the true values are known. It visually summarizes the classifier's performance by comparing the predicted categories to the actual categories.
+[^10]: A *bigram* is an *n-gram* sequence of two words, for example: "quick brown" or "brown fox".
+
 
 
