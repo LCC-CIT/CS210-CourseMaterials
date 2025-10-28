@@ -487,22 +487,22 @@ The tutorial folder on GitHub should contain the following sub-folders:
 - `skeletons` - sample incomplete scripts for the exercises.
 - `solutions` - solutions of the exercises.
 
-Copy the skeletons folder into a new folder somewhere on your hard-drive named `sklearn_tut_workspace`, where you can edit your own files for the exercises while keeping the original skeletons intact:
+Copy the skeletons folder into a new folder somewhere on your hard-drive named `sklearn_TextAnalyaticsTutorial`, where you can edit your own files for the exercises while keeping the original skeletons intact:
 
 ```python
-cp -r skeletons work_directory/sklearn_tut_workspace
+cp -r skeletons your_path/sklearn_TextAnalyaticsTutorial
 ```
 
-Machine learning algorithms need data. Go to each `$TUTORIAL_HOME/data` sub-folder and run the `fetch_data.py` script from there (after having read them first).
+Machine learning algorithms need data. Go to each `sklearn_TextAnalyaticsTutorial` sub-folder and run the `fetch_data.py` script from there (after having read them first).
 
 Note: `fetch_data.py` imports the `lxml` module for XML processing.  You will need to install that package with the command: `pip install lxml`.
 
 Now run `fetch_data.py` in the languages and movie_reviews folders.
 
-Then  run the work-in-progress script with:
+Then  run the work-in-progress script from `sklearn_TextAnalyaticsTutorial` with:
 
 ```python
-python exercise_XX_script.py arg1 arg2 arg3
+python exercise_XX_script.py arg1 # arg1 is the training data folder
 ```
 
 Or run the script in an IDE where you can edit and debug more easily.
@@ -513,7 +513,7 @@ Refine the implementation and iterate until the exercise is solved.
 
 ### Exercise 1: Language identification
 
-- Write a text classification pipeline using a custom preprocessor and `TfidfVectorizer` set up to use character based n-grams, using data from Wikipedia articles as the training set.
+- Write a text classification pipeline using a custom preprocessor and `TfidfVectorizer` set up to use *character based* *n-grams*, using data from Wikipedia articles as the training set.
 - Evaluate the performance on some held out test set.
 
 ipython command line:
@@ -521,6 +521,20 @@ ipython command line:
 ```python
 %run workspace/exercise_01_language_train_model.py data/languages/paragraphs/
 ```
+
+#### Hints
+
+- Setting up a vectorizer for a character instead of word sequence.  
+  This code specifies *n-grams* of 1, 2, or 3 character sequences.
+
+  ```python
+  vectorizer = TfidfVectorizer(
+      analyzer='char',      # Use individual characters as features
+      ngram_range=(1, 3)    # Extract unigrams (1), bigrams (2), and trigrams (3)
+  )
+  ```
+
+  
 
 ### Exercise 2: Sentiment Analysis on movie reviews
 
@@ -577,13 +591,13 @@ Note: Claude Sonet 4 and Gemini Flash 2.5 were used to assist in drafting the re
 [^2]: *Tokenizing* is the process of breaking down a text document into smaller units called *tokens*. Tokens are usually words, but can also be individual characters or parts of words.
 [^3]: *Stopwords* are common words (like "the," "a," "is," "and," "of") that generally don't carry significant meaning for classification or analysis. Removing them helps reduce the size of the feature set and can improve model performance.
 [^4]: A *feature vector* in the context of scikit-learn is a one-dimensional array of numerical values that represents a single data point (or sample) to be used by a machine learning algorithm.
-[^5]: An *n-gram* is a contiguous sequence of N items from a given sample of text.
+[^5]: An *n-gram* is a contiguous sequence of N characters or words from a given sample of text.
 [^6]: *Estimators* are objects in scikit-learn that can learn parameters from data by implementing a `.fit()` method. These include: *Predictors* (Models): like `MultinomialNB` or `LinearRegression` and *Transformers* (Preprocessing Tools) like `CountVectorizer` or `StandardScaler` that learn rules to transform or process data.
 [^7]: *Multinomial* in this context, means the classifier is built to handle data with many features. The "multi" refers to the entire vocabulary of unique words, where every word is treated as a separate feature. The model works by learning the relative frequency of all the words for a specific topic.
 [^8]: *Hyperparameter* refers to a configuration setting that is external to the model and whose value can't be estimated from the data. Instead, a hyperparameter's value must be set by the developer.
 
 [^9]: A *confusion matrix* is a table used to evaluate the performance of a classification model on a set of test data for which the true values are known. It visually summarizes the classifier's performance by comparing the predicted categories to the actual categories.
-[^10]: A *bigram* is an *n-gram* sequence of two words, for example: "quick brown" or "brown fox".
+[^10]: A *bigram* is an *n-gram* sequence of two words or characters, for example: "quick brown" or "qu".
 
 
 
