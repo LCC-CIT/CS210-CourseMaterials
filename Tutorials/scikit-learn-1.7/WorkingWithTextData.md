@@ -381,6 +381,13 @@ print(metrics.classification_report(twenty_test.target, predicted,
 >     ​                   macro avg      0.91      0.91      0.91     1502
 >     ​             weighted avg       0.91      0.91      0.91      1502
 
+The columns are showing the following:
+
+- **Precision:** the ratio `tp / (tp + fp)` where `tp` is the number of *true positives* and `fp` the number of *false positives*. The precision is intuitively the ability of the classifier not to label a negative sample as positive.
+- **Recall:** the ratio `tp / (tp + fn)` where `tp` is the number of true positives and `fn` the number of false negatives. The recall is intuitively the ability of the classifier to find all the positive samples.
+- **F1-score:** A balance between precision and recall (the harmonic mean). 
+- **Support:** the number of occurrences of each class in `y_true`.  (The number of actual samples for each class in the test set).
+
 #### Confusion Matrix
 
 ```python
@@ -516,12 +523,6 @@ Refine the implementation and iterate until the exercise is solved.
 - Write a text classification pipeline using a custom preprocessor and `TfidfVectorizer` set up to use *character based* *n-grams*, using data from Wikipedia articles as the training set.
 - Evaluate the performance on some held out test set.
 
-ipython command line:
-
-```python
-%run workspace/exercise_01_language_train_model.py data/languages/paragraphs/
-```
-
 #### Hints
 
 - Setting up a vectorizer for a character instead of word sequence.  
@@ -541,12 +542,6 @@ ipython command line:
 - Write a text classification pipeline to classify movie reviews as either positive or negative.
 - Find a good set of parameters using grid search.
 - Evaluate the performance on a held out test set.
-
-ipython command line:
-
-```python
-%run workspace/exercise_02_sentiment.py data/movie_reviews/txt_sentoken/
-```
 
 ### Exercise 3: CLI text classification utility
 
