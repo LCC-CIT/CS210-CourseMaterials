@@ -327,7 +327,7 @@ np.mean(predicted == twenty_test.target)
 ```
 
 > *response:*  
-> np.float64(0.9101198402130493)
+> np.float64(0.8348868175765646)
 
 We achieved 83.5% accuracy. 
 
