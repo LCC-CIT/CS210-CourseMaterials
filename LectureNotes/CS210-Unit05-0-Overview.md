@@ -8,9 +8,9 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Week 2 Overview for Fall 2025</h1>
+<h1>Week 5 Overview for Fall 2025</h1>
 
-<h2>Oct. 6 through Oct. 12</h2>
+<h2>Oct. 27 through Nov, 2</h2>
 
 | Topics                                   |                                |
 | ---------------------------------------- | ------------------------------ |
@@ -33,14 +33,21 @@ author: Brian Bird
   Fusion Lab Faculty and students are forming a [club on emergent technology and AI](Images/ETAIClubPoster.pdf).
    [Interest Form](https://out.smore.com/e/nd345/V0ERKC?__$u__) | Contact: [Kevin Steeves](https://out.smore.com/e/nd345/X14b6G?__$u__)
 
-
-
 ## Things to Do This Week
 
 - Lab 3 part 1 due by Thursday, 10/30.
 - Lab 3 part 2 beta version due by Tuesday, 11/4.
 - Lab 3 part 2 code review due by Thursday, 11/6.
 - Take quiz 4 over the scikit-learn tutorial by Sunday, 11/9.
+
+## Instructor's Office Hours
+
+This is just a reminder that I'm always happy to chat, look at code or answer questions!
+
+- Drop in on [Zoom](https://lanecc.zoom.us/j/8982554800) or in person in building 19, room 152.
+  - Monday and Wednesday 2:00 to 3:50
+  - Tuesday and Thursday 4:00 to 4:50
+- You can email or message me to make an appointment to meet at another time.
 
 
 
