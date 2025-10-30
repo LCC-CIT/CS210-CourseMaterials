@@ -442,6 +442,13 @@ Obviously, such an exhaustive search can be expensive. If we have multiple CPU c
 gs_clf = GridSearchCV(text_clf, parameters, cv=5, n_jobs=-1)
 ```
 
+Description of parameters:
+
+- `estimator`: An object that fits a model based on some training data and can make predictions for  new data. In this case, `text_clf`, the SGDClassifier we trained earlier.
+- `param_grid`: A dictionary with parameters names as keys and lists of parameter settings to try. In this case, the `parameters` dictionary we trained earlier.
+- `n-jobs`: The number of jobs to run in parallel.
+- `cv`: Determines the *cross-validation*[^11] splitting strategy.
+
 Note that `txt_clf` is still the SVG classifier, which is the classifier whose parameters we are tuning with grid search. The grid search instance behaves like a normal `scikit-learn` model. 
 
 Let’s perform the search on a smaller subset of the training data to speed up the computation:
@@ -593,6 +600,7 @@ Note: Claude Sonet 4 and Gemini Flash 2.5 were used to assist in drafting the re
 
 [^9]: A *confusion matrix* is a table used to evaluate the performance of a classification model on a set of test data for which the true values are known. It visually summarizes the classifier's performance by comparing the predicted categories to the actual categories.
 [^10]: A *bigram* is an *n-gram* sequence of two words or characters, for example: "quick brown" or "qu".
+[^11]: *cross-validation* is a resampling method that iteratively partitions data into mutually exclusive ‘train’ and ‘test’ subsets so model performance can be evaluated on unseen data.
 
 
 
