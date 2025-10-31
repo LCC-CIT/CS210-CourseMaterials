@@ -23,13 +23,15 @@ Do these parts of the "[Working with Text Data](https://lcc-cit.github.io/CS210-
 - Testing Classification Accuracy
 - Fine Tuning Hyperparameters with a Grid Search
 
-Wiite a .py file that <u>only does the essential steps</u> to:
+Wiite a .py file that <u>only includes the essential steps</u> to:
+
+- Fetch the training data
 
 - Build a feature vector matrix
 
-- Train the classifier
+- Train the classifier (without using a pipeline)
 
-- Test the classifier (without using the pipeline)
+- Test the classifier
 
   - Use test data from  
     ```Python
