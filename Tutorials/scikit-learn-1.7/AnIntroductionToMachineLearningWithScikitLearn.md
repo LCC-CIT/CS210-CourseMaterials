@@ -284,6 +284,35 @@ classif.fit(X, y).predict(X)
 
 In this case, the classifier is fit on instances that are each assigned multiple labels. The [`MultiLabelBinarizer`](https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer) is used to binarize the 2d array of multilabels to `fit` upon. As a result, `predict()` returns a 2d array with multiple predicted labels for each instance.
 
+## Getting Python Help for `scikit-learn` 
+
+You can refer to the documentation or use the Python `help` function to get documentation on scikit-learn modules, classes, methods, attributes, etc.
+
+For example, to get help on SGDClassifier:
+
+``` python
+from sklearn..naive_bayes import MultinomialNB
+help(MultinomialNB)
+```
+
+To see all valid attributes and methods:
+
+```python
+print(dir(MultinomialNB))
+```
+
+To see all valid hyperparameters:
+
+```javascript
+print(MultinomialNB().get_params())
+```
+
+To get help on an attribute or method:
+
+```python
+ help(MultinomialNB.fit)
+```
+
 ## New Features in scikit-learn 1.5-1.7
 
 Since this tutorial was originally written for scikit-learn 1.4, several important features have been added in versions 1.5, 1.6, and 1.7 that enhance the machine learning workflow:

@@ -23,7 +23,7 @@ author: Brian Bird
 
 [TOC]
 
-### Graphic Procesing Unit (GPU)
+## Graphic Procesing Unit (GPU)
 
 **Graphics Processing Units (GPUs)** are highly parallel processors originally designed for rendering graphics in video games. Their architecture makes them ideal for the massive computations required in deep learning, especially for training large neural networks.
 
@@ -41,13 +41,28 @@ For the models and datasets in this book:
 - Training will be fast enough without GPU acceleration.
 - **scikit-learn** runs entirely on the CPU.
 
-### Optional GPU Use
+### Optional GPU Use for TensorFlow
 
 If you have a **CUDA-capable GPU**, you’re welcome to use it:
 
 - Install CUDA properly before setting up packages
 - Use a **GPU-enabled version of TensorFlow**
 - No need to buy a GPU—examples will run fine on CPU
+
+## How Scikit-learn Handles Acceleration
+
+### 1. CPU Focus
+
+`GridSearchCV` parallelizes its work across **multiple CPU cores** (using the `n_jobs` parameter) by running independent cross-validation folds and hyperparameter combinations simultaneously. This is highly effective but doesn't touch the GPU.
+
+### 2. External Libraries for GPU Acceleration
+
+To use CUDA cores for training within a scikit-learn pipeline, you generally need to replace the standard scikit-learn estimators with counterparts from libraries specifically built for GPU acceleration:
+
+- **cuML (RAPIDS):** This library provides GPU-accelerated versions of many scikit-learn estimators (like $\text{LogisticRegression}$, $\text{KNeighborsClassifier}$, etc.). You can use a **cuML estimator inside a standard scikit-learn $\text{Pipeline}$** and then run `GridSearchCV` on the pipeline. The grid search itself still runs on the CPU, but the heavy lifting of model training and scoring occurs on the GPU.
+- **Other Libraries:** For deep learning models, libraries like PyTorch or TensorFlow, which have native GPU support, are typically used instead of scikit-learn.
+
+
 
 ## References
 
