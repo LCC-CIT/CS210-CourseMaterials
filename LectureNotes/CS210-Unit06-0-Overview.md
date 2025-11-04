@@ -10,7 +10,7 @@ author: Brian Bird
 
 <h1>Week 6 Overview for Fall 2025</h1>
 
-<h2>Oct. 27 through Nov, 2</h2>
+<h2>Nov. 3 through Nov, 11/9</h2>
 
 | Topics                                      |                                |
 | ------------------------------------------- | ------------------------------ |
@@ -32,15 +32,58 @@ author: Brian Bird
 - **Student Emergent Tech & AI Club**
   Fusion Lab Faculty and students are forming a [club on emergent technology and AI](Images/ETAIClubPoster.pdf).
    [Interest Form](https://out.smore.com/e/nd345/V0ERKC?__$u__) | Contact: [Kevin Steeves](https://out.smore.com/e/nd345/X14b6G?__$u__)
+- **Snacks/Food available**
+  
+  In light of the interruption of SNAP benefits, the CIT lab has an increased stock of free snack and lunch food. The [Titan Food Pantry](https://www.lanecc.edu/get-support/daily-living-support/titan-pantry-and-closet) has also has an increased stock and variety of food that is available for students.
 
-## Things to Do This Week
 
-- Take quiz 5 over ANNs by Sunday, 11/9.
-- Lab 4 part 1 due by Sunday, 11/9.
-  Part 1 is a TensorFlow tutorial.
-- Lab 4 part 2 beta version due by Sunday, 11/9.
+
+## Registration for Winter Term 2026
+
+Registration for winter term is open. If you are pursuing the AAS in Software Development, these are the reccomended courses:
+
+- CS 295N, Web Development 1: ASP.NEt
+- CS 275, Introduction to Database Systems and Modeling
+- CS 206, Co-op Ed: CIT Seminar
+- CS 245, System Design
+
+### Relevant Links:
+
+- [Degree Requirements](https://lanecc.smartcatalogiq.com/en/current/lcc-catalog/programs-of-study/computer-information-technology/software-development-aas) for AAS in Software Dev
+- [Term-By-Term Sample Planner](https://docs.google.com/document/d/1F8CJY1M7A4J9uJtGRDFRyF-0j7l2AVe0vpPE5vcfHXE/edit?tab=t.0) for AAS in Software Dev
+
+- [Winter 2026 Class Schedule](**CS135M  Beginning Mobile Application Development**)
+- [Academic Advising](https://lanecc.edu/advising)
+- [Registration](https://my.lanecc.edu/StudentRegistrationSsb/ssb/registration)
+
+## Q and A
+
+- Do you have any questions about:
+
+  - Lab 3 on scikit-learn?
+  - The reading on AANs
+
+  - Anything else?
+
+## Assignments Due
+
+### This Week
+
+- Thursday 11/6
+  - Lab 3 code review=
+    (I didn't realize I hadn't given you a code review form for lab 3.)
+  - Lab 3, part 2 production version
+- Sunday 11/9
+  - Take quiz 5 over ANNs
+  - Lab 4 part 1
+    (Part 1 is a TensorFlow tutorial.)
+  - Lab 4 part 2 beta version
+    TBD, will be assigned before class time Thursday
+
+### Next Week
+
 - Lab 4 part 2 code review due by Tuesday, 11/11.
-- Lab 4 part 2 code review due by Thursday, 11/13.
+- Lab 4 part 2 production version by Thursday, 11/13.
 
 
 
