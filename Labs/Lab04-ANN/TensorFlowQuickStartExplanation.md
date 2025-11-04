@@ -19,9 +19,7 @@ This tutorial teaches the basics of building a neural network with TensorFlow. Y
 
 ------
 
-
-
-## ## Conceptual Steps
+## Conceptual Steps
 
 ### 1. Set up TensorFlow
 
