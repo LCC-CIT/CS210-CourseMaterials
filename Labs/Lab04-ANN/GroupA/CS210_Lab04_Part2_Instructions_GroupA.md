@@ -19,7 +19,7 @@ author: Brian Bird
 
 ### Objective:
 
-Your goal is to apply the exact same steps you learned in the "[Basic image classification]([Basic image classification](https://www.tensorflow.org/tutorials/keras/classification))" tutorial (which used the Fashion MNIST dataset) to a new, slightly more complex dataset: CIFAR-10.
+Your goal is to apply the exact same steps you learned in the "[Basic image classification](https://www.tensorflow.org/tutorials/keras/classification)" tutorial (which used the Fashion MNIST dataset) to a new, slightly more complex dataset: CIFAR-10.
 
 This will test your understanding of:
 
