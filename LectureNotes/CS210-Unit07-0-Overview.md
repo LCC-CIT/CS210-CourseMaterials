@@ -1,6 +1,6 @@
 ---
-title: Week 1 Overview
-description: What's happening in CS 210 during week 1
+title: Week 7 Overview
+description: What's happening in CS 210 during week 7
 keywords: Announcements, Due Dates, Help
 generator: Typora
 author: Brian Bird
@@ -8,7 +8,7 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Week 6 Overview for Fall 2025</h1>
+<h1>Week 7 Overview for Fall 2025</h1>
 
 <h2>Nov. 10 through Nov 11/16</h2>
 
