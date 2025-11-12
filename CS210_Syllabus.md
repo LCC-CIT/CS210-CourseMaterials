@@ -199,19 +199,19 @@ View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on
 
 (Tentative, may be subject to change)
 
-| Week             | Topics                                     | Activities                                                   |
-| ---------------- | ------------------------------------------ | ------------------------------------------------------------ |
-| **1**<br />9/30  | Intro to AI<br />Python                    | Introduce yourself on Discord<br />Lab 1<br />Quiz 1         |
-| **2**<br />10/7  | Symbolic AI                                | Lab 2<br />Quiz 2<br />Code review 1                         |
-| **3**<br />10/14 | Classical Machine Learning: Training       | Quiz 3                                                       |
-| **4**<br />10/21 | Classical Machine Learning: Inference      | Lab 3<br />Quiz 4<br />Code review 2                         |
-| **5**<br />10/28 | More Machine Learning  <br />History of AI | Lab 4<br />Code review 3<br />Term project proposal<br />    |
-| **6**<br />11/4  | ANN: Image recognition                     | Lab 5<br />Quiz 5<br />Code review 4                         |
-| **7**<br />11/11 | Generative AI                              | Lab 6<br />Quiz 6<br />Code review 5                         |
-| **8**<br />11/18 | Custom chatbot                             | Lab 7<br />Project: prompt engineering<br />Quiz 7<br />Code review 6 |
-| **9**<br />11/25 | LLM fine-tuning                            | Lab 8<br />Project: Custom chat-bot<br />Quiz 8<br />Code review 7 |
-| **10**<br />12/2 | Social and ethical issues of AI            | Term Project<br /><br />Code review 8                        |
-| **11**<br />12/9 |                                            | Term project presentation                                    |
+| Week             | Topics                                     | Activities                                                |
+| ---------------- | ------------------------------------------ | --------------------------------------------------------- |
+| **1**<br />9/30  | Intro to AI<br />Python                    | Introduce yourself on Discord<br />Lab 1<br />Quiz 1      |
+| **2**<br />10/7  | Symbolic AI                                | Lab 2<br />Quiz 2<br />Code review 1                      |
+| **3**<br />10/14 | Classical Machine Learning: Training       | Quiz 3                                                    |
+| **4**<br />10/21 | Classical Machine Learning: Inference      | Lab 3<br />Quiz 4<br />Code review 2                      |
+| **5**<br />10/28 | More Machine Learning  <br />History of AI | Lab 4<br />Code review 3<br />Term project proposal<br /> |
+| **6**<br />11/4  | ANN: Image recognition                     | Lab 5<br />Quiz 5<br />Code review 4                      |
+| **7**<br />11/11 | Generative AI <br />AI Assisted Coding     | Lab 6<br />Quiz 6<br />Code review 5                      |
+| **8**<br />11/18 | Gen AI Enabled App                         | Lab 7<br />Quiz 7<br />Code review 6                      |
+| **9**<br />11/25 | LLM fine-tuning                            | Lab 8<br />Quiz 8<br />Code review 7                      |
+| **10**<br />12/2 | Social and ethical issues of AI            | Term Project<br /><br />Code review 8                     |
+| **11**<br />12/9 |                                            | Term project presentation                                 |
 
 <a href="#top">Go back to the top</a>
 
