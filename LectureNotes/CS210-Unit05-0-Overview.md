@@ -1,6 +1,6 @@
 ---
-title: Week 1 Overview
-description: What's happening in CS 210 during week 1
+title: Week 5 Overview
+description: What's happening in CS 210 during week 5
 keywords: Announcements, Due Dates, Help
 generator: Typora
 author: Brian Bird
@@ -48,8 +48,6 @@ This is just a reminder that I'm always happy to chat, look at code or answer qu
   - Monday and Wednesday 2:00 to 3:50
   - Tuesday and Thursday 4:00 to 4:50
 - You can email or message me to make an appointment to meet at another time.
-
-
 
 ---
 
