@@ -107,7 +107,7 @@ By applying these principles, you move away from "vibe coding" and engage in **A
 
 [GitHub Copilot Tutorials](https://github.com/features/copilot/tutorials)&mdash;GitHub
 
-
+[GitHub for Education](https://github.com/education)&mdash;Free Enterprise level account includeint GitHub Copilot
 
 Note: Parts of this document were drafted using Gemini Flash 2.5.
 
