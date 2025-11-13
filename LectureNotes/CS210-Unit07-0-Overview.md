@@ -74,19 +74,30 @@ Registration for winter term is open. If you are pursuing the AAS in Software De
 - Thursday 11/13   
   - Lab 4 (TensorFlow), part 2, production version.
 
-### Next Week (Week 8)
+### Next Week (Week 8) *Chat Completion API*
 
 **Topic: calling *chat completion* APIs**
 
 - Tuesday 11/18   
   - Quiz 6 (GenAI) closes.
   - Lab 5  (AI Coding) beta version.
+  - Term project proposal.
 - Thursday 11/20
   - Lab 5 code review.
 - Sunday 11/23
   - Lab 5, production version.
   - Quiz 7 over calling chat completion APIs.
   - Lab 6 (AI APIs) beta version
+
+## Week 9: *Model Context Protocol* (MCP)
+
+The *Model Context Protocol* (MCP) standardizes communication with and between LLMs to enable  *agentic AI*, allowing an LLM to move beyond simple chat and interact with apps and APIs. It lets developers write applications where AI can do things like  "go look up the user's latest file and then send an email". An MCP server takes care of translating those requests into system actions.
+
+## Week 10:  Your Term Project
+
+Your project can be an entirely new app that incorporates some type of AI, or you can enhance one of your lab projects with an additional or differerent AI feature than it originally had. The project should be a stand-alone app console apps (not a Jupyter notebook). 
+
+Submit a project proposal before starting on your app.
 
 
 
