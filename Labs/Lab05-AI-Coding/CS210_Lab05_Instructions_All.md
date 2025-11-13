@@ -48,7 +48,7 @@ Since everyone will potentially be choosing different apps to write and they wil
 
 ### Beta Version
 
-- Post the beta version of your Python file or a link to your Colab notebook in your team channel on Discord.
+- Post a zip file or GitHub link for the beta version of your project in your team channel on Discord.
 
 ### Code Review
 
@@ -59,14 +59,14 @@ Since everyone will potentially be choosing different apps to write and they wil
 
  Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
 
-1. The Python (.py) and any other project files.
+1. The Zipped Python (.py) and any other project files or a link to your GitHub repository.
 3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
 
 
 
 ## Grading Criteria
 
-The main focus of grading will be on use of the sckit-learn classes and problem solving skills.
+The main focus of grading will be on program design, problem solving skills, AI-assisted coding and on testing (quality assurance).
 
 
 
