@@ -12,14 +12,14 @@ author: Brian Bird
 
 <h2>Nov. 10 through Nov 11/16</h2>
 
-| Topics                                   |                                |
-| ---------------------------------------- | ------------------------------ |
-| 1. What is AI, Python                    | 6. ANN: Image recognition      |
-| 2.  Symbolic AI                          | 7. <mark>Generative AI</mark>  |
-| 3. Classical machine learning: training  | 8. Custom chatbot              |
-| 4. Classical machine learning: inference | 9. LLM fine-tuning             |
-| 5. More ML + History of AI               | 10. Social and ethical issues  |
-|                                          | 11. Final project presentation |
+| Topics                                   |                                                              |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| 1. What is AI, Python                    | 6. ANN: Image recognition                                    |
+| 2.  Symbolic AI                          | 7. <mark>Generative AI</mark>                                |
+| 3. Classical machine learning: training  | 8. Calling the chat completion API                           |
+| 4. Classical machine learning: inference | 9. Agentic AI with MCP                                       |
+| 5. More ML + History of AI               | 10. Social and ethical issues  <br />Term project completion |
+|                                          | 11. Final project presentation                               |
 
 <h2>Contents</h2>
 
@@ -95,7 +95,7 @@ The *Model Context Protocol* (MCP) standardizes communication with and between L
 
 ## Week 10:  Your Term Project
 
-Your project can be an entirely new app that incorporates some type of AI, or you can enhance one of your lab projects with an additional or differerent AI feature than it originally had. The project should be a stand-alone app console apps (not a Jupyter notebook). 
+Your project can be an entirely new app that incorporates some type of AI, or you can enhance one of your lab projects with an additional or different AI feature than it originally had. The project should be a stand-alone app console apps (not a Jupyter notebook). 
 
 Submit a project proposal before starting on your app.
 
