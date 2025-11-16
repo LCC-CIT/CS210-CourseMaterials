@@ -294,7 +294,8 @@ The game is "die battle": two players each roll a single six-sided die, and the 
 
 ## Reference
 
-- [Python Tutorial](https://docs.python.org/3/tutorial/)&mdash;Official Python Web Site
+- [Python Tutorial](https://docs.python.org/3/tutorial/)&mdash;Python web site
+- [Using Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)&mdash;Visual Studio Code web site
 - [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)&mdash;Official Python Web Site
   - [Summary of the Style Guide]()&mdash;Google Gemini and Brian Bird
 

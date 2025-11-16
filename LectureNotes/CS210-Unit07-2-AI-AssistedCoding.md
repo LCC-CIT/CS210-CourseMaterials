@@ -92,7 +92,7 @@ Effective AI usage requires maintaining a clean, well-documented, and controlled
 
 - **Use Version Control Aggressively:** Commit frequently and isolate AI-generated features into their own branches. If the AI introduces a bug or technical debt, a small, isolated commit is easy to review and revert.
 - **Document AI Usage:** Make a note of which sections of code were AI-generated. This helps future team members (and your future self) understand why certain architectural decisions were made or where potential "black box" code might exist.
-- **Manage Context Windows:** Keep your conversations with the AI focused. For a new, complex task, **start a fresh chat session** and give the AI a short, fresh briefing. Long, convoluted chat histories lead to confused, low-quality output.
+- **Manage Context Windows:** Keep your conversations with the AI focused. For a new, complex task, start a fresh chat session and give the AI a short, fresh briefing. Long, convoluted chat histories lead to confused, low-quality output.
 - **Delegate Repetitive Tasks:** Use AI for its greatest strength: generating boilerplate, getters, setters, standard documentation (like JSDoc or Python docstrings), and commit messages. This saves human time for complex problem-solving.
 
 By applying these principles, you move away from "vibe coding" and engage in AI *Pair Programming*, where the AI is a high-speed assistant, and you are the focused, responsible engineer.
