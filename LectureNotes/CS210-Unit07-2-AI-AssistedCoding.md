@@ -101,17 +101,27 @@ By applying these principles, you move away from "vibe coding" and engage in AI 
 
 ## Rererence
 
+[Pair Programming](https://extremeprogrammingalliance.com/about-extreme-programming-xp/extreme-programming-xp-practices/extreme-programming-xp-coding-technical-practices/)&mdash;Extreme Programming Alliance (XPA)
+
+### Vibe Coding
+
 [Vibe Coding](https://en.wikipedia.org/wiki/Vibe_coding)&mdash;Wikipedia
+
+[Andrej Karpathy's  "vibe coding" post](https://x.com/karpathy/status/1886192184808149383?lang=en)&mdash;X
 
 [Vibe Coding: The Shadow IT Problem No One Saw Coming](https://thenewstack.io/vibe-coding-the-shadow-it-problem-no-one-saw-coming/)&mdash;[Steve Fenton](https://thenewstack.io/author/steve-fenton/), The New Stack, 2025.
 
+### GitHub Copilot
+
 [GitHub Copilot Tutorials](https://github.com/features/copilot/tutorials)&mdash;GitHub.
+
+[GitHub Copilot for VS Code Cheat Sheet](https://code.visualstudio.com/docs/copilot/reference/copilot-vscode-features)&mdash;GitHub.
 
 [GitHub for Education](https://github.com/education)&mdash;Free Enterprise level account that includes GitHub Copilot.
 
 
 
-Note: Parts of this document were drafted using Gemini Flash 2.5.
+Note: Parts of this document were drafted using Gemini Flash 2.5 (2025).
 
 ---
 
