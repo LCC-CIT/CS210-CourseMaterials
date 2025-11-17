@@ -197,7 +197,7 @@ You should see output confirming the version you just installed (e.g., `Python 3
    Hello, World! Python is running.
    ```
 
-## Using VS Code for Python
+## Using VS Code for Python Programming 
 
 ### Install the Python Extension
 
@@ -300,7 +300,7 @@ The game is "die battle": two players each roll a single six-sided die, and the 
   - [Summary of the Style Guide]()&mdash;Google Gemini and Brian Bird
 
 
-- P[ython: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)&mdash;CultRepo Video
+- [Python: The Documentary | An origin story](https://www.youtube.com/watch?v=GfH4QL4VqJ0)&mdash;CultRepo Video
 
   
 
