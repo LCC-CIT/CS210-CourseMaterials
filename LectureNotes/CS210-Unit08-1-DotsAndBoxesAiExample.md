@@ -1,6 +1,6 @@
 ---
-title: Chat Completion API
-description: How to integrate AI into an app by call a chat completion API 
+title: AI Game Opponent
+description: Building an AI game opponent for the dots and boxes game.
 keywords: OpenAI, chat-completion
 generator: Typora
 author: Brian Bird
@@ -8,7 +8,9 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Calling a Chat-Completion API</h1>
+<h1>Building an AI Game Opponent</h1>
+
+<h2>Using the Dots and Boxes Game Example</h2>
 
 | Topics                                   |                                                              |
 | ---------------------------------------- | ------------------------------------------------------------ |
