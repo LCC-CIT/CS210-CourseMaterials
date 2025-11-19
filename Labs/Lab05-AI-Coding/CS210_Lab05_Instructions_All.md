@@ -39,7 +39,7 @@ Since everyone will potentially be choosing different apps to write and they wil
     - Dice game
     - Card game
 - A more comprehensive expert system.
-  - For this lab you would use an AI assistant to either improve the expert system you made earlier or make a new rule-based one. Enhancements would be: a progressive interview loop and a larger set of rules.
+  - For this lab you would use an AI coding assistant to either improve the expert system you made earlier or make a new rule-based one. Possible enhancements would be: a progressive interview loop and a larger set of rules.
   - For the next lab you would use AI to do an interview and make decisions instead of the rule-based system.
 
 
