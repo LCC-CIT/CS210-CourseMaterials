@@ -13,7 +13,7 @@ author: Brian Bird
 
 <h2>TensorFlow QuickStart Explained</h2>
 
-[toc]
+[TOC]
 
 This tutorial teaches the basics of building a neural network with TensorFlow. You'll learn how to load and prepare a dataset, build a simple neural network model, train it, and then evaluate its performance. The primary goal is to classify images of handwritten digits from the MNIST dataset.
 
@@ -33,11 +33,13 @@ This tutorial teaches the basics of building a neural network with TensorFlow. Y
 
 ### 3. Build a machine learning model
 
-- **Concept:** A neural network is built by stacking layers of neurons[^1]. Each layer transforms the data it receives from the previous layer. The `Sequential` model in Keras[^2] is a simple way to create a model where the data flows sequentially through the layers.
+- **Concept:** A neural network is built by stacking layers of neurons[^1]. Each layer transforms the data it receives from the previous layer. The `Sequential` model in Keras[^2] is a simple way to create a model where the data flows sequentially through the layers in the order they are listed.
 - **In the tutorial:** A `tf.keras.Sequential` model is built with three layers:
-  - **Flatten:** This layer converts the 2D image data into a 1D array.
+  - **Flatten:** This is the input layer. It converts the 2D image data into a 1D array.
   - **Dense:** This is a fully connected neural network layer.
-  - **Dropout:** This layer randomly sets a fraction of the input units to 0 during training to prevent overfitting.
+    - In first dense layer (the hidden layer), the parameter 128 means there are 128 neurons. The parameter relu is the activation function:Rectified Linear Unit, which introduces non-linearity, helping the model learn complex patterns.
+    - In the second dense layer (the output layer), the parameter 10 means there are ten neurons&mdash;one for each category.
+  - **Dropout:** This layer randomly sets a fraction of the input units to 0 during training to prevent overfitting. The parameter 0.2 means thaat 20% of the previous layers neurons are dropped.
 
 ### 4. Train and evaluate your model
 
@@ -57,8 +59,6 @@ This tutorial provides a hands-on introduction to building a simple neural netwo
 - **Training and Evaluation:** The process of fitting a model to data and then evaluating its performance on unseen data.
 - **Overfitting:** The use of dropout as a technique to prevent the model from memorizing the training data and failing to generalize to new data.
 
-
-
 ## Reference
 
 [TensorFlow 2 quickstart for beginners](https://www.tensorflow.org/tutorials/quickstart/beginner),
@@ -67,4 +67,3 @@ Writen by Brian Bird, 11/4/2025 using Gemini Pro 2.5
 
 [^1]: In Keras, Artificial Neural Network (ANN) layers are represented as distinct, instantiable Python objects, primarily found within the `tf.keras.layers` module. Each layer object encapsulates the specific mathematical transformation it performs (like the weighted sum and activation of a `Dense` layer) and manages its own trainable parameters (weights and biases). As seen in Step 3 of the tutorial, these layer objects, such as `tf.keras.layers.Flatten`, `tf.keras.layers.Dense`, and `tf.keras.layers.Dropout`, are created and then organized into a model. The `tf.keras.models.Sequential` model is the simplest way to do this, taking a list of these layer instances and stacking them in order, automatically connecting the output of one layer to the input of the next, thus building the complete network architecture.
 [^2]: A *Sequential model* in Keras is the simplest way to build a neural network. It's exactly what it sounds like: a plain, linear stack of layers, one after the other. Think of it as a simple pipeline.  Data goes in the top, passes through the first layer, then its output becomes the input for the second layer, and so on, until it comes out the last layer. The key characteristics are: **Linear Stack:** It's a single, straight path from input to output. **One-to-One Layers:** Each layer in the model has exactly one input and one output.
-
