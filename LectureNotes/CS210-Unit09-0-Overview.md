@@ -1,6 +1,6 @@
 ---
-title: Week 8 Overview
-description: What's happening in CS 210 during week 8
+title: Week 9 Overview
+description: What's happening in CS 210 during week 9
 keywords: Announcements, Due Dates, Help
 generator: Typora
 author: Brian Bird
@@ -8,9 +8,9 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Week 8 Overview for Fall 2025</h1>
+<h1>Week 9 Overview for Fall 2025</h1>
 
-<h2>Nov. 17 through Nov. 23</h2>
+<h2>Nov. 24 through Nov. 30</h2>
 
 | Topics                                   |                                                              |
 | ---------------------------------------- | ------------------------------------------------------------ |
@@ -25,32 +25,19 @@ author: Brian Bird
 
 [TOC]
 
+## This Week's Objectives
+
+The *Model Context Protocol* (MCP) standardizes communication with and between LLMs to enable  *agentic AI*, allowing an LLM to move beyond simple chat and interact with apps and APIs. It lets developers write applications where AI can do things like  "go look up the user's latest file and then send an email". An MCP server takes care of translating those requests into system actions.
+
+**This week you will:**
+
+- Get a basic understanding of the MCP protocol.
+- [Build an MCP Server](https://classes.lanecc.edu/mod/url/view.php?id=4679547).
+- Build an MCP client.
+
 ## Announcements for Fall 2025
 
-- **Week 8 is the last week to drop a class or change grade options**
-  This <u>Friday, November 21</u> is the last day to make fall term schedule changes. This includes adding or dropping a course, withdrawing, taking an incomplete, or changing grading methods. 
-  **Note**: Students should <u>always</u> consult [an academic advisor](https://www.lanecc.edu/get-support/academic-support/academic-advising) and/or [financial aid](https://www.lanecc.edu/costs-admission/paying-college/financial-aid) representative before making these changes, especially withdrawing. These types of changes can potentially have implications for academic progress and/or financial aid awards. 
-
-- **LCC Team Gets First Place at QuackHacks!**
-
-  LCC took a six member team to the QuackHacks Hackathon this weekend, where they worked on a game together for 24 hours straight. They used Miro to brainstorm, Jira to manage the project, GitHub to coordinate their efforts, the Godot game engine with GDScript to build the game and Libresprite to build the game assets.
-
-  <u>They earned first place in the Game Dev track!</u>
-
-  You can see their work and description of themselves and their process here.
-
-  https://devpost.com/software/tina-s-big-adventure
-
-  If you see these students this week, let them know how proud we are!
-
-  - Cole McLain
-  - Drew McKenzie
-  - Josh Ginsberg
-  - Leah Higman
-  - Max Ferguson
-  - Morgan Titsworth
-
-
+There will be no class on Thursday since the college will be clsed Thursday through Sunday, 11/27&ndash;11/30, for the Thanksgiviing holiday.
 
 ## Registration for Winter Term 2026
 
@@ -75,47 +62,40 @@ Registration for winter term is open. If you are pursuing the AAS in Software De
 
 - Do you have any questions about:
 
-  - Lab 5&mdash;AI assisted programming?
-  - The reading on the chat completion API?
+  - Lab 6&mdash;Calling a chat-completion API?
+  - The reading on MCP?
 
   - Anything else?
 
 ## Assignments Due
 
-### This Week (Week 8)
-
-- Tuesday 11/18   
-  - Quiz 6 (GenAI) closes.
-  - Lab 5  (AI Coding) beta version.
-  - <u>Term project proposal.</u>  
-    Submit a project proposal before starting on your app.
-- Thursday 11/20
-  - Lab 5 code review.
-- Sunday 11/23
-  - Lab 5, production version.
-  - Lab 6 (AI APIs) beta version
-
-### Next Week (Week 9)
+### This Week (Week 9)
 
 - Tuesday 11/25
-  - Lab 6 Code review
+  - Lab 6 code review
 - Friday 11/28
-  - Quiz on MCP
-  - Lab 6 Productions version
+  - Lab 6 production version
+- Sunday 11/30
+  - Lab 7 beta version
 
-## Upcoming Topics
+### Next Week (Week10)
 
-### Week 9: *Model Context Protocol* (MCP)
+- Tuesday 12/2 Lab 7 Code review
+- Thursday 12/4 Lab 7 production version
+- Friday 12/5 Term project beta version
+- Saturday 12/6 Term project code review
 
-The *Model Context Protocol* (MCP) standardizes communication with and between LLMs to enable  *agentic AI*, allowing an LLM to move beyond simple chat and interact with apps and APIs. It lets developers write applications where AI can do things like  "go look up the user's latest file and then send an email". An MCP server takes care of translating those requests into system actions.
+### Fianals Week (Week 11)
 
-### Week 10:  Your Term Project
+- Monday 12/8 Term project production version
 
-Your project can be an entirely new app that incorporates some type of AI, or you can enhance one of your lab projects with an additional or different AI feature than it originally had. The project should be a stand-alone app console apps (not a Jupyter notebook). 
+- Tuesday 12/9 Term project presentations
 
+  
 
+![F2025Week09](Images/F2025Week09.jpg)
 
-![F2025Week08](Images/F2025Week08.jpg)
+[Mental Health and Wellness Center (MHWC)](https://www.lanecc.edu/get-support/health-wellness/mental-health-wellness-center)
 
 
 
