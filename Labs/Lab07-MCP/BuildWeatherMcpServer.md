@@ -1,8 +1,8 @@
-# Building a Weather MCP Server for Claude Desktop
+# Building a Weather MCP Server
 
-In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather data. This tutorial is adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server) on the Model Context Protocol web site.
+In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather information. This tutorial is adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server). The main changes were to use `pip` instead of `uv` and to not use Python type hints.
 
-This tutorial includes instructions for testing the server with:
+This tutorial includes instructions for testing the server with an MCP client. Both of the apps below are MCP clients:
 
 - Claude Desktop
 - VS Code
@@ -10,47 +10,45 @@ This tutorial includes instructions for testing the server with:
 ## Prerequisites
 
 - Python 3.10 or higher
-- [Claude Desktop App](https://claude.ai/download) installed
-- Basic familiarity with the terminal
+- [Claude Desktop App](https://claude.ai/download) or Visual Studio Code installed
+
+
 
 ## 1. Project Setup
 
 We will use standard Python tools (`venv` and `pip`) to set up the environment.
 
-Bash
+First make a new project folder with a name like `weather-mcp`, then in that folder, in a terminal, do the following :
 
-```
-# 1. Create a project folder
-mkdir weather-mcp
-cd weather-mcp
-
-# 2. Create a virtual environment
+```bash
+# 1. Create a virtual environment
 python -m venv venv
 
-# 3. Activate the environment
+# 2. Activate the environment
 # On macOS/Linux:
 source venv/bin/activate
 # On Windows:
 venv\Scripts\activate
 
-# 4. Install the MCP SDK
-pip install mcp
+# 3. Install the official Python MCP SDK with CLI tools
+# and install httpx, a modern, fast, asynchronous HTTP client library
+pip install "mcp[cli]" httpx
 ```
+
+
 
 ## 2. Writing the Server
 
-Create a file named `server.py`. We will use the standard `mcp` library. To keep things simple and avoid complex type definitions, we will define our tool inputs using standard Python dictionaries.
+Create a file named `server.py`. We will use the [official Python MCP SDK](https://modelcontextprotocol.github.io/python-sdk/). To keep things simple and avoid complex type definitions, we will define our tool inputs using standard Python dictionaries.
 
-Python
-
-```
+```python
 import asyncio
 from mcp.server.models import InitializationOptions
 import mcp.types as types
 from mcp.server import NotificationOptions, Server
 from mcp.server.stdio import stdio_server
 
-# Initialize the server
+# Initialize the server taht was imported above
 server = Server("weather-server")
 
 # --- 1. Define the Logic (Plain Python Functions) ---
@@ -132,6 +130,8 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+
 
 ## 3. Configuring Claude Desktop
 
