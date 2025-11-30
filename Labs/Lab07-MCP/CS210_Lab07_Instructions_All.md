@@ -23,14 +23,17 @@ author: Brian Bird
 
 ## Instructions
 
-You have three options. You can do any one of these:
+You have three options. You can <u>do any one</u> of these:
 
-1. Follow your instructors tutorials for building an MCP weather server anc client.  
-   This is the easiest one!
-2. Write an MCP server to do something useful for the app you wrote in the previous lab. Incorporate an MCP client into the app from your previous lab.
+1. Follow tutorials to build an MCP server and client
+   - Follow [this tutorial to build an MCP weather server](https://modelcontextprotocol.io/docs/develop/build-server), or your instrcutor's simplified version of the tutorial.
+   - Follow [this tutorial to build an MCP client](https://modelcontextprotocol.io/docs/develop/build-client), or your instrcutor's simplified version of the tutorial.   
+                                                    OR
+2. Write an MCP server to do something useful for the app you wrote in the previous lab. Incorporate an MCP client into the app from your previous lab.  
+                                                          OR
 3. Come up with your own idea for an MCP server, write it, and write a client.
 
-It's ok to use AI to assist you with your coding.
+**Note**: it's ok to use AI to assist you with your coding.
 
 ## Submitting your lab work on Moodle
 
@@ -40,7 +43,7 @@ It's ok to use AI to assist you with your coding.
 
 ### Code Review
 
-- Review one of your lab partners' code and post the review in your team channel on Discord.
+- Review code written by one of your lab partners and share the review with them.
 - Submit a copy of the code review <u>you did</u> on the LMS.
 
 ### Production Version
