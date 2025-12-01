@@ -1,4 +1,4 @@
-<h1>Building a Weather MCP Server</h1>
+<h1>Build a Weather MCP Server</h1>
 
 [TOC]
 
@@ -24,7 +24,6 @@ We will use standard Python tools (`venv` and `pip`) to set up the environment. 
 
 - First make a new project folder with a name like `weather-mcp`
   - In that folder, using a terminal, do the following :
-    (On a Mac, use the command `python3` instead of `python`).
 
 ```bash
 # 1. Create a virtual environment
@@ -43,7 +42,7 @@ pip install "mcp[cli]" httpx
 cd ..
 ```
 
-
+**Note**: on a Mac, use the command `python3` instead of `python`.
 
 ## Writing the Server
 
@@ -359,7 +358,7 @@ If the *weather-server* doesn't appear in the list of tools or the tool fails:
 
 [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server)&mdash;Model Context Protocol Project, an open-source project managed by [Anthropic](https://www.anthropic.com).
 
-[MCP Python SDK](https://modelcontextprotocol.github.io/python-sdk/)&mdash;The "official" SDK from the Anthropic MCP open-source project.
+[MCP Python SDK](https://modelcontextprotocol.github.io/python-sdk/)&mdash;The "official" SDK from the Anthropic MCP open-source project. The GitHub repository is [here.](https://github.com/modelcontextprotocol/python-sdk)
 
  [How to use the MCP server in VS Code](https://www.youtube.com/watch?v=91_6PnC9oUU)  
 This video demonstrates the "Agent mode" in VS Code and how to access MCP tools within the GitHub Copilot chat interface.
