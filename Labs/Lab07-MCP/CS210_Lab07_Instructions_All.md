@@ -17,9 +17,9 @@ author: Brian Bird
 
 ## Objectives
 
-- Learn how to work with the MCP protocol
-- Build an MCP server
-- Build an MCP client
+- Learn how to work with the MCP protocol.
+- Build an MCP server.
+- Build an MCP client.
 
 ## Instructions
 

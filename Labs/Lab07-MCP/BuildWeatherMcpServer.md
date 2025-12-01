@@ -1,69 +1,151 @@
-# Building a Weather MCP Server
+<h1>Building a Weather MCP Server</h1>
 
-In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather information. This tutorial is adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server). The main changes were to use `pip` instead of `uv` and to not use Python type hints.
+[TOC]
 
-This tutorial includes instructions for testing the server with an MCP client. Both of the apps below are MCP clients:
+## Introduction
+
+In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather forecasts and alerts. This tutorial was adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server). The purpose was to simplify the tutorial for beginning Python programmers. The main changes were to use `pip` instead of `uv`,  use a [different MCP Server SDK](https://modelcontextprotocol.github.io/python-sdk/) and to not use [Python type hints](https://docs.python.org/3/library/typing.html).
+
+This tutorial includes instructions for testing the server with two different MCP clients: 
 
 - Claude Desktop
 - VS Code
 
-## Prerequisites
+### Prerequisites
 
-- Python 3.10 or higher
-- [Claude Desktop App](https://claude.ai/download) or Visual Studio Code installed
+- Python 3.10 or higher.
+- [Claude Desktop App](https://claude.ai/download) or [Visual Studio Code](https://code.visualstudio.com) installed.
 
 
 
-## 1. Project Setup
+## Project Setup
 
-We will use standard Python tools (`venv` and `pip`) to set up the environment.
+We will use standard Python tools (`venv` and `pip`) to set up the environment. The environment will include the ["official" Python MCP SDK](https://modelcontextprotocol.github.io/python-sdk/). 
 
-First make a new project folder with a name like `weather-mcp`, then in that folder, in a terminal, do the following :
+- First make a new project folder with a name like `weather-mcp`
+  - In that folder, using a terminal, do the following :
+    (On a Mac, use the command `python3` instead of `python`).
 
 ```bash
 # 1. Create a virtual environment
-python -m venv venv
+python -m venv weather-venv
 
 # 2. Activate the environment
 # On macOS/Linux:
-source venv/bin/activate
+source weather-venv/bin/activate
 # On Windows:
-venv\Scripts\activate
+weather-venv\Scripts\activate
 
 # 3. Install the official Python MCP SDK with CLI tools
 # and install httpx, a modern, fast, asynchronous HTTP client library
+cd weather-venv
 pip install "mcp[cli]" httpx
+cd ..
 ```
 
 
 
-## 2. Writing the Server
+## Writing the Server
 
-Create a file named `server.py`. We will use the [official Python MCP SDK](https://modelcontextprotocol.github.io/python-sdk/). To keep things simple and avoid complex type definitions, we will define our tool inputs using standard Python dictionaries.
+Create a file named `server.py` in *weather-mcp*. To keep things simple and avoid complex type definitions, we will define our tool inputs using standard Python dictionaries.
 
 ```python
 import asyncio
+import httpx
 from mcp.server.models import InitializationOptions
 import mcp.types as types
 from mcp.server import NotificationOptions, Server
 from mcp.server.stdio import stdio_server
 
-# Initialize the server taht was imported above
+# Create and initialize the server object
 server = Server("weather-server")
 
-# --- 1. Define the Logic (Plain Python Functions) ---
+# NWS requires a User-Agent header to identify your app
+NWS_HEADERS = {
+    "User-Agent": "weather-mcp-server/1.0",
+    "Accept": "application/geo+json"
+}
+
+# --- 1. Define the Logic ---
 
 async def get_forecast(latitude, longitude):
-    # In a real app, this would call an API like NWS or OpenWeather
-    return f"The forecast for {latitude}, {longitude} is sunny with a high of 75°F."
+    """
+    Fetches the weather forecast for a specific location from the NWS API.
+
+    Args:
+        latitude (float): The latitude of the location.
+        longitude (float): The longitude of the location.
+
+    Returns:
+        str: A formatted string containing the forecast for the next few periods.
+    """
+    async with httpx.AsyncClient() as client:
+        # Step 1: Get the Grid Point (NWS requires converting Lat/Long to a Grid ID)
+        # We round coordinates to 4 decimal places to avoid API errors
+        lat_clean = f"{float(latitude):.4f}"
+        long_clean = f"{float(longitude):.4f}"
+        points_url = f"https://api.weather.gov/points/{lat_clean},{long_clean}"
+        
+        response = await client.get(points_url, headers=NWS_HEADERS)
+        response.raise_for_status()
+        points_data = response.json()
+
+        # Extract the forecast URL from the metadata
+        forecast_url = points_data["properties"]["forecast"]
+
+        # Step 2: Get the actual Forecast
+        response = await client.get(forecast_url, headers=NWS_HEADERS)
+        response.raise_for_status()
+        forecast_data = response.json()
+
+        # Format the next few periods into a readable string
+        periods = forecast_data["properties"]["periods"]
+        text = []
+        for p in periods[:3]:  # Just show the next 3 periods
+            text.append(f"{p['name']}: {p['detailedForecast']}")
+        
+        return "\n".join(text)
 
 async def get_alerts(state):
-    return f"No active weather alerts for {state}."
+    """
+    Fetches active weather alerts for a specific US state.
+
+    Args:
+        state (str): Two-letter state code (e.g., 'CA', 'TX').
+
+    Returns:
+        str: A formatted string listing active alerts or a message indicating none.
+    """
+    # NWS requires uppercase state codes (e.g., "TX")
+    state = state.upper()
+    url = f"https://api.weather.gov/alerts/active?area={state}"
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, headers=NWS_HEADERS)
+        response.raise_for_status()
+        data = response.json()
+
+        if not data.get("features"):
+            return f"No active alerts for {state}."
+
+        alerts = []
+        for feature in data["features"][:5]: # Limit to 5 alerts
+            props = feature["properties"]
+            alerts.append(f"• {props['event']}: {props['headline']}")
+        
+        return "\n".join(alerts)
 
 # --- 2. Register Tools ---
 
 @server.list_tools()
 async def handle_list_tools():
+    """
+    Defines the tools available to the client (LLM).
+
+    Returns:
+        list[types.Tool]: A list of tool definitions including their names,
+                          descriptions, and input schemas (JSON Schema).
+    """
     return [
         types.Tool(
             name="get-forecast",
@@ -92,27 +174,45 @@ async def handle_list_tools():
 
 @server.call_tool()
 async def handle_call_tool(name, arguments):
-    if name == "get-forecast":
-        return [
-            types.TextContent(
-                type="text", 
-                text=await get_forecast(arguments["latitude"], arguments["longitude"])
-            )
-        ]
-    
-    elif name == "get-alerts":
-        return [
-            types.TextContent(
-                type="text", 
-                text=await get_alerts(arguments["state"])
-            )
-        ]
-    
-    raise ValueError(f"Unknown tool: {name}")
+    """
+    Executes a tool call requested by the client.
 
-# --- 3. Run the Server (Stdio) ---
+    Args:
+        name (str): The name of the tool to execute.
+        arguments (dict | None): The arguments provided by the client.
+
+    Returns:
+        list[types.TextContent]: The output of the tool execution wrapped in an MCP text content object.
+    
+    Raises:
+        ValueError: If the tool name is unknown.
+    """
+    try:
+        if name == "get-forecast":
+            result = await get_forecast(arguments["latitude"], arguments["longitude"])
+            return [types.TextContent(type="text", text=result)]
+        
+        elif name == "get-alerts":
+            result = await get_alerts(arguments["state"])
+            return [types.TextContent(type="text", text=result)]
+        
+        raise ValueError(f"Unknown tool: {name}")
+
+    except httpx.HTTPStatusError as e:
+        # Handle API errors gracefully
+        return [types.TextContent(type="text", text=f"API Error: {e}")]
+    except Exception as e:
+        return [types.TextContent(type="text", text=f"Error: {str(e)}")]
+
+# --- 3. Run the Server ---
 
 async def main():
+    """
+    Main entry point for the MCP server.
+    
+    Sets up the standard input/output (stdio) streams and runs the server
+    loop to handle incoming requests from the client.
+    """
     async with stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -133,7 +233,9 @@ if __name__ == "__main__":
 
 
 
-## 3. Configuring Claude Desktop
+## Testing
+
+### Configuring Claude Desktop as a Client
 
 Now we need to tell the Claude Desktop app where to find this script. We do this by editing a configuration file.
 
@@ -150,70 +252,47 @@ Now we need to tell the Claude Desktop app where to find this script. We do this
 
    *Replace `/ABSOLUTE/PATH/TO/` with the actual path on your machine.*
 
-   JSON
-
-   ```
+   ```json
    {
      "mcpServers": {
        "weather-server": {
-         "command": "/ABSOLUTE/PATH/TO/weather-mcp/venv/bin/python",
+         "command": "/ABSOLUTE/PATH/TO/weather-mcp/weather-venv/bin/python",
          "args": ["/ABSOLUTE/PATH/TO/weather-mcp/server.py"]
        }
      }
    }
    ```
+   
+   > **Note for Windows Users:** Your paths will look like `C:\\Users\\Name\\weather-mcp\\weather-venv\\Scripts\\python.exe`. You need to escape the backslashes `\\` in JSON.
 
-   > **Note for Windows Users:** Your paths will look like `C:\\Users\\Name\\weather-mcp\\venv\\Scripts\\python.exe`. Remember to use double backslashes `\\` in JSON.
+#### Testing with Claude Desktop
 
-## 4. Testing
+1. **Restart Claude Desktop:** You must quit and reopen the app for the config to load.
 
-1. **Restart Claude Desktop:** You must completely quit and reopen the app for the config to load.
+2. **Look for the weather-server:** Click on the "select tools" button, you should see *weather-server.* If you click it, you should see  *get-forecast* and *get-alerts*.
 
-2. **Look for the Icon:** You should see a plug icon (🔌) in the top right of the input box. If you click it, you should see `weather-server` listed with `get-forecast` and `get-alerts`.
+3. **Ask a Question**:
 
-3. Ask a Question:
+   - For the weather forecast, you can ask either by latitude and logitude <u>or</u> by city and state. For example:
+     - What is the forecast for lat 44.0521, lon 123.0868?
+     - What is the forecast for Springfield, OR?
 
-   Type: "What is the weather like at lat 40.7, long -74.0?"1
-
-   Claude will:2
-
-   1. Ask for permission to use the tool.3
-   2. Run your Python script in the background.4
-   3. See the result ("sunny with a high of 75°F").5
-   4. Write a response based on that data.6
-
-## Troubleshooting
-
-If the plug icon doesn't appear or the tool fails:8
-
-1. Check the logs:9
-   - **macOS:** `~/Library/Logs/Claude/mcp.log`
-   - **Windows:** `%APPDATA%\Claude\logs\mcp.log`
-2. Ensure you used the **absolute path** to the python executable in the `venv` folder, not the system python.
+   Claude will:
+   
+   1. Ask for permission to use the tool.
+   2. Run your Python script in the background.
+   3. Get the result ("sunny with a high of 75°F").
+   4. Write a response based on that data.
 
 
 
-## Using VS Code as a Client
+### Configuring VS Code as a Client
 
-To switch this tutorial from **Claude Desktop** to **VS Code (GitHub Copilot)**, you need to change **three** specific sections.
+To switch from Claude Desktop to VS Code (GitHub Copilot) as a client, you only need to make a configuration file for use with VS Code. Nothing needs to be changed in the server code.
 
-The **Python Server Code** (`server.py`) remains exactly the same. You do not need to touch it.
+Instead of creating  a global config file like you did for Claude, you will create a project-specific config file for VS Code.
 
-### 1. Change the "Prerequisites" Section
-
-Replace the Claude Desktop requirement with VS Code requirements.
-
-- **Remove:** `[Claude Desktop App] installed`
-- **Add:**
-  - **Visual Studio Code** installed.
-  - **GitHub Copilot Extension** installed in VS Code.
-  - A generic **GitHub Copilot subscription** (active).
-
-### 2. Change the "Configuring the Client" Section
-
-Instead of editing a global config file for Claude, you will create a project-specific config file for VS Code.
-
-**New Instructions:**
+**Instructions:**
 
 1. Inside your `weather-mcp` folder, create a new subfolder named `.vscode`.
 
@@ -221,11 +300,9 @@ Instead of editing a global config file for Claude, you will create a project-sp
 
 3. Add the following configuration.
 
-   - **Note:** The root key changes from `mcpServers` (Claude) to `servers` (VS Code).
+   - **Note:** The root key in the JSON changes from `mcpServers` (for Claude) to `servers` (for VS Code).
 
-   JSON
-
-   ```
+   ```json
    {
      "servers": {
        "weather-server": {
@@ -235,40 +312,63 @@ Instead of editing a global config file for Claude, you will create a project-sp
      }
    }
    ```
-
+   
    *(Remember to use double backslashes `\\` in paths if you are on Windows.)*
 
-### 3. Change the "Testing" Section
+#### Testing with VS Code
 
-You will not use the Claude interface. Instead, you will use the Copilot Chat sidebar.
+Use the Copilot Chat sidebar.
 
-**New Instructions:**
+**Instructions:**
 
 1. **Reload VS Code:** Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows), type "Reload Window", and press Enter to ensure the new config is loaded.
 
 2. **Open Copilot Chat:** Click the Chat icon in the sidebar.
 
-3. **Check for Tools:** Look for a **paperclip icon** or an **Agent/Tools** dropdown in the chat input area. You should see `weather-server` listed.
+3. **Select agent mode:** In the agent/ask/plan drop-down, select agent. 
 
-4. Ask a Question:
+4. **Enable the weather server tool.** Cllick on the *configure tools* icon. In the list of tools, you should see `weather-server` listed. Check it's checkbox.
 
-   Type: "What is the weather like at lat 40.7, long -74.0?"
+5. Ask a Question:
 
-   Copilot will:
+   - For the weather forecast, you can ask either by latitude and logitude <u>or</u> by city and state. For example:
+     - What is the forecast for lat 44.0521, lon 123.0868?
+     - What is the forecast for Springfield, OR?
 
-   1. Detect the intent to use a tool.
-   2. Execute your local `server.py`.
-   3. Display the result ("sunny with a high of 75°F") and answer your question.
+   Claude will:
 
-------
+   1. Ask for permission to use the tool.
+   2. Run your Python script in the background.
+   3. Get the result ("sunny with a high of 75°F").
+   4. Write a response based on that data.
 
-... [How to use the MCP server in VS Code](https://www.youtube.com/watch?v=91_6PnC9oUU) ...
 
-This video is relevant because it visually demonstrates the "Agent mode" in VS Code and how to access MCP tools within the GitHub Copilot chat interface, which replaces the Claude Desktop testing steps.
+
+## Troubleshooting
+
+If the *weather-server* doesn't appear in the list of tools or the tool fails:
+
+1. Check the logs:
+   - **macOS:** `~/Library/Logs/Claude/mcp.log`
+   - **Windows:** `%APPDATA%\Claude\logs\mcp.log`
+2. Ensure you used the <u>absolute path</u> to the python executable in the `weather-venv` folder, not the system python.
+
+
+
+## References
+
+[Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server)&mdash;Model Context Protocol Project web site.
+
+ [How to use the MCP server in VS Code](https://www.youtube.com/watch?v=91_6PnC9oUU)  
+This video demonstrates the "Agent mode" in VS Code and how to access MCP tools within the GitHub Copilot chat interface.
+
+
+
+*Note: This tutorial was initially drafted using Gemini 3 (2025).*
 
 ---
 
-The draft of this tutorial was produced by Gemini 3 (2025).
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) Intro to AI Programming course materials by [Brian Bird](https://profbird.dev), written in <time>2025</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ---
 
