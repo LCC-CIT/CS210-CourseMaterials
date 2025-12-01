@@ -27,7 +27,7 @@ You have three options. You can <u>do any one</u> of these:
 
 1. Follow tutorials to build an MCP server and client
    - Follow [this tutorial to build an MCP weather server](https://modelcontextprotocol.io/docs/develop/build-server), or [your instrcutor's simplified version](https://lcc-cit.github.io/CS210-CourseMaterials/Labs/Lab07-MCP/BuildWeatherMcpServer.html) of the tutorial.
-   - Follow [this tutorial to build an MCP client](https://modelcontextprotocol.io/docs/develop/build-client), or your instrcutor's simplified version of the tutorial.   
+   - Follow [this tutorial to build an MCP client](https://modelcontextprotocol.io/docs/develop/build-client), or [your instrcutor's simplified version](https://lcc-cit.github.io/CS210-CourseMaterials/Labs/Lab07-MCP/BuildWeatherMcpClient.html) of the tutorial.   
                                                     OR
 2. Write an MCP server to do something useful for the app you wrote in the previous lab. Incorporate an MCP client into the app from your previous lab.  
                                                           OR
