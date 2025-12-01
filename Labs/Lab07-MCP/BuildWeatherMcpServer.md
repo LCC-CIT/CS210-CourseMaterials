@@ -4,7 +4,7 @@
 
 ## Introduction
 
-In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather forecasts and alerts. This tutorial was adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server). The purpose was to simplify the tutorial for beginning Python programmers. The main changes were to use `pip` instead of `uv`,  use a [different MCP Server SDK](https://modelcontextprotocol.github.io/python-sdk/) and to not use [Python type hints](https://docs.python.org/3/library/typing.html).
+In this tutorial, you will build a Model Context Protocol (MCP) server that provides weather forecasts and alerts. This tutorial was adapted from [Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server). The purpose was to simplify the tutorial for beginning Python programmers. The main changes were to use `pip` instead of `uv`,  use the ["official" MCP Server SDK](https://modelcontextprotocol.github.io/python-sdk/) and to not use [Python type hints](https://docs.python.org/3/library/typing.html).
 
 This tutorial includes instructions for testing the server with two different MCP clients: 
 
@@ -20,7 +20,7 @@ This tutorial includes instructions for testing the server with two different MC
 
 ## Project Setup
 
-We will use standard Python tools (`venv` and `pip`) to set up the environment. The environment will include the ["official" Python MCP SDK](https://modelcontextprotocol.github.io/python-sdk/). 
+We will use standard Python tools (`venv` and `pip`) to set up the environment. The environment will include the ["official" Python MCP SDK](https://modelcontextprotocol.github.io/python-sdk/) from the Anthropic MCP open-source project. 
 
 - First make a new project folder with a name like `weather-mcp`
   - In that folder, using a terminal, do the following :
@@ -357,7 +357,9 @@ If the *weather-server* doesn't appear in the list of tools or the tool fails:
 
 ## References
 
-[Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server)&mdash;Model Context Protocol Project web site.
+[Build an MCP Server](https://modelcontextprotocol.io/docs/develop/build-server)&mdash;Model Context Protocol Project, an open-source project managed by [Anthropic](https://www.anthropic.com).
+
+[MCP Python SDK](https://modelcontextprotocol.github.io/python-sdk/)&mdash;The "official" SDK from the Anthropic MCP open-source project.
 
  [How to use the MCP server in VS Code](https://www.youtube.com/watch?v=91_6PnC9oUU)  
 This video demonstrates the "Agent mode" in VS Code and how to access MCP tools within the GitHub Copilot chat interface.
