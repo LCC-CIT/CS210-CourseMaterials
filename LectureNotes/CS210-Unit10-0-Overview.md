@@ -35,37 +35,52 @@ We will discuss the potential (and actual) positive and negative effects of AI o
 
 ## Announcements for Fall 2025
 
-- **RegFest**: Tues, December 2, from 9 a.m.-2 p.m. on the first floor of Building 1. This event is designed for students:
-  - who have not yet registered for the upcoming term  
-        and/or
+### RegFest
 
-  - those needing assistance with Financial Aid, Advising, or Student Accounts (Bursar).
+**Tues, December 2, from 9 a.m.-2 p.m**. on the first floor of Building 1. This event is designed for students:
 
-  - If you are pursuing the AAS in Software Development, these are the recommended courses:
+- Who have not yet registered for the upcoming term  
+      and/or
+- Those needing assistance with Financial Aid, Advising, or Student Accounts (Bursar).
 
-    - CS 233JS, Intermediate Programming: JavaScript
+#### Reccomended Classes for AAS in Software Development 
 
-    - CS 161N, Beginning Programming: C#
+If you are pursuing the AAS in Software Development, these are the recommended courses:
+- If you are in the first year of the program:
+  - CS 233JS, Intermediate Programming: JavaScript
 
-    - Directed Elective: CS 135M, Beginning Mobile Application Development
+  - CS 161N, Beginning Programming: C#
 
-    - WR 121Z, Composition 1
+  - Directed Elective: CS 135M, Beginning Mobile Application Development
 
-  - Relevant Links:
+  - WR 121Z, Composition 1
 
-    - [Degree Requirements](https://lanecc.smartcatalogiq.com/en/current/lcc-catalog/programs-of-study/computer-information-technology/software-development-aas) for AAS in Software Dev
+- If you are in the second year of the program:
+  - CS 295N, Web Development 1: ASP.NET
+  - CS 275, Introduction to Database Systems and Modeling
+  - CS 206, Co-op Ed: CIT Seminar
+  - CS 246, System Design
+  - CS 135M, Mobile App Development (program elective)
 
-    - [Term-By-Term Sample Planner](https://docs.google.com/document/d/1F8CJY1M7A4J9uJtGRDFRyF-0j7l2AVe0vpPE5vcfHXE/edit?tab=t.0) for AAS in Software Dev
+- Relevant Links:
 
-    - [Winter 2026 Class Schedule](**CS135M  Beginning Mobile Application Development**)
+  - [Degree Requirements](https://lanecc.smartcatalogiq.com/en/current/lcc-catalog/programs-of-study/computer-information-technology/software-development-aas) for AAS in Software Dev
 
-    - [Academic Advising](https://lanecc.edu/advising)
+  - [Term-By-Term Sample Planner](https://docs.google.com/document/d/1F8CJY1M7A4J9uJtGRDFRyF-0j7l2AVe0vpPE5vcfHXE/edit?tab=t.0) for AAS in Software Dev
 
-    - [Registration](https://my.lanecc.edu/StudentRegistrationSsb/ssb/registration)
+  - [Winter 2026 Class Schedule](**CS135M  Beginning Mobile Application Development**)
 
-- **Last Day for Submissions**: Any late assignments are due by the end of the day on Tuesday of next week (finals week).
+  - [Academic Advising](https://lanecc.edu/advising)
 
-- **Global Game Jam**: Save the date! Jan 30&ndash;Feb 1, 2026. LCC is hosting this game jam in the CIT Lab, building 19, room 135. Food and drinks will be provided. Come build a game!  [Registration is now open](https://globalgamejam.org/jam-sites/2026/lcc-bitforest-ggj26)
+  - [Registration](https://my.lanecc.edu/StudentRegistrationSsb/ssb/registration)
+
+### Last Day for Submissions
+
+Any late assignments are due by the end of the day on **12/9, Tuesday of next week** (finals week).
+
+### Global Game Jam
+
+**Save the date! Jan 30&ndash;Feb 1, 2026**. LCC is hosting this game jam in the CIT Lab, building 19, room 135. Food and drinks will be provided. Come build a game!  [Registration is now open](https://globalgamejam.org/jam-sites/2026/lcc-bitforest-ggj26)
 
 ## Q and A
 
