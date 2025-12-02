@@ -105,8 +105,9 @@ Any late assignments are due by the end of the day on **12/9, Tuesday of next we
 
 - Monday 12/8 Term project production version
 
-- Tuesday 12/9 Term project presentations
-
+- Tuesday 12/9 Term project presentations. 
+  Read the [Term Project Presentation Guidelines](../Labs/TermProject/CS210-TermProjectPresentationGuide.html)
+  
   
 
 ![F2025Week10](/Volumes/DataCard/Repos/CS210-Repos/CS210-CourseMaterials/LectureNotes/Images/F2025Week10.png)
