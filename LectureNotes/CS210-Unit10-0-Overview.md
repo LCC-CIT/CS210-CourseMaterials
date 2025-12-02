@@ -37,7 +37,7 @@ We will discuss the potential (and actual) positive and negative effects of AI o
 
 ### RegFest
 
-**Tues, December 2, from 9 a.m.-2 p.m**. on the first floor of Building 1. This event is designed for students:
+**Tues, December 2, from 9 a.m. to 2 p.m**. on the first floor of Building 1. This event is designed for students:
 
 - Who have not yet registered for the upcoming term  
       and/or
