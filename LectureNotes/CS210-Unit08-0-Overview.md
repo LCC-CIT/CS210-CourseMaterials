@@ -17,7 +17,7 @@ author: Brian Bird
 | 1. What is AI, Python                    | 6. ANN: Image recognition                                    |
 | 2.  Symbolic AI                          | 7. Generative AI                                             |
 | 3. Classical machine learning: training  | 8. <mark>Calling the chat completion API</mark>              |
-| 4. Classical machine learning: inference | 9. Agentic AI with MCP                                       |
+| 4. Classical machine learning: inference | 9. Model Context Protocol (MCP)                              |
 | 5. More ML + History of AI               | 10. Social and ethical issues  <br />Term project completion |
 |                                          | 11. Final project presentation                               |
 

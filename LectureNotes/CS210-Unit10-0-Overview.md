@@ -1,6 +1,6 @@
 ---
-title: Week 9 Overview
-description: What's happening in CS 210 during week 9
+title: Week 10 Overview
+description: What's happening in CS 210 during week 10
 keywords: Announcements, Due Dates, Help
 generator: Typora
 author: Brian Bird
@@ -8,17 +8,17 @@ author: Brian Bird
 
 **CS 210, Intro to AI Programming**
 
-<h1>Week 9 Overview for Fall 2025</h1>
+<h1>Week 10 Overview for Fall 2025</h1>
 
-<h2>Nov. 24 through Nov. 30</h2>
+<h2>Dec. 1 through Dec. 7</h2>
 
 | Topics                                   |                                                              |
 | ---------------------------------------- | ------------------------------------------------------------ |
 | 1. What is AI, Python                    | 6. ANN: Image recognition                                    |
 | 2.  Symbolic AI                          | 7. Generative AI                                             |
 | 3. Classical machine learning: training  | 8. Calling the chat completion API                           |
-| 4. Classical machine learning: inference | 9. <mark>Model Context Protocol (MCP)</mark>                 |
-| 5. More ML + History of AI               | 10. Social and ethical issues  <br />Term project completion |
+| 4. Classical machine learning: inference | 9. Model Context Protocol (MCP)                              |
+| 5. More ML + History of AI               | 10. <mark>Social and ethical issues  <br />Term project completion</mark> |
 |                                          | 11. Final project presentation                               |
 
 <h2>Contents</h2>
