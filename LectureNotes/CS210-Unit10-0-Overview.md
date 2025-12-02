@@ -27,13 +27,11 @@ author: Brian Bird
 
 ## This Week's Objectives
 
-The *Model Context Protocol* (MCP) standardizes communication with and between LLMs to enable  *agentic AI*, allowing an LLM to move beyond simple chat and interact with apps and APIs. It lets developers write applications where AI can do things like  "go look up the user's latest file and then send an email". An MCP server takes care of translating those requests into system actions.
+We will discuss the potential (and actual) positive and negative effects of AI on society and the world. You'll also have time in class to work on your lab assignment and term project.
 
 **This week you will:**
 
-- Get a basic understanding of the MCP protocol.
-- [Build an MCP Server](https://classes.lanecc.edu/mod/url/view.php?id=4679547).
-- Build an MCP client.
+- Finish your term project
 
 ## Announcements for Fall 2025
 
