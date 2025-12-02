@@ -37,53 +37,56 @@ The *Model Context Protocol* (MCP) standardizes communication with and between L
 
 ## Announcements for Fall 2025
 
-There will be no class on Thursday since the college will be clsed Thursday through Sunday, 11/27&ndash;11/30, for the Thanksgiviing holiday.
+- **RegFest**: Tues, December 2, from 9 a.m.-2 p.m. on the first floor of Building 1. This event is designed for students:
+  - who have not yet registered for the upcoming term  
+        and/or
 
-## Registration for Winter Term 2026
+  - those needing assistance with Financial Aid, Advising, or Student Accounts (Bursar).
 
-Registration for winter term is open. If you are pursuing the AAS in Software Development, these are the reccomended courses:
+  - If you are pursuing the AAS in Software Development, these are the recommended courses:
 
-- CS 295N, Web Development 1: ASP.NET
-- CS 275, Introduction to Database Systems and Modeling
-- CS 206, Co-op Ed: CIT Seminar
-- CS 246, System Design
-- CS 135M, Mobile App Development (program elective)
+    - CS 233JS, Intermediate Programming: JavaScript
 
-### Relevant Links:
+    - CS 161N, Beginning Programming: C#
 
-- [Degree Requirements](https://lanecc.smartcatalogiq.com/en/current/lcc-catalog/programs-of-study/computer-information-technology/software-development-aas) for AAS in Software Dev
-- [Term-By-Term Sample Planner](https://docs.google.com/document/d/1F8CJY1M7A4J9uJtGRDFRyF-0j7l2AVe0vpPE5vcfHXE/edit?tab=t.0) for AAS in Software Dev
+    - Directed Elective: CS 135M, Beginning Mobile Application Development
 
-- [Winter 2026 Class Schedule](**CS135M  Beginning Mobile Application Development**)
-- [Academic Advising](https://lanecc.edu/advising)
-- [Registration](https://my.lanecc.edu/StudentRegistrationSsb/ssb/registration)
+    - WR 121Z, Composition 1
+
+  - Relevant Links:
+
+    - [Degree Requirements](https://lanecc.smartcatalogiq.com/en/current/lcc-catalog/programs-of-study/computer-information-technology/software-development-aas) for AAS in Software Dev
+
+    - [Term-By-Term Sample Planner](https://docs.google.com/document/d/1F8CJY1M7A4J9uJtGRDFRyF-0j7l2AVe0vpPE5vcfHXE/edit?tab=t.0) for AAS in Software Dev
+
+    - [Winter 2026 Class Schedule](**CS135M  Beginning Mobile Application Development**)
+
+    - [Academic Advising](https://lanecc.edu/advising)
+
+    - [Registration](https://my.lanecc.edu/StudentRegistrationSsb/ssb/registration)
+
+- **Last Day for Submissions**: Any late assignments are due by the end of the day on Tuesday of next week (finals week).
+
+- **Global Game Jam**: Save the date! Jan 30&ndash;Feb 1, 2026. LCC is hosting this game jam in the CIT Lab, building 19, room 135. Food and drinks will be provided. Come build a game!  [Registration is now open](https://globalgamejam.org/jam-sites/2026/lcc-bitforest-ggj26)
 
 ## Q and A
 
 - Do you have any questions about:
 
-  - Lab 6&mdash;Calling a chat-completion API?
-  - The reading on MCP?
+  - Lab 7&mdash;the MCP tutorial?
+  - Your term project?
 
   - Anything else?
 
 ## Assignments Due
 
-### This Week (Week 9)
+### This Week (Week 10)
 
-- Tuesday 11/25
-  - Lab 6 code review
-- Friday 11/28
-  - Lab 6 production version
-- Sunday 11/30
-  - Lab 7 beta version
+- Tuesday 12/2: Lab 7 code review
+- Thursday 12/4: Lab 7 production version
+- Friday 12/5: Term project beta version
 
-### Next Week (Week10)
-
-- Tuesday 12/2 Lab 7 Code review
-- Thursday 12/4 Lab 7 production version
-- Friday 12/5 Term project beta version
-- Saturday 12/6 Term project code review
+- Saturday 12/6: Term project code review
 
 ### Fianals Week (Week 11)
 
@@ -93,9 +96,7 @@ Registration for winter term is open. If you are pursuing the AAS in Software De
 
   
 
-![F2025Week09](Images/F2025Week09.jpg)
-
-[Mental Health and Wellness Center (MHWC)](https://www.lanecc.edu/get-support/health-wellness/mental-health-wellness-center)
+![F2025Week10](/Volumes/DataCard/Repos/CS210-Repos/CS210-CourseMaterials/LectureNotes/Images/F2025Week10.png)
 
 
 

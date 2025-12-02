@@ -37,7 +37,7 @@ The *Model Context Protocol* (MCP) standardizes communication with and between L
 
 ## Announcements for Fall 2025
 
-There will be no class on Thursday since the college will be clsed Thursday through Sunday, 11/27&ndash;11/30, for the Thanksgiviing holiday.
+There will be no class on Thursday since the college will be closed Thursday through Sunday, 11/27&ndash;11/30, for the Thanksgiviing holiday.
 
 ## Registration for Winter Term 2026
 
