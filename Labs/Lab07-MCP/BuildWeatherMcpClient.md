@@ -24,22 +24,23 @@ We will use standard Python tools (`venv` and `pip`) to set up the environment. 
 
   ```bash
   # Create a virtual environment
-  python -m venv client-venv
+  python -m venv weather-venv
   
   # Activate the environment
   # On macOS/Linux:
-  source client-venv/bin/activate
-  # On Windows:
-  client-venv\Scripts\activate
-  
-  # Install dependencies
-  # mcp: The core protocol library
-  pip install mcp
+  source weather-venv/bin/activate
+  # On Windows using the Command Prompt:
+  weather-venv\Scripts\activate
   ```
 
-  **Note**: on a Mac, use the command `python3` instead of `python`.
+  **Notes** 
 
-- For both new and existing projects, add the Google Gemini SDK to the venv folder:  
+  - On a Mac, use the command `python3` instead of `python`.
+  - On Windows, use the Command Prompt (cmd), not PowerShell.
+
+  
+
+- For both new and existing projects, add the Google Gemini SDK to the `weather-venv` folder:  
 
   ```bash
   # Inastall the official Gemini SDK

@@ -262,7 +262,7 @@ Now we need to tell the Claude Desktop app where to find this script. We do this
    }
    ```
    
-   > **Note for Windows Users:** Your paths will look like `C:\\Users\\Name\\weather-mcp\\weather-venv\\Scripts\\python.exe`. You need to escape the backslashes `\\` in JSON.
+   > **Note for Windows Users:** Your *command* path will be: `C:\\ABSOLUTE\\PATH\\TO\\weather-mcp\\weather-venv\\Scripts\\python.exe`. Your *args* path will also use `\\` delimiters.
 
 #### Testing with Claude Desktop
 
@@ -312,7 +312,7 @@ Instead of creating  a global config file like you did for Claude, you will crea
    }
    ```
    
-   *(Remember to use double backslashes `\\` in paths if you are on Windows.)*
+   *(On Windows, remember to use double backslashes `\\` in paths and that the python command is in `Scripts` not `bin`.)*
 
 #### Testing with VS Code
 
@@ -326,7 +326,7 @@ Use the Copilot Chat sidebar.
 
 3. **Select agent mode:** In the agent/ask/plan drop-down, select agent. 
 
-4. **Enable the weather server tool.** Cllick on the *configure tools* icon. In the list of tools, you should see `weather-server` listed. Check it's checkbox.
+4. **Enable the weather server tool.** Click on the *configure tools* icon. In the list of tools, you should see `weather-server` listed. Check it's checkbox.
 
 5. Ask a Question:
 
