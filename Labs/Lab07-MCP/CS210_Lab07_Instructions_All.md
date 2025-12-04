@@ -39,27 +39,22 @@ You have three options. You can <u>do any one</u> of these:
 
 ## Submitting your lab work on Moodle
 
-### Beta Version
-
-- Post a zip file or GitHub link for the beta version of your project in your team channel on Discord.
-
-### Code Review
-
-- Review code written by one of your lab partners and share the review with them.
-- Submit a copy of the code review <u>you did</u> on the LMS.
+No code review is needed for this lab assignment.
 
 ### Production Version
 
- Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
+Submit two screen-shots:
 
-1. The Zipped project files or a link to your GitHub repository.
-3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
+- One of either GitHub Copilot in VS Code or Claude Desktop responding to a forecast request
+- One of the client running in a terminal and responding to a forecast request.
+
+You don't need to submit code unless you did something other than just the tutorial&mdash;in which case, you didn't need to write any code. 
 
 
 
 ## Grading Criteria
 
-The main focus of grading will be on program design, problem solving skills, AI-assisted coding and on testing (quality assurance).
+The main focus of grading will be on problem solving skills in terms of getting everything set up so that your MCP server and client run properly.
 
 
 

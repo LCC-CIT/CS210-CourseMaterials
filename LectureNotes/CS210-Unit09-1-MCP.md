@@ -23,6 +23,10 @@ author: Brian Bird
 
 [TOC]
 
+## Introduction
+
+
+
 ![McpArchitectureDiagram](Images/McpArchitectureDiagram.png)
 
 1. **The Client is the Orchestrator:** The diagram correctly places the **MCP Client (App)** in the center. In the MCP architecture, the "Host" application (like Claude Desktop or an IDE) is responsible for maintaining the connection to the LLM and the connections to the MCP Servers. The Servers do not talk directly to the LLM; they talk to the Client.
@@ -32,17 +36,31 @@ author: Brian Bird
    - **Local Server (via Stdio):** Represented by the FS example. This runs as a subprocess on the user's machine.
    - **Remote Server (via SSE/HTTP):** Represented by the "Remote server" label. MCP supports connecting to agents or servers running on different infrastructure.
 
+
+
+## Examples of MCP Hosts
+
+These are freely available applications that incorporate MCP client code so that they can use MCP servers.
+
+- Claude Desktop
+
+- Visual Studio Code
+
+- LM Studio
+
+
+
+
+
 ## Reference
 
-[Free Gemini Pro Subscription for Students](https://gemini.google/sg/students/?hl=en)
+[What is the Model Context Protocol (MCP)?](https://modelcontextprotocol.io/docs/getting-started/intro)&mdash;Model Context Protocol Project web site by Anthropic.
 
-[Google AI Studio](https://aistudio.google.com/app/)
-
-[Google Gemini API Docs](https://ai.google.dev/gemini-api/docs)
+[Use MCP Servers](https://lmstudio.ai/docs/app/mcp)&mdash;LM Studio documentation.
 
 
 
-Note: Parts of this document were drafted using Gemini 3.0 (2025).
+*Note: Some parts of this document were drafted using Gemini 3.0 (2025).*
 
 ---
 
