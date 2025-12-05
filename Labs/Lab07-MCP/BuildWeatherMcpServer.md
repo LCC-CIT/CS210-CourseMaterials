@@ -241,7 +241,7 @@ Now we need to tell the Claude Desktop app where to find this script. We do this
 1. **Locate the configuration file:**
 
    - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+   - **Windows:** `C:\Users\YourUserName\AppData\Roaming\Claude\claude_desktop_config.json`
 
    *If the file doesn't exist, create it.*
 
