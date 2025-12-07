@@ -32,8 +32,9 @@ Wiite a .py file that <u>only includes the essential steps</u> to:
 - Train the classifier (without using a pipeline)
 
 - Test the classifier
-
+  
   - Use test data from  
+    
     ```Python
     twenty_test = fetch_20newsgroups(subset='test',  categories=categories, shuffle=True, random_state=42)
     ```
@@ -57,4 +58,3 @@ Upload the one file to the Lab 3, Part 1 assignment link.
 ### Grading Criteria
 
 The main focus of grading will be on correct coding and problem solving skills.
-
