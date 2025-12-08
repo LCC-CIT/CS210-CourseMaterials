@@ -15,7 +15,7 @@ author: Brian Bird
 
 ## A Better Expert System
 
-In the last lab assignment you wrote a "toy" expert system that was a Financial Product Recommendation System. This week your assignment is to make a "mini" expert systeb by either:
+In the last lab assignment you wrote a "toy" expert system that was a Financial Product Recommendation System. This week your assignment is to make a "mini" expert system by either:
 
 A. Improving last week's program  
     or  
@@ -30,8 +30,6 @@ B. Making a new expert system to do something you are interesed in. Send your in
 5. The inference part of your program will implement *forward chaining*.
 6. User input and output should be separated from code that does inference.
 7. There will be a module that runs tests on the primary inference function and checks all combinations of inputs that the system can recognize.
-
-
 
 ## Submitting your lab work on Moodle
 
@@ -49,9 +47,8 @@ B. Making a new expert system to do something you are interesed in. Send your in
  Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on Moodle:
 
 1. The files: Python (.py) files (one or more) and one .csv rule file.
-3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
+2. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
 
 ### Grading Criteria
 
 The main focus of grading will be on rule design and problem solving skills.
-
