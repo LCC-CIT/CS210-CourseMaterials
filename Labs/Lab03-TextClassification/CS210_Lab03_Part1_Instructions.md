@@ -51,7 +51,8 @@ There will be three versions of part 2. The instructions will be in separate doc
 
 ## Submitting your lab work on Moodle
 
-Upload the one file to the Lab 3, Part 1 assignment link.
+Upload the one file to the Lab 3, Part 1 assignment link. 
+You only need to submit your code. You <u>do not</u> need to upload your virtual environment (.venv) folder.
 
 (No code review is needed)
 

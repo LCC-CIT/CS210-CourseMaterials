@@ -159,7 +159,7 @@ Re-compile and re-train this new, "deeper" model. Does the final test accuracy g
 
 ### Beta Version
 
-- Post the beta version of your Python file or a link to your Colab notebook in your team channel on Discord.
+- Post the beta version of your Jupyter Notebook file or a link to your Colab notebook in your team channel on Discord.
 
 ### Code Review
 
@@ -170,7 +170,7 @@ Re-compile and re-train this new, "deeper" model. Does the final test accuracy g
 
  Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
 
-1. The Python (.py) file or a link to your Colab notebook.
+1. The Jupyter Notebook file (.Ipynb) or a link to your Google Colab notebook.
 3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
 
 

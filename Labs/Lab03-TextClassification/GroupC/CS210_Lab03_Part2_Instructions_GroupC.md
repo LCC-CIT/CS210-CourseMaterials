@@ -32,6 +32,8 @@ Alternatively, you can do a classification project of your own design.  You can 
 
 ## Submitting your lab work on Moodle
 
+**Note**: You only need to submit your code. You <u>do not</u> need to upload your virtual environment (.venv) folder.
+
 ### Beta Version
 
 - Post the beta version of your Python file to your team channel in Discord.
@@ -43,7 +45,7 @@ Alternatively, you can do a classification project of your own design.  You can 
 
 ### Production Version
 
- Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
+Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
 
 1. The Python (.py) file
 3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.

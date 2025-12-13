@@ -32,6 +32,8 @@ Alternatively, you can do a classification project of your own design.  You can 
 
 ## Submitting your lab work on Moodle
 
+**Note**: You only need to submit your code. You <u>do not</u> need to upload your virtual environment (.venv) folder.
+
 ### Beta Version
 
 - Post the beta version of your Python file to your team channel in Discord.
