@@ -19,11 +19,11 @@ author: Brian Bird
 
 In this lab you will use an AI-coding assistant like GitHub Copilot to write code for a moderately complex app. This will be a console based app in order to minimize complexity. (Unless you have experience writing code for a GUI and want to do that.)
 
-This week's app will be modified next week by adding calls to a *chat completion API* in order to enhance the app with an AI feature.
+This week's app will be modified next week by adding calls to a generative AI *chat completion API* in order to enhance the app with an AI feature.
 
 ## Instructions
 
-Since everyone will potentially be choosing different apps to write and they will probably be designed and coded differently, there won't be three versions of this lab assignment. But, here are suggestions for the types of apps you could write:
+Since everyone will potentially be choosing different apps to write and they will probably be designed and coded differently, there won't be three versions of this lab assignment. But here are suggestions for the types of apps you could write:
 
 - Flash card or quiz generator
   - For this lab load questions and answers from a file.
