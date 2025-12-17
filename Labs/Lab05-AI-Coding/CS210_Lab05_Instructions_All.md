@@ -60,6 +60,7 @@ Since everyone will potentially be choosing different apps to write and they wil
  Based on the code review and helpful advice from your lab partners, you may revise your code. On the code review from your lab partner, complete the “Prod.” column to show what you revised. Upload the following to the *Lab Production Version* assignment on the LMS:
 
 1. The Zipped Python (.py) and any other project files or a link to your GitHub repository.
+   (Don't include non-source code like .venv or `__pycache__`, etc.)
 3. The code review <u>from your lab partner</u> with the “Prod.” column filled out by you.
 
 
